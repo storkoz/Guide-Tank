@@ -3,16 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Guide Tank - The War Within S2</title>
+    <title>Guide Tank - The War Within S3</title>
     <style>
         :root {
-            --wow-gold: #ffd700;
-            --wow-dark: #1a1a2e;
-            --wow-darker: #0f0f1e;
-            --wow-blue: #3498db;
-            --wow-accent: #c79d43;
-            --text-light: #e8e8e8;
-            --season: "The War Within - Saison 2";
+            --wow-gold: #f8b700;
+            --wow-dark: #0a0a0f;
+            --wow-darker: #000000;
+            --wow-blue: #00ccff;
+            --wow-accent: #daa520;
+            --wow-legendary: #ff8000;
+            --text-light: #f0e6d2;
+            --season: "The War Within - Saison 3";
         }
 
         * {
@@ -23,7 +24,8 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, var(--wow-darker) 0%, var(--wow-dark) 100%);
+            background: linear-gradient(135deg, #000000 0%, #0a0a0f 50%, #1a1a2e 100%);
+            background-attachment: fixed;
             color: var(--text-light);
             line-height: 1.6;
         }
@@ -31,9 +33,10 @@
         header {
             position: sticky;
             top: 0;
-            background: rgba(26, 26, 46, 0.95);
+            background: linear-gradient(180deg, rgba(10, 10, 15, 0.98) 0%, rgba(0, 0, 0, 0.95) 100%);
             backdrop-filter: blur(10px);
-            border-bottom: 2px solid var(--wow-gold);
+            border-bottom: 3px solid var(--wow-gold);
+            box-shadow: 0 2px 20px rgba(248, 183, 0, 0.3);
             z-index: 1000;
             padding: 1rem 0;
         }
@@ -52,13 +55,15 @@
         .header-title h1 {
             color: var(--wow-gold);
             font-size: 2rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            text-shadow: 0 0 10px rgba(248, 183, 0, 0.5), 2px 2px 4px rgba(0,0,0,0.8);
+            letter-spacing: 1px;
         }
 
         .season-tag {
-            color: var(--wow-accent);
+            color: var(--wow-blue);
             font-size: 0.9rem;
             font-weight: normal;
+            text-shadow: 0 0 5px rgba(0, 204, 255, 0.5);
         }
 
         nav ul {
@@ -73,17 +78,19 @@
             color: var(--text-light);
             text-decoration: none;
             padding: 0.5rem 1rem;
-            border: 1px solid var(--wow-accent);
+            border: 2px solid var(--wow-accent);
             border-radius: 5px;
             transition: all 0.3s;
             font-weight: 500;
+            background: rgba(218, 165, 32, 0.1);
         }
 
         nav a:hover {
-            background: var(--wow-gold);
-            color: var(--wow-dark);
+            background: linear-gradient(135deg, var(--wow-gold) 0%, var(--wow-legendary) 100%);
+            color: var(--wow-darker);
             transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(255, 215, 0, 0.3);
+            box-shadow: 0 4px 15px rgba(248, 183, 0, 0.5);
+            border-color: var(--wow-gold);
         }
 
         .container {
@@ -95,9 +102,10 @@
         .spec-section {
             margin: 3rem 0;
             padding: 2rem;
-            background: rgba(255, 255, 255, 0.05);
+            background: linear-gradient(135deg, rgba(218, 165, 32, 0.05) 0%, rgba(0, 0, 0, 0.3) 100%);
             border-radius: 10px;
-            border: 1px solid var(--wow-accent);
+            border: 2px solid var(--wow-accent);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(248, 183, 0, 0.1);
         }
 
         .spec-header {
@@ -106,41 +114,47 @@
             gap: 1rem;
             margin-bottom: 2rem;
             padding-bottom: 1rem;
-            border-bottom: 2px solid var(--wow-gold);
+            border-bottom: 3px solid var(--wow-gold);
+            box-shadow: 0 2px 10px rgba(248, 183, 0, 0.2);
         }
 
         .spec-icon {
             width: 64px;
             height: 64px;
             border-radius: 10px;
-            border: 2px solid var(--wow-gold);
+            border: 3px solid var(--wow-gold);
+            box-shadow: 0 0 15px rgba(248, 183, 0, 0.5);
         }
 
         .spec-header h2 {
             color: var(--wow-gold);
             font-size: 2rem;
+            text-shadow: 0 0 10px rgba(248, 183, 0, 0.5), 2px 2px 4px rgba(0,0,0,0.8);
         }
 
         .subsection {
             margin: 2rem 0;
             padding: 1.5rem;
-            background: rgba(0, 0, 0, 0.3);
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.6) 0%, rgba(10, 10, 15, 0.4) 100%);
             border-radius: 8px;
             border-left: 4px solid var(--wow-blue);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
         }
 
         .subsection h3 {
-            color: var(--wow-accent);
+            color: var(--wow-gold);
             margin-bottom: 1rem;
             font-size: 1.5rem;
+            text-shadow: 0 0 8px rgba(248, 183, 0, 0.5);
         }
 
         .talent-block {
-            background: rgba(0, 0, 0, 0.5);
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.8) 0%, rgba(10, 10, 15, 0.6) 100%);
             padding: 1.5rem;
             border-radius: 8px;
             margin: 1rem 0;
-            border: 1px solid var(--wow-accent);
+            border: 2px solid var(--wow-accent);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(248, 183, 0, 0.1);
         }
 
         .talent-string {
@@ -153,11 +167,12 @@
             overflow-x: auto;
             margin: 1rem 0;
             position: relative;
+            border: 1px solid var(--wow-accent);
         }
 
         .copy-btn {
-            background: var(--wow-gold);
-            color: var(--wow-dark);
+            background: linear-gradient(135deg, var(--wow-gold) 0%, var(--wow-legendary) 100%);
+            color: var(--wow-darker);
             border: none;
             padding: 0.5rem 1.5rem;
             border-radius: 5px;
@@ -165,11 +180,13 @@
             font-weight: bold;
             transition: all 0.3s;
             margin-top: 0.5rem;
+            box-shadow: 0 2px 10px rgba(248, 183, 0, 0.4);
         }
 
         .copy-btn:hover {
-            background: var(--wow-accent);
+            background: linear-gradient(135deg, var(--wow-legendary) 0%, var(--wow-gold) 100%);
             transform: scale(1.05);
+            box-shadow: 0 4px 15px rgba(255, 128, 0, 0.6);
         }
 
         .ability-grid {
@@ -180,10 +197,10 @@
         }
 
         .ability-card {
-            background: rgba(0, 0, 0, 0.4);
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.7) 0%, rgba(10, 10, 15, 0.5) 100%);
             padding: 1rem;
             border-radius: 8px;
-            border: 1px solid var(--wow-blue);
+            border: 2px solid var(--wow-blue);
             transition: all 0.3s;
             display: flex;
             gap: 1rem;
@@ -193,7 +210,8 @@
         .ability-card:hover {
             border-color: var(--wow-gold);
             transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.2);
+            box-shadow: 0 5px 20px rgba(248, 183, 0, 0.4);
+            background: linear-gradient(135deg, rgba(218, 165, 32, 0.1) 0%, rgba(10, 10, 15, 0.6) 100%);
         }
 
         .ability-icon {
@@ -202,6 +220,7 @@
             border-radius: 5px;
             border: 2px solid var(--wow-gold);
             flex-shrink: 0;
+            box-shadow: 0 0 10px rgba(248, 183, 0, 0.3);
         }
 
         .ability-info h4 {
@@ -240,19 +259,21 @@
         }
 
         .info-box {
-            background: rgba(52, 152, 219, 0.1);
+            background: linear-gradient(135deg, rgba(0, 204, 255, 0.15) 0%, rgba(0, 0, 0, 0.4) 100%);
             border-left: 4px solid var(--wow-blue);
             padding: 1rem;
             margin: 1rem 0;
             border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0, 204, 255, 0.2);
         }
 
         .warning-box {
-            background: rgba(231, 76, 60, 0.1);
+            background: linear-gradient(135deg, rgba(231, 76, 60, 0.15) 0%, rgba(0, 0, 0, 0.4) 100%);
             border-left: 4px solid #e74c3c;
             padding: 1rem;
             margin: 1rem 0;
             border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(231, 76, 60, 0.2);
         }
 
         @media (max-width: 768px) {
@@ -270,13 +291,37 @@
                 text-align: center;
             }
         }
+
+        html {
+            scroll-behavior: smooth;
+        }
     </style>
+    <script>
+        function copyToClipboard(elementId) {
+            const element = document.getElementById(elementId);
+            const text = element.textContent.trim();
+            
+            navigator.clipboard.writeText(text).then(() => {
+                const btn = element.nextElementSibling;
+                const originalText = btn.textContent;
+                btn.textContent = '✅ Copié !';
+                btn.style.background = '#2ecc71';
+                
+                setTimeout(() => {
+                    btn.textContent = originalText;
+                    btn.style.background = '';
+                }, 2000);
+            }).catch(err => {
+                alert('Erreur lors de la copie : ' + err);
+            });
+        }
+    </script>
 </head>
 <body>
     <header>
         <div class="header-content">
             <div class="header-title">
-                <h1>Guide Tank <span class="season-tag">- The War Within S2</span></h1>
+                <h1>Guide Tank <span class="season-tag">- The War Within S3</span></h1>
             </div>
             <nav>
                 <ul>
@@ -334,10 +379,10 @@
                         <li><strong>Tirion's Devotion</strong> : Augmente votre uptime sur Bouclier sacré, ce qui se traduit par moins de risque de mourir.</li>
                     </ul>
 
-                    <div class="talent-string">
+                    <div class="talent-string" id="talent-mm-plus">
 CwQAAAAAAAAAAAAAAAAAAAAAAMzMzMzMmZmZGzMzMzMzMDmxMzMjZmZmBmZmZMzsYmZmZmxMz2MzMDjZGAAAAAAAMbmZmZmZmZA
                     </div>
-                    <button class="copy-btn" onclick="copyTalents(this)">📋 Copier les talents</button>
+                    <button class="copy-btn" onclick="copyToClipboard('talent-mm-plus')">📋 Copier les talents</button>
 
                     <div class="info-box" style="margin-top: 1rem;">
                         <strong>Variantes :</strong> Si vous faites des donjons avec beaucoup de magic damage (Azure Vault, Brackenhide), prenez les talents qui buffent votre résistance magique. Pour les tyrannical weeks, renforcez vos single-target cooldowns.
@@ -360,10 +405,10 @@ CwQAAAAAAAAAAAAAAAAAAAAAAMzMzMzMmZmZGzMzMzMzMDmxMzMjZmZmBmZmZMzsYmZmZmxMz2MzMDjZ
                         <li><strong>Utilité</strong> : Gardez toutes vos bénédictions, elles sont clutch pour sauver des raiders sur les boss difficiles.</li>
                     </ul>
 
-                    <div class="talent-string">
+                    <div class="talent-string" id="talent-raid">
 CwQAAAAAAAAAAAAAAAAAAAAAAMzMzMzMmZmZGzMzMzMzMDmxMzMjZmZmBGzsYmZmZmxMz2MzMDjZmZmZmZmZmZmBAAAAA
                     </div>
-                    <button class="copy-btn" onclick="copyTalents(this)">📋 Copier les talents</button>
+                    <button class="copy-btn" onclick="copyToClipboard('talent-raid')">📋 Copier les talents</button>
 
                     <div class="info-box" style="margin-top: 1rem;">
                         <strong>Adaptation par boss :</strong> Certains boss nécessitent des ajustements. Par exemple, sur des boss avec des bleeds importants, renforcez votre armor. Sur des boss avec du burst magic, prenez tous les talents de résistance magique disponibles.
@@ -414,34 +459,49 @@ CwQAAAAAAAAAAAAAAAAAAAAAAMzMzMzMmZmZGzMzMzMzMDmxMzMjZmZmBGzsYmZmZmxMz2MzMDjZmZmZ
             <!-- Stats -->
             <div class="subsection">
                 <h3>Statistiques & Optimisation</h3>
-                <p>Après des tests approfondis avec les top tanks, voici la priorité de stats que je recommande pour cette saison :</p>
+                <p>D'après les données actuelles de la saison 3 et mon expérience en haute clé, voici la priorité de stats que je recommande pour le Paladin Protection :</p>
 
                 <div class="stat-priority">
                     <div class="stat-item">
-                        <strong>1. Hâte (jusqu'à ~25-30%)</strong> : La stat la plus importante. Elle réduit vos GCD, augmente la génération de Puissance sacrée, et améliore votre uptime sur Bouclier sacré. C'est le breakpoint optimal.
+                        <strong>1. Force</strong> : Votre stat principale. Elle augmente votre AP, ce qui améliore à la fois votre damage et votre threat. Toujours prioritaire sur toutes vos pièces.
                     </div>
                     <div class="stat-item">
-                        <strong>2. Maîtrise</strong> : Votre principale stat de survie. Augmente l'absorption de Bouclier sacré et améliore votre block. Stack après avoir atteint le cap de Hâte.
+                        <strong>2. Critique (~21-23k rating)</strong> : La stat la plus importante en ce moment. Elle augmente votre damage, améliore votre génération de Puissance sacrée via les procs, et booste votre threat. Les top tanks stackent autour de 21-23k rating.
                     </div>
                     <div class="stat-item">
-                        <strong>3. Polyvalence</strong> : Réduction de dégâts passive constante. C'est votre filet de sécurité. Bonne stat mais pas prioritaire.
+                        <strong>3. Hâte (~20-22k rating)</strong> : Votre deuxième stat prioritaire. Elle réduit vos GCD, accélère vos casts, et améliore votre uptime sur Bouclier sacré. Ciblez environ 20-22k rating pour un équilibre optimal.
                     </div>
                     <div class="stat-item">
-                        <strong>4. Crit</strong> : La stat la moins importante pour nous. Elle augmente un peu le damage mais n'apporte rien à la survie. Prenez-en si c'est sur votre stuff mais ne cherchez pas à en avoir.
+                        <strong>4. Maîtrise (~11-12k rating)</strong> : Augmente l'absorption de Bouclier sacré et améliore votre block. C'est une bonne stat défensive mais elle passe après Crit et Hâte en saison 3.
                     </div>
+                    <div class="stat-item">
+                        <strong>5. Polyvalence (~5-6k rating)</strong> : La stat la moins importante actuellement. Elle donne de la réduction passive mais n'apporte pas assez comparé aux autres stats. Ne la cherchez pas activement.
+                    </div>
+                </div>
+
+                <div class="info-box" style="margin-top: 1.5rem;">
+                    <strong>Note importante :</strong> Cette priorité est basée sur les données réelles des meilleurs Paladins Protection en M+ haute clé (données Archon.gg). Le meta actuel favorise clairement Crit > Hâte > Maîtrise, contrairement aux saisons précédentes où on stackait principalement Hâte.
                 </div>
 
                 <h4 style="color: var(--wow-accent); margin-top: 2rem;">Gems & Enchants</h4>
                 <p>Pour l'optimisation finale de votre équipement :</p>
                 <ul style="margin-left: 2rem; margin-top: 1rem;">
-                    <li><strong>Gems</strong> : Hâte partout jusqu'à 25-30%, puis Maîtrise. Utilisez une gem principale de meilleure qualité.</li>
-                    <li><strong>Enchant arme</strong> : Autorité du Conseil de guerre (Hâte).</li>
-                    <li><strong>Enchant Cape</strong> : Grâce du Guetteur (Hâte + Avoidance).</li>
-                    <li><strong>Enchant Torse</strong> : Rune cristalline du Waking Shore (Stats + Mana).</li>
-                    <li><strong>Enchant Bracers</strong> : Dévotion du Guetteur (Hâte + Leech).</li>
-                    <li><strong>Enchant Jambes</strong> : Renfort de jambe en cuir épais (Stamina + Hâte).</li>
-                    <li><strong>Enchant Bottes</strong> : Grâce du Guetteur (Hâte + Movement).</li>
-                    <li><strong>Enchant Anneau</strong> : Dévotion de Hâte x2.</li>
+                    <li><strong>Gems</strong> : Priorisez Critique puis Hâte. Utilisez des <strong>Quick Ruby</strong> (Maîtrise/Hâte) ou des gems Crit/Hâte selon vos besoins. Meta gem avec bonus de stats.</li>
+                    <li><strong>Enchant arme</strong> : Authority of Radiant Power (Critique) ou Council's Guile si vous avez besoin de Hâte.</li>
+                    <li><strong>Enchant Cape</strong> : Chant of Leeching Fangs (Leech crucial pour la survie).</li>
+                    <li><strong>Enchant Torse</strong> : Crystalline Radiance (Hâte/Crit).</li>
+                    <li><strong>Enchant Bracers</strong> : Chant of Armored Leech (Stats + Leech).</li>
+                    <li><strong>Enchant Jambes</strong> : Stormbound Armor Kit (Stats principales).</li>
+                    <li><strong>Enchant Bottes</strong> : Defender's March (Speed + Avoidance crucial en M+).</li>
+                    <li><strong>Enchant Anneau</strong> : Radiant Mastery ou Radiant Haste selon vos ratios actuels.</li>
+                </ul>
+
+                <h4 style="color: var(--wow-accent); margin-top: 2rem;">Trinkets Recommandés</h4>
+                <p>Les meilleurs trinkets pour cette saison :</p>
+                <ul style="margin-left: 2rem; margin-top: 1rem;">
+                    <li><strong>Astral Antenna</strong> (Nerub-ar Palace) : Le meilleur trinket tank actuellement. Utilisé par 28.5% des meilleurs Paladins.</li>
+                    <li><strong>Brand of Ceaseless Ire</strong> (Nerub-ar Palace) : Excellent trinket défensif/offensif. Égalité avec Antenna.</li>
+                    <li><strong>Alternatives</strong> : Sacred Weapon (si vous n'avez pas les raid trinkets), ou tout trinket avec des stats Crit/Hâte élevées.</li>
                 </ul>
             </div>
 
