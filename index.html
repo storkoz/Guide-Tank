@@ -295,8 +295,149 @@
         html {
             scroll-behavior: smooth;
         }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .patch-category {
+            margin: 1.5rem 0;
+            padding: 1rem;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.6) 0%, rgba(10, 10, 15, 0.4) 100%);
+            border-radius: 8px;
+            border-left: 4px solid var(--wow-gold);
+        }
+
+        .patch-category h4 {
+            color: var(--wow-gold);
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .patch-item {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            color: var(--text-light);
+            line-height: 1.8;
+        }
+
+        .buff-item { border-left-color: #2ecc71; }
+        .nerf-item { border-left-color: #e74c3c; }
+        .adjust-item { border-left-color: var(--wow-blue); }
     </style>
     <script>
+        // Gestion du cache pour les patch notes
+        const CACHE_KEY = 'paladin_patch_notes';
+        const CACHE_DURATION = 24 * 60 * 60 * 1000; // 24 heures
+
+        function getCachedPatchNotes() {
+            const cached = localStorage.getItem(CACHE_KEY);
+            if (!cached) return null;
+            
+            const data = JSON.parse(cached);
+            const now = Date.now();
+            
+            if (now - data.timestamp > CACHE_DURATION) {
+                localStorage.removeItem(CACHE_KEY);
+                return null;
+            }
+            
+            return data.content;
+        }
+
+        function setCachedPatchNotes(content) {
+            const data = {
+                content: content,
+                timestamp: Date.now()
+            };
+            localStorage.setItem(CACHE_KEY, JSON.stringify(data));
+        }
+
+        async function loadPatchNotes() {
+            const patchContent = document.getElementById('patch-content');
+            
+            // Vérifier le cache d'abord
+            const cached = getCachedPatchNotes();
+            if (cached) {
+                patchContent.innerHTML = cached;
+                return;
+            }
+
+            try {
+                // Recherche des derniers patch notes
+                const response = await fetch("https://api.anthropic.com/v1/messages", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        model: "claude-sonnet-4-20250514",
+                        max_tokens: 1000,
+                        messages: [{
+                            role: "user",
+                            content: `Recherche les derniers patch notes de World of Warcraft The War Within pour le Paladin Protection (tank). Je veux uniquement les changements les plus récents (dernier patch ou hotfix). 
+
+Formate ta réponse EXACTEMENT comme ceci en HTML, sans aucun texte avant ou après :
+
+<div style="padding: 1rem;">
+<h3 style="color: var(--wow-gold); margin-bottom: 1rem;">Patch X.X.X - [Date]</h3>
+
+<div class="patch-category buff-item">
+<h4>🔼 BUFFS</h4>
+<div class="patch-item">• [Sort] : [Description du buff]</div>
+</div>
+
+<div class="patch-category nerf-item">
+<h4>🔽 NERFS</h4>
+<div class="patch-item">• [Sort] : [Description du nerf]</div>
+</div>
+
+<div class="patch-category adjust-item">
+<h4>⚖️ AJUSTEMENTS</h4>
+<div class="patch-item">• [Sort] : [Description]</div>
+</div>
+</div>
+
+Si aucun changement récent, écris : <p style="text-align: center; color: var(--wow-accent);">✅ Aucun changement récent pour le Paladin Protection.</p>`
+                        }],
+                        tools: [{
+                            type: "web_search_20250305",
+                            name: "web_search"
+                        }]
+                    })
+                });
+
+                const data = await response.json();
+                
+                // Extraire le contenu texte
+                let content = '';
+                if (data.content && data.content.length > 0) {
+                    content = data.content
+                        .filter(item => item.type === 'text')
+                        .map(item => item.text)
+                        .join('');
+                }
+
+                if (!content) {
+                    content = '<p style="text-align: center; color: var(--wow-accent);">✅ Aucun changement récent détecté.</p>';
+                }
+
+                // Mettre en cache et afficher
+                setCachedPatchNotes(content);
+                patchContent.innerHTML = content;
+
+            } catch (error) {
+                console.error('Erreur lors du chargement des patch notes:', error);
+                patchContent.innerHTML = `
+                    <div class="warning-box">
+                        <strong>⚠️ Erreur de chargement</strong>
+                        <p>Impossible de récupérer les derniers patch notes. Réessayez plus tard.</p>
+                    </div>
+                `;
+            }
+        }
+
         function copyToClipboard(elementId) {
             const element = document.getElementById(elementId);
             const text = element.textContent.trim();
@@ -315,6 +456,11 @@
                 alert('Erreur lors de la copie : ' + err);
             });
         }
+
+        // Charger les patch notes au chargement de la page
+        window.addEventListener('DOMContentLoaded', () => {
+            loadPatchNotes();
+        });
     </script>
 </head>
 <body>
@@ -326,6 +472,7 @@
             </div>
             <nav>
                 <ul>
+                    <li><a href="#patch-notes">Derniers Changements</a></li>
                     <li><a href="#paladin">Paladin Protection</a></li>
                     <li><a href="#dk">Chevalier de la Mort</a></li>
                     <li><a href="#dh">Chasseur de Démons</a></li>
@@ -338,6 +485,25 @@
     </header>
 
     <div class="container">
+        <!-- SECTION PATCH NOTES AUTOMATIQUE -->
+        <section class="spec-section" id="patch-notes" style="margin-top: 2rem;">
+            <div class="spec-header">
+                <img src="https://render.worldofwarcraft.com/us/icons/56/inv_scroll_10.jpg" alt="Patch Notes" class="spec-icon">
+                <h2>Derniers Changements</h2>
+            </div>
+            
+            <div id="patch-content" class="subsection">
+                <div style="text-align: center; padding: 2rem;">
+                    <div class="loading-spinner" style="display: inline-block; width: 40px; height: 40px; border: 4px solid rgba(248, 183, 0, 0.3); border-top: 4px solid var(--wow-gold); border-radius: 50%; animation: spin 1s linear infinite;"></div>
+                    <p style="margin-top: 1rem; color: var(--wow-accent);">Chargement des derniers patch notes...</p>
+                </div>
+            </div>
+            
+            <div class="info-box" style="margin-top: 1rem;">
+                <strong>ℹ️ Information :</strong> Cette section se met à jour automatiquement avec les derniers changements du Paladin Protection. Les données sont récupérées des patch notes officiels et mises en cache pendant 24h.
+            </div>
+        </section>
+
         <!-- PALADIN PROTECTION -->
         <section id="paladin" class="spec-section">
             <div class="spec-header">
