@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guide Tank - The War Within S2</title>
+    <style>
+        :root {
+            --wow-gold: #ffd700;
+            --wow-dark: #1a1a2e;
+            --wow-darker: #0f0f1e;
+            --wow-blue: #3498db;
+            --wow-accent: #c79d43;
+            --text-light: #e8e8e8;
+            --season: "The War Within - Saison 2";
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, var(--wow-darker) 0%, var(--wow-dark) 100%);
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            background: rgba(26, 26, 46, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 2px solid var(--wow-gold);
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .header-title {
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .header-title h1 {
+            color: var(--wow-gold);
+            font-size: 2rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .season-tag {
+            color: var(--wow-accent);
+            font-size: 0.9rem;
+            font-weight: normal;
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            list-style: none;
+        }
+
+        nav a {
+            color: var(--text-light);
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--wow-accent);
+            border-radius: 5px;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+
+        nav a:hover {
+            background: var(--wow-gold);
+            color: var(--wow-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(255, 215, 0, 0.3);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .spec-section {
+            margin: 3rem 0;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            border: 1px solid var(--wow-accent);
+        }
+
+        .spec-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--wow-gold);
+        }
+
+        .spec-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 10px;
+            border: 2px solid var(--wow-gold);
+        }
+
+        .spec-header h2 {
+            color: var(--wow-gold);
+            font-size: 2rem;
+        }
+
+        .subsection {
+            margin: 2rem 0;
+            padding: 1.5rem;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+            border-left: 4px solid var(--wow-blue);
+        }
+
+        .subsection h3 {
+            color: var(--wow-accent);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .talent-block {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            border: 1px solid var(--wow-accent);
+        }
+
+        .talent-string {
+            background: var(--wow-darker);
+            padding: 1rem;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            color: var(--wow-gold);
+            overflow-x: auto;
+            margin: 1rem 0;
+            position: relative;
+        }
+
+        .copy-btn {
+            background: var(--wow-gold);
+            color: var(--wow-dark);
+            border: none;
+            padding: 0.5rem 1.5rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+            margin-top: 0.5rem;
+        }
+
+        .copy-btn:hover {
+            background: var(--wow-accent);
+            transform: scale(1.05);
+        }
+
+        .ability-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .ability-card {
+            background: rgba(0, 0, 0, 0.4);
+            padding: 1rem;
+            border-radius: 8px;
+            border: 1px solid var(--wow-blue);
+            transition: all 0.3s;
+            display: flex;
+            gap: 1rem;
+            align-items: start;
+        }
+
+        .ability-card:hover {
+            border-color: var(--wow-gold);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.2);
+        }
+
+        .ability-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 5px;
+            border: 2px solid var(--wow-gold);
+            flex-shrink: 0;
+        }
+
+        .ability-info h4 {
+            color: var(--wow-gold);
+            margin-bottom: 0.5rem;
+        }
+
+        .ability-info p {
+            font-size: 0.9rem;
+            color: #ccc;
+        }
+
+        .stat-priority {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+
+        .stat-item {
+            background: rgba(0, 0, 0, 0.4);
+            padding: 0.8rem;
+            border-radius: 5px;
+            border-left: 3px solid var(--wow-gold);
+        }
+
+        .stat-item strong {
+            color: var(--wow-accent);
+        }
+
+        .placeholder-text {
+            color: #888;
+            font-style: italic;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .info-box {
+            background: rgba(52, 152, 219, 0.1);
+            border-left: 4px solid var(--wow-blue);
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 5px;
+        }
+
+        .warning-box {
+            background: rgba(231, 76, 60, 0.1);
+            border-left: 4px solid #e74c3c;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 5px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .spec-header {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="header-title">
+                <h1>Guide Tank <span class="season-tag">- The War Within S2</span></h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#paladin">Paladin Protection</a></li>
+                    <li><a href="#dk">Chevalier de la Mort</a></li>
+                    <li><a href="#dh">Chasseur de Démons</a></li>
+                    <li><a href="#monk">Moine</a></li>
+                    <li><a href="#warrior">Guerrier</a></li>
+                    <li><a href="#druid">Druide</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- PALADIN PROTECTION -->
+        <section id="paladin" class="spec-section">
+            <div class="spec-header">
+                <img src="https://render.worldofwarcraft.com/us/icons/56/spell_holy_devotionaura.jpg" alt="Protection Paladin" class="spec-icon">
+                <h2>Paladin Protection</h2>
+            </div>
+
+            <!-- Présentation -->
+            <div class="subsection">
+                <h3>Vue d'Ensemble</h3>
+                <p>Le Paladin Protection reste un des tanks les plus solides de cette saison. Après avoir testé toutes les compositions en haute clé, je peux vous assurer que c'est un choix extrêmement sûr pour le prog. Ce qui fait la force du Paladin, c'est sa polyvalence : vous avez des défensifs pour presque toutes les situations, une utilité de groupe incroyable avec les bénédictions et l'immunité, et surtout une capacité à absorber des coups massifs grâce au Bouclier sacré.</p>
+                
+                <p><strong>En Mythic+ :</strong> Le Paladin brille particulièrement dans les packs où vous devez gérer plusieurs mobs simultanément. Votre AoE est correct, mais ce qui fait vraiment la différence, c'est votre capacité à maintenir la survie du groupe. Bénédiction de protection et Bénédiction de sacrifice peuvent sauver vos DPS dans des situations critiques. En haute clé (+25 et au-delà), j'ai remarqué que le Paladin excelle dans les donjons avec beaucoup de damage magic comme Azure Vault ou Brackenhide, où vous pouvez utiliser votre immunité stratégiquement.</p>
+
+                <div class="info-box">
+                    <strong>Points forts :</strong> Excellent burst mitigation, utilité de groupe exceptionnelle, bonne mobilité avec Coursier divin, immunité complète avec Bouclier divin, healing passif décent.
+                </div>
+
+                <div class="warning-box">
+                    <strong>Points faibles :</strong> Dépendant du GCD (beaucoup de boutons à presser), mitigation active requise (pas de mitigation passive massive), peut être punishing si vous ratez vos défensifs.
+                </div>
+
+                <p><strong>En Raid :</strong> Le Paladin est un excellent main tank. Vous gérez très bien les gros tank busters grâce à votre kit défensif, et votre immunité est clutch sur certains boss. J'ai maintenu le Paladin en progression mythique et il performe très bien. Votre utilité reste top-tier avec les bénédictions qui peuvent sauver des pull entiers.</p>
+            </div>
+
+            <!-- Talents Mythic+ -->
+            <div class="subsection">
+                <h3>Talents Mythic+</h3>
+                <div class="talent-block">
+                    <h4>Build Standard (Clés 20-30)</h4>
+                    <p>Ce build est celui que j'utilise dans 90% de mes clés. Il maximise votre survie tout en gardant une threat et un damage correct. Les points clés sont dans le tree de classe pour avoir toutes les bénédictions et l'immunité réduite, puis dans Protection pour optimiser vos défensifs.</p>
+                    
+                    <p><strong>Explications des choix principaux :</strong></p>
+                    <ul style="margin-left: 2rem; margin-top: 1rem;">
+                        <li><strong>Improved Consecration</strong> : Essentiel pour l'AoE et la threat. C'est votre base.</li>
+                        <li><strong>Blessed Hammer</strong> : Rotation plus fluide et meilleur damage. J'ai testé les deux builds et Hammer est supérieur en M+.</li>
+                        <li><strong>Bulwark of Order</strong> : Le talent qui transforme votre Bouclier sacré en mur infranchissable. Critique pour les tank busters.</li>
+                        <li><strong>Moment of Glory</strong> : Votre gros défensif AoE. Utilisé correctement sur les gros pulls, ça vous rend presque immortel pendant 8 secondes.</li>
+                        <li><strong>Seal of Mercy</strong> : Le healing passif est non négligeable, surtout sur les trash packs longs.</li>
+                        <li><strong>Tirion's Devotion</strong> : Augmente votre uptime sur Bouclier sacré, ce qui se traduit par moins de risque de mourir.</li>
+                    </ul>
+
+                    <div class="talent-string">
+CwQAAAAAAAAAAAAAAAAAAAAAAMzMzMzMmZmZGzMzMzMzMDmxMzMjZmZmBmZmZMzsYmZmZmxMz2MzMDjZGAAAAAAAMbmZmZmZmZA
+                    </div>
+                    <button class="copy-btn" onclick="copyTalents(this)">📋 Copier les talents</button>
+
+                    <div class="info-box" style="margin-top: 1rem;">
+                        <strong>Variantes :</strong> Si vous faites des donjons avec beaucoup de magic damage (Azure Vault, Brackenhide), prenez les talents qui buffent votre résistance magique. Pour les tyrannical weeks, renforcez vos single-target cooldowns.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Talents Raid -->
+            <div class="subsection">
+                <h3>Talents Raid</h3>
+                <div class="talent-block">
+                    <h4>Build Progression Mythique</h4>
+                    <p>En raid, on adapte légèrement le build pour privilégier la survie single-target et l'efficacité sur les tank swaps. La principale différence avec le build M+ est qu'on retire un peu d'AoE pour renforcer nos défensifs single-target et améliorer notre uptime sur le boss.</p>
+                    
+                    <p><strong>Différences clés avec le build M+ :</strong></p>
+                    <ul style="margin-left: 2rem; margin-top: 1rem;">
+                        <li><strong>Moins d'AoE</strong> : On peut se permettre de drop quelques points d'AoE vu qu'on se concentre principalement sur le boss.</li>
+                        <li><strong>Focus sur les défensifs</strong> : Maximum d'uptime sur Bouclier sacré et cooldowns réduits.</li>
+                        <li><strong>Talents de positioning</strong> : Selon les boss, prenez des talents qui améliorent votre mobilité pour gérer les mechanics.</li>
+                        <li><strong>Utilité</strong> : Gardez toutes vos bénédictions, elles sont clutch pour sauver des raiders sur les boss difficiles.</li>
+                    </ul>
+
+                    <div class="talent-string">
+CwQAAAAAAAAAAAAAAAAAAAAAAMzMzMzMmZmZGzMzMzMzMDmxMzMjZmZmBGzsYmZmZmxMz2MzMDjZmZmZmZmZmZmBAAAAA
+                    </div>
+                    <button class="copy-btn" onclick="copyTalents(this)">📋 Copier les talents</button>
+
+                    <div class="info-box" style="margin-top: 1rem;">
+                        <strong>Adaptation par boss :</strong> Certains boss nécessitent des ajustements. Par exemple, sur des boss avec des bleeds importants, renforcez votre armor. Sur des boss avec du burst magic, prenez tous les talents de résistance magique disponibles.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Rotation -->
+            <div class="subsection">
+                <h3>Rotation & Priorités</h3>
+                <p>La rotation du Paladin Protection n'est pas complexe dans sa théorie, mais elle demande de la réactivité et une bonne gestion de la Puissance sacrée. Voici comment j'aborde chaque situation :</p>
+
+                <h4 style="color: var(--wow-accent); margin-top: 1.5rem;">Single Target (Boss)</h4>
+                <ol style="margin-left: 2rem; line-height: 2;">
+                    <li><strong>Bouclier du vengeur</strong> : Votre priorité absolue. Génère de la Puissance sacrée et applique votre debuff principal.</li>
+                    <li><strong>Jugement</strong> : À maintenir sur cooldown, génère de la Puissance sacrée.</li>
+                    <li><strong>Marteau béni</strong> : Si vous avez le talent (recommandé), spam dès que disponible.</li>
+                    <li><strong>Bouclier sacré</strong> : Utilisez votre Puissance sacrée pour cast ce sort dès que possible. C'est votre principal défensif actif.</li>
+                    <li><strong>Consécration</strong> : Toujours maintenu au sol sous vous et le boss.</li>
+                    <li><strong>Mot de gloire</strong> : Utilisez vos procs pour vous heal ou heal un allié en danger.</li>
+                </ol>
+
+                <h4 style="color: var(--wow-accent); margin-top: 1.5rem;">AoE (Trash Packs M+)</h4>
+                <ol style="margin-left: 2rem; line-height: 2;">
+                    <li><strong>Bouclier du vengeur</strong> : Pull avec, touche tout le pack.</li>
+                    <li><strong>Consécration</strong> : Posée immédiatement, maintenue 100% du temps.</li>
+                    <li><strong>Marteau béni</strong> : Spam sur tous les targets.</li>
+                    <li><strong>Jugement</strong> : Sur cooldown pour la Puissance sacrée.</li>
+                    <li><strong>Bouclier sacré</strong> : Même priorité qu'en single, ne négligez jamais votre défensif.</li>
+                    <li><strong>Courroux du vengeur</strong> : Votre burst AoE, utilisé quand le pack est bien stack.</li>
+                </ol>
+
+                <div class="info-box" style="margin-top: 1.5rem;">
+                    <strong>Gestion de la Puissance sacrée :</strong> Ne cappez jamais à 5 charges. Utilisez toujours vos charges de Bouclier sacré dès que vous êtes à 3+ pour maintenir l'uptime maximum sur le buff. Dans les gros pulls M+, il vaut mieux avoir Bouclier sacré actif en permanence que de sauver sa Puissance sacrée.
+                </div>
+
+                <h4 style="color: var(--wow-accent); margin-top: 1.5rem;">Utilisation des Défensifs</h4>
+                <p>C'est ici que le Paladin demande le plus de skill. Vous devez anticiper les dégâts et utiliser le bon défensif au bon moment :</p>
+                <ul style="margin-left: 2rem; margin-top: 1rem;">
+                    <li><strong>Bouclier divin</strong> : Votre panique button ultime. Utilisez-le sur les mechanics qui oneshot ou quand vous êtes à 20% HP et que vous savez qu'un gros hit arrive.</li>
+                    <li><strong>Gardien des anciens rois</strong> : Votre gros défensif, 50% de réduction. Utilisez sur les gros tank busters ou les pulls M+ massifs. Cooldown court, n'hésitez pas.</li>
+                    <li><strong>Ardent défenseur</strong> : Cheat death qui réduit aussi les dégâts. Parfait pour les situations où vous pourriez mourir mais pas assez critique pour utiliser Bouclier divin.</li>
+                    <li><strong>Mot de gloire (proc)</strong> : Healing d'urgence instantané. Je garde toujours 3 charges de Puissance sacrée en réserve pour pouvoir cast ça si besoin.</li>
+                    <li><strong>Sacrifice divin</strong> : Underrated. Sauve votre healer ou un DPS sur une mechanic mortelle. En haute clé, ça peut sauver le run.</li>
+                </ul>
+            </div>
+
+            <!-- Stats -->
+            <div class="subsection">
+                <h3>Statistiques & Optimisation</h3>
+                <p>Après des tests approfondis avec les top tanks, voici la priorité de stats que je recommande pour cette saison :</p>
+
+                <div class="stat-priority">
+                    <div class="stat-item">
+                        <strong>1. Hâte (jusqu'à ~25-30%)</strong> : La stat la plus importante. Elle réduit vos GCD, augmente la génération de Puissance sacrée, et améliore votre uptime sur Bouclier sacré. C'est le breakpoint optimal.
+                    </div>
+                    <div class="stat-item">
+                        <strong>2. Maîtrise</strong> : Votre principale stat de survie. Augmente l'absorption de Bouclier sacré et améliore votre block. Stack après avoir atteint le cap de Hâte.
+                    </div>
+                    <div class="stat-item">
+                        <strong>3. Polyvalence</strong> : Réduction de dégâts passive constante. C'est votre filet de sécurité. Bonne stat mais pas prioritaire.
+                    </div>
+                    <div class="stat-item">
+                        <strong>4. Crit</strong> : La stat la moins importante pour nous. Elle augmente un peu le damage mais n'apporte rien à la survie. Prenez-en si c'est sur votre stuff mais ne cherchez pas à en avoir.
+                    </div>
+                </div>
+
+                <h4 style="color: var(--wow-accent); margin-top: 2rem;">Gems & Enchants</h4>
+                <p>Pour l'optimisation finale de votre équipement :</p>
+                <ul style="margin-left: 2rem; margin-top: 1rem;">
+                    <li><strong>Gems</strong> : Hâte partout jusqu'à 25-30%, puis Maîtrise. Utilisez une gem principale de meilleure qualité.</li>
+                    <li><strong>Enchant arme</strong> : Autorité du Conseil de guerre (Hâte).</li>
+                    <li><strong>Enchant Cape</strong> : Grâce du Guetteur (Hâte + Avoidance).</li>
+                    <li><strong>Enchant Torse</strong> : Rune cristalline du Waking Shore (Stats + Mana).</li>
+                    <li><strong>Enchant Bracers</strong> : Dévotion du Guetteur (Hâte + Leech).</li>
+                    <li><strong>Enchant Jambes</strong> : Renfort de jambe en cuir épais (Stamina + Hâte).</li>
+                    <li><strong>Enchant Bottes</strong> : Grâce du Guetteur (Hâte + Movement).</li>
+                    <li><strong>Enchant Anneau</strong> : Dévotion de Hâte x2.</li>
+                </ul>
+            </div>
+
+            <!-- Sorts Clés -->
+            <div class="subsection">
+                <h3>Sorts Clés</h3>
+                <div class="ability-grid">
+                    <div class="ability-card">
+                        <img src="https://render.worldofwarcraft.com/us/icons/56/ability_paladin_shieldofthetemplar.jpg" alt="Shield of the Righteous" class="ability-icon">
+                        <div class="ability-info">
+                            <h4>Bouclier sacré</h4>
+                            <p>Votre principal défensif actif. Spam dès que vous avez 3+ Puissance sacrée pour maintenir le buff en permanence.</p>
+                        </div>
+                    </div>
+
+                    <div class="ability-card">
+                        <img src="https://render.worldofwarcraft.com/us/icons/56/spell_holy_avengersshield.jpg" alt="Avenger's Shield" class="ability-icon">
+                        <div class="ability-info">
+                            <h4>Bouclier du vengeur</h4>
+                            <p>Votre interrupt qui silence. Génère de la Puissance sacrée. À utiliser sur cooldown sauf si vous savez qu'un cast important arrive.</p>
+                        </div>
+                    </div>
+
+                    <div class="ability-card">
+                        <img src="https://render.worldofwarcraft.com/us/icons/56/spell_holy_sealofmight.jpg" alt="Judgment" class="ability-icon">
+                        <div class="ability-info">
+                            <h4>Jugement</h4>
+                            <p>Génère de la Puissance sacrée et applique un debuff. Spam sur cooldown pour maximiser votre génération de ressources.</p>
+                        </div>
+                    </div>
+
+                    <div class="ability-card">
+                        <img src="https://render.worldofwarcraft.com/us/icons/56/spell_holy_innerfocus.jpg" alt="Divine Shield" class="ability-icon">
+                        <div class="ability-info">
+                            <h4>Bouclier divin</h4>
+                            <p>Immunité complète 8 secondes. Votre panique button ultime. Drop votre threat, attention en début de pull.</p>
+                        </div>
+                    </div>
+
+                    <div class="ability-card">
+                        <img src="https://render.worldofwarcraft.com/us/icons/56/spell_holy_devotionaura.jpg" alt="Guardian of Ancient Kings" class="ability-icon">
+                        <div class="ability-info">
+                            <h4>Gardien des anciens rois</h4>
+                            <p>50% de réduction des dégâts pendant 8 secondes. Votre gros défensif, cooldown court (5 minutes). Utilisez généreusement.</p>
+                        </div>
+                    </div>
+
+                    <div class="ability-card">
+                        <img src="https://render.worldofwarcraft.com/us/icons/56/spell_holy_ardentdefender.jpg" alt="Ardent Defender" class="ability-icon">
+                        <div class="ability-info">
+                            <h4>Ardent défenseur</h4>
+                            <p>20% de réduction + cheat death si vous tombez sous 20% HP. Excellent pour les situations dangereuses mais pas critiques.</p>
+                        </div>
+                    </div>
+
+                    <div class="ability-card">
+                        <img src="https://render.worldofwarcraft.com/us/icons/56/ability_paladin_hammerofthearighteous.jpg" alt="Blessed Hammer" class="ability-icon">
+                        <div class="ability-info">
+                            <h4>Marteau béni</h4>
+                            <p>Votre principal spell de génération de threat et damage. Lancez autant que possible, fonctionne en AoE.</p>
+                        </div>
+                    </div>
+
+                    <div class="ability-card">
+                        <img src="https://render.worldofwarcraft.com/us/icons/56/spell_holy_innerfire.jpg" alt="Consecration" class="ability-icon">
+                        <div class="ability-info">
+                            <h4>Consécration</h4>
+                            <p>Doit être maintenue 100% du temps. Génère de la threat passive et fait des dégâts constants en AoE.</p>
+                        </div>
+                    </div>
+
+                    <div class="ability-card">
+                        <img src="https://render.worldofwarcraft.com/us/icons/56/spell_holy_prayerofhealing.jpg" alt="Word of Glory" class="ability-icon">
+                        <div class="ability-info">
+                            <h4>Mot de gloire</h4>
+                            <p>Heal instantané avec vos procs ou en dépensant 3 Puissance sacrée. Gardez toujours des charges en réserve pour les urgences.</p>
+                        </div>
+                    </div>
+
+                    <div class="ability-card">
+                        <img src="https://render.worldofwarcraft.com/us/icons/56/spell_holy_righteousfury.jpg" alt="Blessing of Protection" class="ability-icon">
+                        <div class="ability-info">
+                            <h4>Bénédiction de protection</h4>
+                            <p>Immunité physical 10 secondes sur un allié. Clutch pour sauver vos DPS des mechanics melee ou des bleeds.</p>
+                        </div>
+                    </div>
+
+                    <div class="ability-card">
+                        <img src="https://render.worldofwarcraft.com/us/icons/56/spell_holy_sealofsacrifice.jpg" alt="Blessing of Sacrifice" class="ability-icon">
+                        <div class="ability-info">
+                            <h4>
