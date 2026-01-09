@@ -83,6 +83,7 @@
             transition: all 0.3s;
             font-weight: 500;
             background: rgba(218, 165, 32, 0.1);
+            cursor: pointer;
         }
 
         nav a:hover {
@@ -91,6 +92,21 @@
             transform: translateY(-2px);
             box-shadow: 0 4px 15px rgba(248, 183, 0, 0.5);
             border-color: var(--wow-gold);
+        }
+
+        nav a.active {
+            background: linear-gradient(135deg, var(--wow-gold) 0%, var(--wow-legendary) 100%);
+            color: var(--wow-darker);
+            border-color: var(--wow-gold);
+            box-shadow: 0 4px 15px rgba(248, 183, 0, 0.5);
+        }
+
+        .spec-section {
+            display: none;
+        }
+
+        .spec-section.active {
+            display: block;
         }
 
         .container {
@@ -708,6 +724,53 @@ Si aucun changement récent, écris : <p style="text-align: center; color: var(-
             const color = colors[spec] || '#f8b700';
             document.documentElement.style.setProperty('--particle-color', color);
         }
+
+        // Système d'onglets pour les sections
+        function showSection(sectionId) {
+            // Masquer toutes les sections
+            document.querySelectorAll('.spec-section').forEach(section => {
+                section.classList.remove('active');
+            });
+
+            // Afficher la section sélectionnée
+            const targetSection = document.getElementById(sectionId);
+            if (targetSection) {
+                targetSection.classList.add('active');
+                
+                // Scroll en haut de la page
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                
+                // Mettre à jour les boutons du menu
+                document.querySelectorAll('nav a').forEach(link => {
+                    link.classList.remove('active');
+                });
+                
+                const activeLink = document.querySelector(`nav a[href="#${sectionId}"]`);
+                if (activeLink) {
+                    activeLink.classList.add('active');
+                }
+
+                // Mettre à jour les particules
+                const spec = targetSection.getAttribute('data-spec');
+                if (spec) {
+                    updateParticleColors(spec);
+                }
+            }
+        }
+
+        // Gérer les liens directs (URLs avec #section)
+        window.addEventListener('DOMContentLoaded', () => {
+            loadPatchNotes();
+            initAnimations();
+            createParticles();
+            observeSections();
+
+            // Vérifier si il y a un hash dans l'URL
+            const hash = window.location.hash.slice(1);
+            if (hash) {
+                showSection(hash);
+            }
+        });
     </script>
 </head>
 <body>
@@ -719,13 +782,13 @@ Si aucun changement récent, écris : <p style="text-align: center; color: var(-
             </div>
             <nav>
                 <ul>
-                    <li><a href="#patch-notes">Derniers Changements</a></li>
-                    <li><a href="#paladin">Protection Paladin</a></li>
-                    <li><a href="#dk">Blood DK</a></li>
-                    <li><a href="#dh">Vengeance DH</a></li>
-                    <li><a href="#monk">Brewmaster Monk</a></li>
-                    <li><a href="#warrior">Protection Warrior</a></li>
-                    <li><a href="#druid">Guardian Druid</a></li>
+                    <li><a href="#patch-notes" onclick="showSection('patch-notes'); return false;">Derniers Changements</a></li>
+                    <li><a href="#paladin" onclick="showSection('paladin'); return false;" class="active">Protection Paladin</a></li>
+                    <li><a href="#dk" onclick="showSection('dk'); return false;">Blood DK</a></li>
+                    <li><a href="#dh" onclick="showSection('dh'); return false;">Vengeance DH</a></li>
+                    <li><a href="#monk" onclick="showSection('monk'); return false;">Brewmaster Monk</a></li>
+                    <li><a href="#warrior" onclick="showSection('warrior'); return false;">Protection Warrior</a></li>
+                    <li><a href="#druid" onclick="showSection('druid'); return false;">Guardian Druid</a></li>
                 </ul>
             </nav>
         </div>
@@ -752,7 +815,7 @@ Si aucun changement récent, écris : <p style="text-align: center; color: var(-
         </section>
 
         <!-- PALADIN PROTECTION -->
-        <section id="paladin" class="spec-section" data-spec="paladin">
+        <section id="paladin" class="spec-section active" data-spec="paladin">
             <div class="spec-header">
                 <img src="https://render.worldofwarcraft.com/us/icons/56/spell_holy_devotionaura.jpg" alt="Protection Paladin" class="spec-icon">
                 <h2>Paladin Protection</h2>
