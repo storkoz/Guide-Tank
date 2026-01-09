@@ -301,7 +301,140 @@
             100% { transform: rotate(360deg); }
         }
 
-        .patch-category {
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 0 5px rgba(248, 183, 0, 0.5); }
+            50% { box-shadow: 0 0 20px rgba(248, 183, 0, 0.8), 0 0 30px rgba(248, 183, 0, 0.6); }
+        }
+
+        @keyframes particleFloat {
+            0% {
+                transform: translateY(100vh) translateX(0) rotate(0deg);
+                opacity: 0;
+            }
+            5% {
+                opacity: 0.8;
+            }
+            50% {
+                opacity: 1;
+            }
+            95% {
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(-100px) translateX(100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .fade-in {
+            animation: fadeInUp 0.8s ease-out forwards;
+            opacity: 0;
+        }
+
+        .spec-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 10px;
+            border: 3px solid var(--wow-gold);
+            box-shadow: 0 0 15px rgba(248, 183, 0, 0.5);
+            transition: all 0.4s ease;
+        }
+
+        .spec-icon:hover {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 0 30px rgba(248, 183, 0, 0.9);
+            animation: glow 2s infinite;
+        }
+
+        .ability-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 5px;
+            border: 2px solid var(--wow-gold);
+            flex-shrink: 0;
+            box-shadow: 0 0 10px rgba(248, 183, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .ability-card:hover .ability-icon {
+            transform: scale(1.15) rotate(-5deg);
+            box-shadow: 0 0 20px rgba(248, 183, 0, 0.8);
+        }
+
+        /* Particules de fond */
+        #particles-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: radial-gradient(circle, var(--particle-color) 0%, var(--particle-color) 50%, transparent 100%);
+            border-radius: 50%;
+            animation: particleFloat linear infinite;
+            opacity: 0;
+            box-shadow: 0 0 15px var(--particle-color), 0 0 30px var(--particle-color), 0 0 45px var(--particle-color);
+            filter: blur(1px);
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Parallaxe subtil sur le header */
+        header {
+            position: sticky;
+            top: 0;
+            background: linear-gradient(180deg, rgba(10, 10, 15, 0.98) 0%, rgba(0, 0, 0, 0.95) 100%);
+            backdrop-filter: blur(10px);
+            border-bottom: 3px solid var(--wow-gold);
+            box-shadow: 0 2px 20px rgba(248, 183, 0, 0.3);
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+        }
+
+        header.scrolled {
+            padding: 0.5rem 0;
+            box-shadow: 0 4px 30px rgba(248, 183, 0, 0.5);
+        }
+
+        /* Couleurs de particules par section */
+        :root {
+            --particle-color: #f8b700; /* Paladin par défaut */
+        }
+
+        [data-spec="paladin"] { --particle-color: #f8b700; }
+        [data-spec="dk"] { --particle-color: #c41f3b; }
+        [data-spec="dh"] { --particle-color: #a330c9; }
+        [data-spec="monk"] { --particle-color: #00ff96; }
+        [data-spec="warrior"] { --particle-color: #c79c6e; }
+        [data-spec="druid"] { --particle-color: #ff7d0a; }
             margin: 1.5rem 0;
             padding: 1rem;
             background: linear-gradient(135deg, rgba(0, 0, 0, 0.6) 0%, rgba(10, 10, 15, 0.4) 100%);
@@ -460,7 +593,121 @@ Si aucun changement récent, écris : <p style="text-align: center; color: var(-
         // Charger les patch notes au chargement de la page
         window.addEventListener('DOMContentLoaded', () => {
             loadPatchNotes();
+            initAnimations();
+            createParticles();
+            observeSections();
         });
+
+        // Système d'animations au scroll
+        function initAnimations() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('fade-in');
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+
+            // Observer toutes les sections et subsections
+            document.querySelectorAll('.spec-section, .subsection').forEach(el => {
+                observer.observe(el);
+            });
+
+            // Parallaxe sur le header
+            let lastScroll = 0;
+            const header = document.querySelector('header');
+            
+            window.addEventListener('scroll', () => {
+                const currentScroll = window.pageYOffset;
+                
+                if (currentScroll > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+                
+                lastScroll = currentScroll;
+            });
+        }
+
+        // Création des particules
+        function createParticles() {
+            const container = document.createElement('div');
+            container.id = 'particles-container';
+            document.body.insertBefore(container, document.body.firstChild);
+
+            // Créer 80 particules (encore augmenté)
+            for (let i = 0; i < 80; i++) {
+                createParticle(container);
+            }
+        }
+
+        function createParticle(container) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            
+            // Position aléatoire
+            particle.style.left = Math.random() * 100 + '%';
+            
+            // Taille aléatoire (variété de tailles)
+            const size = Math.random() * 8 + 6;
+            particle.style.width = size + 'px';
+            particle.style.height = size + 'px';
+            
+            // Durée d'animation aléatoire
+            const duration = Math.random() * 8 + 10;
+            particle.style.animationDuration = duration + 's';
+            
+            // Délai aléatoire
+            particle.style.animationDelay = Math.random() * 4 + 's';
+            
+            container.appendChild(particle);
+            
+            // Recréer la particule après l'animation
+            particle.addEventListener('animationend', () => {
+                particle.remove();
+                createParticle(container);
+            });
+        }
+
+        // Observer les sections pour changer la couleur des particules
+        function observeSections() {
+            const sections = document.querySelectorAll('.spec-section[data-spec]');
+            const particlesContainer = document.getElementById('particles-container');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting && entry.intersectionRatio > 0.3) {
+                        const spec = entry.target.getAttribute('data-spec');
+                        if (spec && particlesContainer) {
+                            particlesContainer.setAttribute('data-spec', spec);
+                            updateParticleColors(spec);
+                        }
+                    }
+                });
+            }, {
+                threshold: [0.3, 0.5, 0.7]
+            });
+
+            sections.forEach(section => observer.observe(section));
+        }
+
+        function updateParticleColors(spec) {
+            const colors = {
+                'paladin': '#f8b700',
+                'dk': '#c41f3b',
+                'dh': '#a330c9',
+                'monk': '#00ff96',
+                'warrior': '#c79c6e',
+                'druid': '#ff7d0a'
+            };
+            
+            const color = colors[spec] || '#f8b700';
+            document.documentElement.style.setProperty('--particle-color', color);
+        }
     </script>
 </head>
 <body>
@@ -473,12 +720,12 @@ Si aucun changement récent, écris : <p style="text-align: center; color: var(-
             <nav>
                 <ul>
                     <li><a href="#patch-notes">Derniers Changements</a></li>
-                    <li><a href="#paladin">Paladin Protection</a></li>
-                    <li><a href="#dk">Chevalier de la Mort</a></li>
-                    <li><a href="#dh">Chasseur de Démons</a></li>
-                    <li><a href="#monk">Moine</a></li>
-                    <li><a href="#warrior">Guerrier</a></li>
-                    <li><a href="#druid">Druide</a></li>
+                    <li><a href="#paladin">Protection Paladin</a></li>
+                    <li><a href="#dk">Blood DK</a></li>
+                    <li><a href="#dh">Vengeance DH</a></li>
+                    <li><a href="#monk">Brewmaster Monk</a></li>
+                    <li><a href="#warrior">Protection Warrior</a></li>
+                    <li><a href="#druid">Guardian Druid</a></li>
                 </ul>
             </nav>
         </div>
@@ -486,7 +733,7 @@ Si aucun changement récent, écris : <p style="text-align: center; color: var(-
 
     <div class="container">
         <!-- SECTION PATCH NOTES AUTOMATIQUE -->
-        <section class="spec-section" id="patch-notes" style="margin-top: 2rem;">
+        <section class="spec-section" id="patch-notes" data-spec="paladin" style="margin-top: 2rem;">
             <div class="spec-header">
                 <img src="https://render.worldofwarcraft.com/us/icons/56/inv_scroll_10.jpg" alt="Patch Notes" class="spec-icon">
                 <h2>Derniers Changements</h2>
@@ -505,7 +752,7 @@ Si aucun changement récent, écris : <p style="text-align: center; color: var(-
         </section>
 
         <!-- PALADIN PROTECTION -->
-        <section id="paladin" class="spec-section">
+        <section id="paladin" class="spec-section" data-spec="paladin">
             <div class="spec-header">
                 <img src="https://render.worldofwarcraft.com/us/icons/56/spell_holy_devotionaura.jpg" alt="Protection Paladin" class="spec-icon">
                 <h2>Paladin Protection</h2>
