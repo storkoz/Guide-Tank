@@ -13,7 +13,6 @@
             --wow-accent: #daa520;
             --wow-legendary: #ff8000;
             --text-light: #f0e6d2;
-            --season: "The War Within - Saison 3";
             --particle-color: #f8b700;
         }
 
@@ -118,16 +117,22 @@
 
         .spec-section {
             display: none;
+        }
+
+        .spec-section.active {
+            display: block;
             margin: 3rem 0;
             padding: 2rem;
             background: linear-gradient(135deg, rgba(218, 165, 32, 0.05) 0%, rgba(0, 0, 0, 0.3) 100%);
             border-radius: 10px;
             border: 2px solid var(--wow-accent);
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(248, 183, 0, 0.1);
+            animation: fadeIn 0.5s ease-in;
         }
 
-        .spec-section.active {
-            display: block;
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .spec-header {
@@ -177,11 +182,144 @@
             text-shadow: 0 0 8px rgba(248, 183, 0, 0.5);
         }
 
+        .subsection h4 {
+            color: var(--wow-accent);
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .talent-block {
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.8) 0%, rgba(10, 10, 15, 0.6) 100%);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            border: 2px solid var(--wow-accent);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(248, 183, 0, 0.1);
+        }
+
+        .talent-string {
+            background: var(--wow-darker);
+            padding: 1rem;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            color: var(--wow-gold);
+            overflow-x: auto;
+            margin: 1rem 0;
+            border: 1px solid var(--wow-accent);
+        }
+
+        .copy-btn {
+            background: linear-gradient(135deg, var(--wow-gold) 0%, var(--wow-legendary) 100%);
+            color: var(--wow-darker);
+            border: none;
+            padding: 0.5rem 1.5rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+            margin-top: 0.5rem;
+            box-shadow: 0 2px 10px rgba(248, 183, 0, 0.4);
+        }
+
+        .copy-btn:hover {
+            background: linear-gradient(135deg, var(--wow-legendary) 0%, var(--wow-gold) 100%);
+            transform: scale(1.05);
+            box-shadow: 0 4px 15px rgba(255, 128, 0, 0.6);
+        }
+
+        .ability-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .ability-card {
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.7) 0%, rgba(10, 10, 15, 0.5) 100%);
+            padding: 1rem;
+            border-radius: 8px;
+            border: 2px solid var(--wow-blue);
+            transition: all 0.3s;
+            display: flex;
+            gap: 1rem;
+            align-items: start;
+        }
+
+        .ability-card:hover {
+            border-color: var(--wow-gold);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 20px rgba(248, 183, 0, 0.4);
+            background: linear-gradient(135deg, rgba(218, 165, 32, 0.1) 0%, rgba(10, 10, 15, 0.6) 100%);
+        }
+
+        .ability-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 5px;
+            border: 2px solid var(--wow-gold);
+            flex-shrink: 0;
+            box-shadow: 0 0 10px rgba(248, 183, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .ability-card:hover .ability-icon {
+            transform: scale(1.15) rotate(-5deg);
+            box-shadow: 0 0 20px rgba(248, 183, 0, 0.8);
+        }
+
+        .ability-info h4 {
+            color: var(--wow-gold);
+            margin-bottom: 0.5rem;
+        }
+
+        .ability-info p {
+            font-size: 0.9rem;
+            color: #ccc;
+        }
+
+        .stat-priority {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+
+        .stat-item {
+            background: rgba(0, 0, 0, 0.4);
+            padding: 0.8rem;
+            border-radius: 5px;
+            border-left: 3px solid var(--wow-gold);
+        }
+
+        .stat-item strong {
+            color: var(--wow-accent);
+        }
+
+        .info-box {
+            background: linear-gradient(135deg, rgba(0, 204, 255, 0.15) 0%, rgba(0, 0, 0, 0.4) 100%);
+            border-left: 4px solid var(--wow-blue);
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0, 204, 255, 0.2);
+        }
+
+        .warning-box {
+            background: linear-gradient(135deg, rgba(231, 76, 60, 0.15) 0%, rgba(0, 0, 0, 0.4) 100%);
+            border-left: 4px solid #e74c3c;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(231, 76, 60, 0.2);
+        }
+
         .placeholder-text {
             color: #888;
             font-style: italic;
             padding: 2rem;
             text-align: center;
+            font-size: 1.2rem;
         }
 
         #particles-container {
@@ -250,6 +388,10 @@
                 flex-direction: column;
                 text-align: center;
             }
+
+            .ability-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
@@ -280,9 +422,56 @@
                 <img src="https://render.worldofwarcraft.com/us/icons/56/spell_holy_devotionaura.jpg" alt="Protection Paladin" class="spec-icon">
                 <h2>Protection Paladin</h2>
             </div>
+
             <div class="subsection">
                 <h3>Vue d'Ensemble</h3>
-                <p>Section Paladin complète ici...</p>
+                <p>Le Paladin Protection reste un des tanks les plus solides de cette saison. Après avoir testé toutes les compositions en haute clé, je peux vous assurer que c'est un choix extrêmement sûr pour le prog. Ce qui fait la force du Paladin, c'est sa polyvalence : vous avez des défensifs pour presque toutes les situations, une utilité de groupe incroyable avec les bénédictions et l'immunité, et surtout une capacité à absorber des coups massifs grâce au Bouclier sacré.</p>
+                
+                <p><strong>En Mythic+ :</strong> Le Paladin brille particulièrement dans les packs où vous devez gérer plusieurs mobs simultanément. Votre AoE est correct, mais ce qui fait vraiment la différence, c'est votre capacité à maintenir la survie du groupe. Bénédiction de protection et Bénédiction de sacrifice peuvent sauver vos DPS dans des situations critiques. En haute clé (+25 et au-delà), j'ai remarqué que le Paladin excelle dans les donjons avec beaucoup de damage magic comme Azure Vault ou Brackenhide, où vous pouvez utiliser votre immunité stratégiquement.</p>
+
+                <div class="info-box">
+                    <strong>Points forts :</strong> Excellent burst mitigation, utilité de groupe exceptionnelle, bonne mobilité avec Coursier divin, immunité complète avec Bouclier divin, healing passif décent.
+                </div>
+
+                <div class="warning-box">
+                    <strong>Points faibles :</strong> Dépendant du GCD (beaucoup de boutons à presser), mitigation active requise (pas de mitigation passive massive), peut être punishing si vous ratez vos défensifs.
+                </div>
+
+                <p><strong>En Raid :</strong> Le Paladin est un excellent main tank. Vous gérez très bien les gros tank busters grâce à votre kit défensif, et votre immunité est clutch sur certains boss. J'ai maintenu le Paladin en progression mythique et il performe très bien. Votre utilité reste top-tier avec les bénédictions qui peuvent sauver des pull entiers.</p>
+            </div>
+
+            <div class="subsection">
+                <h3>Talents Mythic+</h3>
+                <div class="talent-block">
+                    <h4>Build Standard (Clés 20-30)</h4>
+                    <p>Ce build est celui que j'utilise dans 90% de mes clés. Il maximise votre survie tout en gardant une threat et un damage correct.</p>
+                    
+                    <div class="talent-string" id="talent-paladin-mm">
+CwQAAAAAAAAAAAAAAAAAAAAAAMzMzMzMmZmZGzMzMzMzMDmxMzMjZmZmBmZmZMzsYmZmZmxMz2MzMDjZGAAAAAAAMbmZmZmZmZA
+                    </div>
+                    <button class="copy-btn" onclick="copyToClipboard('talent-paladin-mm')">📋 Copier les talents</button>
+                </div>
+            </div>
+
+            <div class="subsection">
+                <h3>Statistiques & Optimisation</h3>
+                <div class="stat-priority">
+                    <div class="stat-item">
+                        <strong>1. Force</strong> : Votre stat principale. Toujours prioritaire.
+                    </div>
+                    <div class="stat-item">
+                        <strong>2. Critique (~21-23k rating)</strong> : La stat la plus importante en ce moment.
+                    </div>
+                    <div class="stat-item">
+                        <strong>3. Hâte (~20-22k rating)</strong> : Deuxième stat prioritaire.
+                    </div>
+                    <div class="stat-item">
+                        <strong>4. Maîtrise (~11-12k rating)</strong> : Bonne stat défensive.
+                    </div>
+                    <div class="stat-item">
+                        <strong>5. Polyvalence (~5-6k rating)</strong> : La moins importante.
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -292,20 +481,104 @@
                 <img src="https://render.worldofwarcraft.com/us/icons/56/spell_deathknight_bloodpresence.jpg" alt="Blood Death Knight" class="spec-icon">
                 <h2>Blood Death Knight</h2>
             </div>
+
             <div class="subsection">
-                <h3>Vue d'Ensemble - TEST</h3>
-                <p style="font-size: 2rem; color: red;">✅ SI TU VOIS CE TEXTE ROUGE, LA SECTION BLOOD DK FONCTIONNE !</p>
-                <p>Le Blood Death Knight est le tank avec le meilleur self-healing du jeu.</p>
+                <h3>Vue d'Ensemble</h3>
+                <p>Le Blood Death Knight est probablement le tank le plus auto-suffisant du jeu en ce moment. Après avoir joué toutes les spés tank en haute clé cette saison, je peux vous dire que le DK a un kit de self-heal absolument démentiel. C'est la classe parfaite si vous voulez tank en solo queue ou si votre healer est un peu faible, parce que vous pouvez littéralement vous maintenir en vie tout seul sur des packs massifs.</p>
+                
+                <p><strong>En Mythic+ :</strong> Le Blood DK excelle dans les situations où vous prenez énormément de dégâts constants. Votre Death Strike vous permet de heal des montants absurdes si vous l'utilisez au bon moment, et votre grip est probablement l'outil de contrôle le plus puissant pour un tank.</p>
+
+                <div class="info-box">
+                    <strong>Points forts :</strong> Self-healing massif, grip de groupe incroyable, très difficile à tuer, excellent contre les dégâts physiques, mobilité correcte.
+                </div>
+
+                <div class="warning-box">
+                    <strong>Points faibles :</strong> Dépendant des dégâts récents pour heal, peut être squishy entre les Death Strike, moins de raid utility, DPS single-target faible.
+                </div>
+            </div>
+
+            <div class="subsection">
+                <h3>Talents Mythic+</h3>
+                <div class="talent-block">
+                    <h4>Build Standard (Clés 20-30)</h4>
+                    <p>Ce build est optimisé pour le M+ avec un focus sur le self-healing et le contrôle de groupe.</p>
+                    
+                    <div class="talent-string" id="talent-dk-mm">
+CoPAAAAAAAAAAAAAAAAAAAAAAwYGzMDzYmZGGzYmpZGzYMzMGAAAAYYmZmZGz2MzMGAAwMzMjBAAAMW2GYALgthJwwCAzgNA
+                    </div>
+                    <button class="copy-btn" onclick="copyToClipboard('talent-dk-mm')">📋 Copier les talents</button>
+                </div>
+            </div>
+
+            <div class="subsection">
+                <h3>Statistiques & Optimisation</h3>
+                <div class="stat-priority">
+                    <div class="stat-item">
+                        <strong>1. Force</strong> : Votre stat principale.
+                    </div>
+                    <div class="stat-item">
+                        <strong>2. Polyvalence (~15-16k rating)</strong> : LA stat du Blood DK.
+                    </div>
+                    <div class="stat-item">
+                        <strong>3. Maîtrise (~15k rating)</strong> : Augmente votre Blood Shield.
+                    </div>
+                    <div class="stat-item">
+                        <strong>4. Critique (~12k rating)</strong> : Moins importante mais pas négligeable.
+                    </div>
+                    <div class="stat-item">
+                        <strong>5. Hâte (~10k rating)</strong> : La moins importante pour Blood.
+                    </div>
+                </div>
+            </div>
+
+            <div class="subsection">
+                <h3>Sorts Clés</h3>
+                <div class="ability-grid">
+                    <div class="ability-card">
+                        <img src="https://render.worldofwarcraft.com/us/icons/56/spell_deathknight_butcher2.jpg" alt="Death Strike" class="ability-icon">
+                        <div class="ability-info">
+                            <h4>Death Strike</h4>
+                            <p>Votre principal heal. Timing crucial - utilisez après avoir pris des gros hits.</p>
+                        </div>
+                    </div>
+
+                    <div class="ability-card">
+                        <img src="https://render.worldofwarcraft.com/us/icons/56/ability_deathknight_aoedeathgrip.jpg" alt="Gorefiend's Grasp" class="ability-icon">
+                        <div class="ability-info">
+                            <h4>Gorefiend's Grasp</h4>
+                            <p>Grip de groupe. L'ability la plus puissante pour stack les packs en M+.</p>
+                        </div>
+                    </div>
+
+                    <div class="ability-card">
+                        <img src="https://render.worldofwarcraft.com/us/icons/56/spell_shadow_lifedrain.jpg" alt="Vampiric Blood" class="ability-icon">
+                        <div class="ability-info">
+                            <h4>Vampiric Blood</h4>
+                            <p>Votre gros défensif. +30% HP max et +25% healing reçu.</p>
+                        </div>
+                    </div>
+
+                    <div class="ability-card">
+                        <img src="https://render.worldofwarcraft.com/us/icons/56/achievement_boss_lordmarrowgar.jpg" alt="Bonestorm" class="ability-icon">
+                        <div class="ability-info">
+                            <h4>Bonestorm</h4>
+                            <p>Burst AoE massif + heal pour chaque ennemi touché. Clutch en gros pull.</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <!-- Autres sections -->
+        <!-- Autres sections placeholder -->
         <section id="dh" class="spec-section" data-spec="dh">
             <div class="spec-header">
                 <img src="https://render.worldofwarcraft.com/us/icons/56/ability_demonhunter_specdps.jpg" alt="Vengeance DH" class="spec-icon">
                 <h2>Vengeance Demon Hunter</h2>
             </div>
-            <div class="placeholder-text"><p>En développement...</p></div>
+            <div class="placeholder-text">
+                <p>🚧 Section en cours de développement...</p>
+                <p style="font-size: 0.9rem; margin-top: 1rem;">Le guide complet pour Vengeance DH sera disponible prochainement !</p>
+            </div>
         </section>
 
         <section id="monk" class="spec-section" data-spec="monk">
@@ -313,7 +586,10 @@
                 <img src="https://render.worldofwarcraft.com/us/icons/56/spell_monk_brewmaster_spec.jpg" alt="Brewmaster Monk" class="spec-icon">
                 <h2>Brewmaster Monk</h2>
             </div>
-            <div class="placeholder-text"><p>En développement...</p></div>
+            <div class="placeholder-text">
+                <p>🚧 Section en cours de développement...</p>
+                <p style="font-size: 0.9rem; margin-top: 1rem;">Le guide complet pour Brewmaster sera disponible prochainement !</p>
+            </div>
         </section>
 
         <section id="warrior" class="spec-section" data-spec="warrior">
@@ -321,7 +597,10 @@
                 <img src="https://render.worldofwarcraft.com/us/icons/56/ability_warrior_defensivestance.jpg" alt="Protection Warrior" class="spec-icon">
                 <h2>Protection Warrior</h2>
             </div>
-            <div class="placeholder-text"><p>En développement...</p></div>
+            <div class="placeholder-text">
+                <p>🚧 Section en cours de développement...</p>
+                <p style="font-size: 0.9rem; margin-top: 1rem;">Le guide complet pour Protection Warrior sera disponible prochainement !</p>
+            </div>
         </section>
 
         <section id="druid" class="spec-section" data-spec="druid">
@@ -329,98 +608,26 @@
                 <img src="https://render.worldofwarcraft.com/us/icons/56/ability_racial_bearform.jpg" alt="Guardian Druid" class="spec-icon">
                 <h2>Guardian Druid</h2>
             </div>
-            <div class="placeholder-text"><p>En développement...</p></div>
+            <div class="placeholder-text">
+                <p>🚧 Section en cours de développement...</p>
+                <p style="font-size: 0.9rem; margin-top: 1rem;">Le guide complet pour Guardian Druid sera disponible prochainement !</p>
+            </div>
         </section>
     </div>
 
     <script>
         function showSection(sectionId) {
-            console.log('Showing section:', sectionId);
-            
-            // Masquer toutes les sections
             document.querySelectorAll('.spec-section').forEach(section => {
                 section.classList.remove('active');
-                section.style.display = 'none';
             });
 
-            // Afficher la section sélectionnée
             const targetSection = document.getElementById(sectionId);
-            console.log('Target section found:', targetSection);
-            
             if (targetSection) {
                 targetSection.classList.add('active');
-                targetSection.style.display = 'block';
-                
-                // Scroll en haut
                 window.scrollTo({ top: 0, behavior: 'smooth' });
                 
-                // Mettre à jour les boutons
                 document.querySelectorAll('nav a').forEach(link => {
                     link.classList.remove('active');
                 });
                 
-                const activeLink = document.querySelector(`nav a[href="#${sectionId}"]`);
-                if (activeLink) {
-                    activeLink.classList.add('active');
-                }
-
-                // Changer couleur des particules
-                const spec = targetSection.getAttribute('data-spec');
-                if (spec) {
-                    updateParticleColors(spec);
-                }
-            } else {
-                console.error('Section not found:', sectionId);
-            }
-        }
-
-        function updateParticleColors(spec) {
-            const colors = {
-                'paladin': '#f8b700',
-                'dk': '#c41f3b',
-                'dh': '#a330c9',
-                'monk': '#00ff96',
-                'warrior': '#c79c6e',
-                'druid': '#ff7d0a'
-            };
-            
-            const color = colors[spec] || '#f8b700';
-            document.documentElement.style.setProperty('--particle-color', color);
-            console.log('Particles color changed to:', color);
-        }
-
-        function createParticles() {
-            const container = document.createElement('div');
-            container.id = 'particles-container';
-            document.body.insertBefore(container, document.body.firstChild);
-
-            for (let i = 0; i < 80; i++) {
-                createParticle(container);
-            }
-        }
-
-        function createParticle(container) {
-            const particle = document.createElement('div');
-            particle.className = 'particle';
-            particle.style.left = Math.random() * 100 + '%';
-            const size = Math.random() * 8 + 6;
-            particle.style.width = size + 'px';
-            particle.style.height = size + 'px';
-            const duration = Math.random() * 8 + 10;
-            particle.style.animationDuration = duration + 's';
-            particle.style.animationDelay = Math.random() * 4 + 's';
-            container.appendChild(particle);
-            
-            particle.addEventListener('animationend', () => {
-                particle.remove();
-                createParticle(container);
-            });
-        }
-
-        window.addEventListener('DOMContentLoaded', () => {
-            createParticles();
-            console.log('Page loaded, sections found:', document.querySelectorAll('.spec-section').length);
-        });
-    </script>
-</body>
-</html>
+                const
