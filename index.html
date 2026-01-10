@@ -283,16 +283,249 @@
 
     <div class="container">
         <!-- PALADIN -->
-        <section id="paladin" class="spec-section active" data-spec="paladin">
-            <div class="spec-header">
-                <img src="https://render.worldofwarcraft.com/us/icons/56/spell_holy_devotionaura.jpg" class="spec-icon">
-                <h2>Protection Paladin</h2>
+        <div class="subsection">
+    <h3>Vue d'Ensemble</h3>
+    <p>Le Paladin Protection reste un des tanks les plus solides de cette saison. Après avoir testé toutes les compositions en haute clé, je peux vous assurer que c'est un choix extrêmement sûr pour le prog. Ce qui fait la force du Paladin, c'est sa polyvalence : vous avez des défensifs pour presque toutes les situations, une utilité de groupe incroyable avec les bénédictions et l'immunité, et surtout une capacité à absorber des coups massifs grâce au Bouclier sacré.</p>
+    
+    <p><strong>En Mythic+ :</strong> Le Paladin brille particulièrement dans les packs où vous devez gérer plusieurs mobs simultanément. Votre AoE est correct, mais ce qui fait vraiment la différence, c'est votre capacité à maintenir la survie du groupe. Bénédiction de protection et Bénédiction de sacrifice peuvent sauver vos DPS dans des situations critiques. En haute clé (+25 et au-delà), j'ai remarqué que le Paladin excelle dans les donjons avec beaucoup de damage magic comme Azure Vault ou Brackenhide, où vous pouvez utiliser votre immunité stratégiquement.</p>
+
+    <div class="info-box">
+        <strong>Points forts :</strong> Excellent burst mitigation, utilité de groupe exceptionnelle, bonne mobilité avec Coursier divin, immunité complète avec Bouclier divin, healing passif décent.
+    </div>
+
+    <div class="warning-box">
+        <strong>Points faibles :</strong> Dépendant du GCD (beaucoup de boutons à presser), mitigation active requise (pas de mitigation passive massive), peut être punishing si vous ratez vos défensifs.
+    </div>
+
+    <p><strong>En Raid :</strong> Le Paladin est un excellent main tank. Vous gérez très bien les gros tank busters grâce à votre kit défensif, et votre immunité est clutch sur certains boss. J'ai maintenu le Paladin en progression mythique et il performe très bien. Votre utilité reste top-tier avec les bénédictions qui peuvent sauver des pull entiers.</p>
+</div>
+
+<div class="subsection">
+    <h3>Talents Mythic+</h3>
+    <div class="talent-block">
+        <h4>Build Standard (Clés 20-30)</h4>
+        <p>Ce build est celui que j'utilise dans 90% de mes clés. Il maximise votre survie tout en gardant une threat et un damage correct. Les points clés sont dans le tree de classe pour avoir toutes les bénédictions et l'immunité réduite, puis dans Protection pour optimiser vos défensifs.</p>
+        
+        <p><strong>Explications des choix principaux :</strong></p>
+        <ul style="margin-left: 2rem; margin-top: 1rem;">
+            <li><strong>Improved Consecration</strong> : Essentiel pour l'AoE et la threat. C'est votre base.</li>
+            <li><strong>Blessed Hammer</strong> : Rotation plus fluide et meilleur damage. J'ai testé les deux builds et Hammer est supérieur en M+.</li>
+            <li><strong>Bulwark of Order</strong> : Le talent qui transforme votre Bouclier sacré en mur infranchissable. Critique pour les tank busters.</li>
+            <li><strong>Moment of Glory</strong> : Votre gros défensif AoE. Utilisé correctement sur les gros pulls, ça vous rend presque immortel pendant 8 secondes.</li>
+            <li><strong>Seal of Mercy</strong> : Le healing passif est non négligeable, surtout sur les trash packs longs.</li>
+            <li><strong>Tirion's Devotion</strong> : Augmente votre uptime sur Bouclier sacré, ce qui se traduit par moins de risque de mourir.</li>
+        </ul>
+
+        <div class="talent-string" id="t-pala-mm">CwQAAAAAAAAAAAAAAAAAAAAAAMzMzMzMmZmZGzMzMzMzMDmxMzMjZmZmBmZmZMzsYmZmZmxMz2MzMDjZGAAAAAAAMbmZmZmZmZA</div>
+        <button class="copy-btn" onclick="copy('t-pala-mm')">📋 Copier les talents</button>
+
+        <div class="info-box" style="margin-top: 1rem;">
+            <strong>Variantes :</strong> Si vous faites des donjons avec beaucoup de magic damage (Azure Vault, Brackenhide), prenez les talents qui buffent votre résistance magique. Pour les tyrannical weeks, renforcez vos single-target cooldowns.
+        </div>
+    </div>
+</div>
+
+<div class="subsection">
+    <h3>Talents Raid</h3>
+    <div class="talent-block">
+        <h4>Build Progression Mythique</h4>
+        <p>En raid, on adapte légèrement le build pour privilégier la survie single-target et l'efficacité sur les tank swaps. La principale différence avec le build M+ est qu'on retire un peu d'AoE pour renforcer nos défensifs single-target et améliorer notre uptime sur le boss.</p>
+        
+        <p><strong>Différences clés avec le build M+ :</strong></p>
+        <ul style="margin-left: 2rem; margin-top: 1rem;">
+            <li><strong>Moins d'AoE</strong> : On peut se permettre de drop quelques points d'AoE vu qu'on se concentre principalement sur le boss.</li>
+            <li><strong>Focus sur les défensifs</strong> : Maximum d'uptime sur Bouclier sacré et cooldowns réduits.</li>
+            <li><strong>Talents de positioning</strong> : Selon les boss, prenez des talents qui améliorent votre mobilité pour gérer les mechanics.</li>
+            <li><strong>Utilité</strong> : Gardez toutes vos bénédictions, elles sont clutch pour sauver des raiders sur les boss difficiles.</li>
+        </ul>
+
+        <div class="talent-string" id="t-pala-raid">CwQAAAAAAAAAAAAAAAAAAAAAAMzMzMzMmZmZGzMzMzMzMDmxMzMjZmZmBGzsYmZmZmxMz2MzMDjZmZmZmZmZmZmBAAAAA</div>
+        <button class="copy-btn" onclick="copy('t-pala-raid')">📋 Copier les talents</button>
+
+        <div class="info-box" style="margin-top: 1rem;">
+            <strong>Adaptation par boss :</strong> Certains boss nécessitent des ajustements. Par exemple, sur des boss avec des bleeds importants, renforcez votre armor. Sur des boss avec du burst magic, prenez tous les talents de résistance magique disponibles.
+        </div>
+    </div>
+</div>
+
+<div class="subsection">
+    <h3>Rotation & Priorités</h3>
+    <p>La rotation du Paladin Protection n'est pas complexe dans sa théorie, mais elle demande de la réactivité et une bonne gestion de la Puissance sacrée. Voici comment j'aborde chaque situation :</p>
+
+    <h4 style="color: var(--wow-accent); margin-top: 1.5rem;">Single Target (Boss)</h4>
+    <ol style="margin-left: 2rem; line-height: 2;">
+        <li><strong>Bouclier du vengeur</strong> : Votre priorité absolue. Génère de la Puissance sacrée et applique votre debuff principal.</li>
+        <li><strong>Jugement</strong> : À maintenir sur cooldown, génère de la Puissance sacrée.</li>
+        <li><strong>Marteau béni</strong> : Si vous avez le talent (recommandé), spam dès que disponible.</li>
+        <li><strong>Bouclier sacré</strong> : Utilisez votre Puissance sacrée pour cast ce sort dès que possible. C'est votre principal défensif actif.</li>
+        <li><strong>Consécration</strong> : Toujours maintenu au sol sous vous et le boss.</li>
+        <li><strong>Mot de gloire</strong> : Utilisez vos procs pour vous heal ou heal un allié en danger.</li>
+    </ol>
+
+    <h4 style="color: var(--wow-accent); margin-top: 1.5rem;">AoE (Trash Packs M+)</h4>
+    <ol style="margin-left: 2rem; line-height: 2;">
+        <li><strong>Bouclier du vengeur</strong> : Pull avec, touche tout le pack.</li>
+        <li><strong>Consécration</strong> : Posée immédiatement, maintenue 100% du temps.</li>
+        <li><strong>Marteau béni</strong> : Spam sur tous les targets.</li>
+        <li><strong>Jugement</strong> : Sur cooldown pour la Puissance sacrée.</li>
+        <li><strong>Bouclier sacré</strong> : Même priorité qu'en single, ne négligez jamais votre défensif.</li>
+        <li><strong>Courroux du vengeur</strong> : Votre burst AoE, utilisé quand le pack est bien stack.</li>
+    </ol>
+
+    <div class="info-box" style="margin-top: 1.5rem;">
+        <strong>Gestion de la Puissance sacrée :</strong> Ne cappez jamais à 5 charges. Utilisez toujours vos charges de Bouclier sacré dès que vous êtes à 3+ pour maintenir l'uptime maximum sur le buff. Dans les gros pulls M+, il vaut mieux avoir Bouclier sacré actif en permanence que de sauver sa Puissance sacrée.
+    </div>
+
+    <h4 style="color: var(--wow-accent); margin-top: 1.5rem;">Utilisation des Défensifs</h4>
+    <p>C'est ici que le Paladin demande le plus de skill. Vous devez anticiper les dégâts et utiliser le bon défensif au bon moment :</p>
+    <ul style="margin-left: 2rem; margin-top: 1rem;">
+        <li><strong>Bouclier divin</strong> : Votre panique button ultime. Utilisez-le sur les mechanics qui oneshot ou quand vous êtes à 20% HP et que vous savez qu'un gros hit arrive.</li>
+        <li><strong>Gardien des anciens rois</strong> : Votre gros défensif, 50% de réduction. Utilisez sur les gros tank busters ou les pulls M+ massifs. Cooldown court, n'hésitez pas.</li>
+        <li><strong>Ardent défenseur</strong> : Cheat death qui réduit aussi les dégâts. Parfait pour les situations où vous pourriez mourir mais pas assez critique pour utiliser Bouclier divin.</li>
+        <li><strong>Mot de gloire (proc)</strong> : Healing d'urgence instantané. Je garde toujours 3 charges de Puissance sacrée en réserve pour pouvoir cast ça si besoin.</li>
+        <li><strong>Sacrifice divin</strong> : Underrated. Sauve votre healer ou un DPS sur une mechanic mortelle. En haute clé, ça peut sauver le run.</li>
+    </ul>
+</div>
+
+<div class="subsection">
+    <h3>Statistiques & Optimisation</h3>
+    <p>D'après les données actuelles de la saison 3 et mon expérience en haute clé, voici la priorité de stats que je recommande pour le Paladin Protection :</p>
+
+    <div class="stat-priority">
+        <div class="stat-item">
+            <strong>1. Force</strong> : Votre stat principale. Elle augmente votre AP, ce qui améliore à la fois votre damage et votre threat. Toujours prioritaire sur toutes vos pièces.
+        </div>
+        <div class="stat-item">
+            <strong>2. Critique (~21-23k rating)</strong> : La stat la plus importante en ce moment. Elle augmente votre damage, améliore votre génération de Puissance sacrée via les procs, et booste votre threat. Les top tanks stackent autour de 21-23k rating.
+        </div>
+        <div class="stat-item">
+            <strong>3. Hâte (~20-22k rating)</strong> : Votre deuxième stat prioritaire. Elle réduit vos GCD, accélère vos casts, et améliore votre uptime sur Bouclier sacré. Ciblez environ 20-22k rating pour un équilibre optimal.
+        </div>
+        <div class="stat-item">
+            <strong>4. Maîtrise (~11-12k rating)</strong> : Augmente l'absorption de Bouclier sacré et améliore votre block. C'est une bonne stat défensive mais elle passe après Crit et Hâte en saison 3.
+        </div>
+        <div class="stat-item">
+            <strong>5. Polyvalence (~5-6k rating)</strong> : La stat la moins importante actuellement. Elle donne de la réduction passive mais n'apporte pas assez comparé aux autres stats. Ne la cherchez pas activement.
+        </div>
+    </div>
+
+    <div class="info-box" style="margin-top: 1.5rem;">
+        <strong>Note importante :</strong> Cette priorité est basée sur les données réelles des meilleurs Paladins Protection en M+ haute clé (données Archon.gg). Le meta actuel favorise clairement Crit > Hâte > Maîtrise, contrairement aux saisons précédentes où on stackait principalement Hâte.
+    </div>
+
+    <h4 style="color: var(--wow-accent); margin-top: 2rem;">Gems & Enchants</h4>
+    <p>Pour l'optimisation finale de votre équipement :</p>
+    <ul style="margin-left: 2rem; margin-top: 1rem;">
+        <li><strong>Gems</strong> : Priorisez Critique puis Hâte. Utilisez des Quick Ruby (Maîtrise/Hâte) ou des gems Crit/Hâte selon vos besoins.</li>
+        <li><strong>Enchant arme</strong> : Authority of Radiant Power (Critique).</li>
+        <li><strong>Enchant Cape</strong> : Chant of Leeching Fangs (Leech crucial).</li>
+        <li><strong>Enchant Torse</strong> : Crystalline Radiance (Hâte/Crit).</li>
+        <li><strong>Enchant Bracers</strong> : Chant of Armored Leech.</li>
+        <li><strong>Enchant Jambes</strong> : Stormbound Armor Kit.</li>
+        <li><strong>Enchant Bottes</strong> : Defender's March (Speed + Avoidance crucial en M+).</li>
+        <li><strong>Enchant Anneau</strong> : Radiant Mastery ou Radiant Haste selon vos ratios.</li>
+    </ul>
+
+    <h4 style="color: var(--wow-accent); margin-top: 2rem;">Trinkets Recommandés</h4>
+    <ul style="margin-left: 2rem; margin-top: 1rem;">
+        <li><strong>Astral Antenna</strong> (Nerub-ar Palace) : Le meilleur trinket tank actuellement. Utilisé par 28.5% des meilleurs Paladins.</li>
+        <li><strong>Brand of Ceaseless Ire</strong> (Nerub-ar Palace) : Excellent trinket défensif/offensif. Égalité avec Antenna.</li>
+        <li><strong>Alternatives</strong> : Sacred Weapon ou tout trinket avec des stats Crit/Hâte élevées.</li>
+    </ul>
+</div>
+
+<div class="subsection">
+    <h3>Sorts Clés</h3>
+    <div class="ability-grid">
+        <div class="ability-card">
+            <img src="https://render.worldofwarcraft.com/us/icons/56/ability_paladin_shieldofthetemplar.jpg" class="ability-icon">
+            <div class="ability-info">
+                <h4>Bouclier sacré</h4>
+                <p>Votre principal défensif actif. Spam dès que vous avez 3+ Puissance sacrée pour maintenir le buff en permanence.</p>
             </div>
-            <div class="subsection">
-                <h3>Vue d'Ensemble</h3>
-                <p>Le Paladin Protection reste un des tanks les plus solides de cette saison. Section complète à remplir...</p>
+        </div>
+
+        <div class="ability-card">
+            <img src="https://render.worldofwarcraft.com/us/icons/56/spell_holy_avengersshield.jpg" class="ability-icon">
+            <div class="ability-info">
+                <h4>Bouclier du vengeur</h4>
+                <p>Votre interrupt qui silence. Génère de la Puissance sacrée. À utiliser sur cooldown sauf si un cast important arrive.</p>
             </div>
-        </section>
+        </div>
+
+        <div class="ability-card">
+            <img src="https://render.worldofwarcraft.com/us/icons/56/spell_holy_sealofmight.jpg" class="ability-icon">
+            <div class="ability-info">
+                <h4>Jugement</h4>
+                <p>Génère de la Puissance sacrée et applique un debuff. Spam sur cooldown pour maximiser votre génération de ressources.</p>
+            </div>
+        </div>
+
+        <div class="ability-card">
+            <img src="https://render.worldofwarcraft.com/us/icons/56/spell_holy_divineshield.jpg" class="ability-icon">
+            <div class="ability-info">
+                <h4>Bouclier divin</h4>
+                <p>Immunité complète 8 secondes. Votre panique button ultime. Drop votre threat, attention en début de pull.</p>
+            </div>
+        </div>
+
+        <div class="ability-card">
+            <img src="https://render.worldofwarcraft.com/us/icons/56/spell_holy_heroism.jpg" class="ability-icon">
+            <div class="ability-info">
+                <h4>Gardien des anciens rois</h4>
+                <p>50% de réduction des dégâts pendant 8 secondes. Votre gros défensif, cooldown court. Utilisez généreusement.</p>
+            </div>
+        </div>
+
+        <div class="ability-card">
+            <img src="https://render.worldofwarcraft.com/us/icons/56/spell_holy_ardentdefender.jpg" class="ability-icon">
+            <div class="ability-info">
+                <h4>Ardent défenseur</h4>
+                <p>20% de réduction + cheat death si vous tombez sous 20% HP. Excellent pour les situations dangereuses mais pas critiques.</p>
+            </div>
+        </div>
+
+        <div class="ability-card">
+            <img src="https://render.worldofwarcraft.com/us/icons/56/paladin_retribution.jpg" class="ability-icon">
+            <div class="ability-info">
+                <h4>Marteau béni</h4>
+                <p>Lance 3 marteaux qui tournent autour de vous et touchent tous les ennemis. Génère de la Puissance sacrée sur chaque hit.</p>
+            </div>
+        </div>
+
+        <div class="ability-card">
+            <img src="https://render.worldofwarcraft.com/us/icons/56/spell_holy_innerfire.jpg" class="ability-icon">
+            <div class="ability-info">
+                <h4>Consécration</h4>
+                <p>Doit être maintenue 100% du temps. Génère de la threat passive et fait des dégâts constants en AoE.</p>
+            </div>
+        </div>
+
+        <div class="ability-card">
+            <img src="https://render.worldofwarcraft.com/us/icons/56/spell_holy_prayerofhealing.jpg" class="ability-icon">
+            <div class="ability-info">
+                <h4>Mot de gloire</h4>
+                <p>Heal instantané avec vos procs. Gardez toujours des charges en réserve. Peut sauver votre vie ou celle d'un allié.</p>
+            </div>
+        </div>
+
+        <div class="ability-card">
+            <img src="https://render.worldofwarcraft.com/us/icons/56/spell_holy_righteousfury.jpg" class="ability-icon">
+            <div class="ability-info">
+                <h4>Bénédiction de protection</h4>
+                <p>Immunité physical 10 secondes sur un allié. Clutch pour sauver vos DPS des mechanics melee ou des bleeds.</p>
+            </div>
+        </div>
+
+        <div class="ability-card">
+            <img src="https://render.worldofwarcraft.com/us/icons/56/spell_holy_sealofsacrifice.jpg" class="ability-icon">
+            <div class="ability-info">
+                <h4>Bénédiction de sacrifice</h4>
+                <p>Transfère 30% des dégâts d'un allié sur vous pendant 12 secondes. Parfait pour sauver votre healer ou un DPS qui va prendre un gros hit.</p>
+            </div>
+        </div>
+    </div>
+</div>
 
         <!-- BLOOD DK -->
         <section id="dk" class="spec-section" data-spec="dk">
