@@ -3,204 +3,502 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Guide Tank & M+ WoW - The War Within Season 3</title>
+    <title>Guide Tank WoW - The War Within Season 3</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --paladin: #F58CBA; --paladin-dark: #c46b94; --paladin-glow: rgba(245, 140, 186, 0.25);
-            --dk: #C41E3A; --dk-dark: #8B0000; --dk-glow: rgba(196, 30, 58, 0.25);
-            --dungeon: #8B5CF6; --dungeon-glow: rgba(139, 92, 246, 0.25);
-            --bg: #09090b; --card: rgba(255, 255, 255, 0.02); --card-hover: rgba(255, 255, 255, 0.04);
-            --border: rgba(255, 255, 255, 0.06); --text: #fafafa; --text-sec: #a1a1aa; --text-muted: #71717a;
+            --paladin: #F58CBA;
+            --paladin-dark: #c46b94;
+            --paladin-glow: rgba(245, 140, 186, 0.25);
+            
+            --dk: #C41E3A;
+            --dk-dark: #8B0000;
+            --dk-glow: rgba(196, 30, 58, 0.25);
+            
+            --warrior: #C79C6E;
+            --dh: #A330C9;
+            --druid: #FF7C0A;
+            --monk: #00FF98;
+            
+            --bg: #09090b;
+            --card: rgba(255, 255, 255, 0.02);
+            --card-hover: rgba(255, 255, 255, 0.04);
+            --border: rgba(255, 255, 255, 0.06);
+            --text: #fafafa;
+            --text-sec: #a1a1aa;
+            --text-muted: #71717a;
         }
+
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; line-height: 1.6; }
-        .landing { min-height: 100vh; padding: 60px 20px; display: flex; flex-direction: column; align-items: center; background: radial-gradient(ellipse at 50% 0%, rgba(100, 60, 140, 0.1) 0%, transparent 50%), radial-gradient(ellipse at 80% 60%, var(--dk-glow) 0%, transparent 40%), radial-gradient(ellipse at 20% 80%, var(--paladin-glow) 0%, transparent 40%), var(--bg); }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        /* ===== LANDING ===== */
+        .landing {
+            min-height: 100vh;
+            padding: 60px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: 
+                radial-gradient(ellipse at 50% 0%, rgba(100, 60, 140, 0.1) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 60%, var(--dk-glow) 0%, transparent 40%),
+                radial-gradient(ellipse at 20% 80%, var(--paladin-glow) 0%, transparent 40%),
+                var(--bg);
+        }
+
         .header { text-align: center; margin-bottom: 50px; }
-        .badge { display: inline-flex; align-items: center; gap: 8px; padding: 8px 18px; background: var(--card); border: 1px solid var(--border); border-radius: 50px; font-size: 0.85rem; color: var(--text-sec); margin-bottom: 20px; }
-        .badge::before { content: ''; width: 8px; height: 8px; background: #22c55e; border-radius: 50%; animation: pulse 2s infinite; }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 18px;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 50px;
+            font-size: 0.85rem;
+            color: var(--text-sec);
+            margin-bottom: 20px;
+        }
+        .badge::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: #22c55e;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
         @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
-        .title { font-family: 'Outfit', sans-serif; font-size: clamp(3rem, 10vw, 5.5rem); font-weight: 900; background: linear-gradient(135deg, #fff 0%, #71717a 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; letter-spacing: -0.03em; margin-bottom: 12px; }
-        .subtitle { font-size: 1.1rem; color: var(--text-muted); max-width: 500px; margin-bottom: 40px; }
-        .main-sections { display: flex; flex-direction: column; gap: 40px; max-width: 1100px; width: 100%; }
-        .section-label { font-family: 'Outfit', sans-serif; font-size: 1.3rem; font-weight: 700; color: var(--text-sec); margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
-        .class-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 16px; width: 100%; }
-        .class-card { display: flex; align-items: center; gap: 16px; padding: 20px; background: var(--card); border: 1px solid var(--border); border-radius: 14px; cursor: pointer; transition: all 0.3s ease; text-decoration: none; color: inherit; }
+
+        .title {
+            font-family: 'Outfit', sans-serif;
+            font-size: clamp(3rem, 10vw, 5.5rem);
+            font-weight: 900;
+            background: linear-gradient(135deg, #fff 0%, #71717a 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -0.03em;
+            margin-bottom: 12px;
+        }
+
+        .subtitle { font-size: 1.1rem; color: var(--text-muted); max-width: 450px; }
+
+        .class-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 16px;
+            max-width: 1100px;
+            width: 100%;
+        }
+
+        .class-card {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 20px;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+        }
         .class-card:hover { background: var(--card-hover); transform: translateY(-4px); }
         .class-card.paladin:hover { border-color: var(--paladin); box-shadow: 0 20px 40px -20px var(--paladin-glow); }
         .class-card.dk:hover { border-color: var(--dk); box-shadow: 0 20px 40px -20px var(--dk-glow); }
-        .class-card.routes:hover { border-color: var(--dungeon); box-shadow: 0 20px 40px -20px var(--dungeon-glow); }
         .class-card.disabled { opacity: 0.4; cursor: not-allowed; }
         .class-card.disabled:hover { transform: none; background: var(--card); }
-        .class-icon { width: 52px; height: 52px; border-radius: 12px; overflow: hidden; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; }
+
+        .class-icon { width: 52px; height: 52px; border-radius: 12px; overflow: hidden; flex-shrink: 0; }
         .class-icon img { width: 100%; height: 100%; }
-        .class-icon.dungeon-icon { background: linear-gradient(135deg, var(--dungeon), #6d28d9); }
+
         .class-info { flex: 1; }
         .class-info h3 { font-family: 'Outfit', sans-serif; font-size: 1.2rem; font-weight: 700; margin-bottom: 2px; }
         .class-card.paladin h3 { color: var(--paladin); }
         .class-card.dk h3 { color: var(--dk); }
-        .class-card.routes h3 { color: var(--dungeon); }
         .class-info p { font-size: 0.85rem; color: var(--text-muted); }
-        .hero-badge { padding: 5px 10px; border-radius: 6px; font-size: 0.7rem; font-weight: 600; text-transform: uppercase; }
+
+        .hero-badge {
+            padding: 5px 10px;
+            border-radius: 6px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
         .class-card.paladin .hero-badge { background: rgba(245,140,186,0.15); color: var(--paladin); }
         .class-card.dk .hero-badge { background: rgba(196,30,58,0.15); color: var(--dk); }
-        .class-card.routes .hero-badge { background: rgba(139,92,246,0.15); color: var(--dungeon); }
+
         .arrow { font-size: 1.1rem; color: var(--text-muted); transition: transform 0.3s; margin-left: 8px; }
         .class-card:hover .arrow { transform: translateX(4px); }
+
+        /* ===== TANK PAGES ===== */
         .tank-page { display: none; min-height: 100vh; }
         .tank-page.active { display: block; }
-        .back-btn { position: fixed; top: 20px; left: 20px; z-index: 100; display: flex; align-items: center; gap: 8px; padding: 10px 18px; background: rgba(0,0,0,0.85); border: 1px solid var(--border); border-radius: 10px; color: #fff; font-size: 0.9rem; font-weight: 500; cursor: pointer; backdrop-filter: blur(10px); }
+
+        .back-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 18px;
+            background: rgba(0,0,0,0.85);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            color: #fff;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+        }
         .back-btn:hover { background: rgba(30,30,30,0.9); }
-        .page-header { padding: 100px 20px 50px; text-align: center; }
+
+        /* Page Header */
+        .page-header {
+            padding: 100px 20px 50px;
+            text-align: center;
+        }
         .paladin-page .page-header { background: linear-gradient(180deg, rgba(245,140,186,0.1) 0%, transparent 100%); }
         .dk-page .page-header { background: linear-gradient(180deg, rgba(196,30,58,0.12) 0%, transparent 100%); }
-        .routes-page .page-header { background: linear-gradient(180deg, rgba(139,92,246,0.12) 0%, transparent 100%); }
-        .page-icon { width: 72px; height: 72px; border-radius: 18px; margin: 0 auto 16px; overflow: hidden; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; }
+
+        .page-icon { width: 72px; height: 72px; border-radius: 18px; margin: 0 auto 16px; overflow: hidden; }
         .page-icon img { width: 100%; height: 100%; }
-        .page-icon.dungeon { background: linear-gradient(135deg, var(--dungeon), #6d28d9); }
+
         .page-title { font-family: 'Outfit', sans-serif; font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; margin-bottom: 10px; }
         .paladin-page .page-title span { color: var(--paladin); }
         .dk-page .page-title span { color: var(--dk); }
-        .routes-page .page-title span { color: var(--dungeon); }
-        .page-hero { display: inline-block; padding: 8px 18px; border-radius: 8px; font-weight: 700; font-size: 0.8rem; letter-spacing: 0.05em; margin-bottom: 14px; }
+
+        .page-hero {
+            display: inline-block;
+            padding: 8px 18px;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 0.8rem;
+            letter-spacing: 0.05em;
+            margin-bottom: 14px;
+        }
         .paladin-page .page-hero { background: rgba(245,140,186,0.15); border: 1px solid rgba(245,140,186,0.25); color: var(--paladin); }
         .dk-page .page-hero { background: rgba(196,30,58,0.15); border: 1px solid rgba(196,30,58,0.25); color: var(--dk); }
-        .routes-page .page-hero { background: rgba(139,92,246,0.15); border: 1px solid rgba(139,92,246,0.25); color: var(--dungeon); }
+
         .page-subtitle { font-size: 1.05rem; color: var(--text-sec); max-width: 550px; margin: 0 auto; }
-        .nav-tabs { display: flex; justify-content: center; gap: 8px; padding: 20px; background: rgba(0,0,0,0.3); border-bottom: 1px solid var(--border); flex-wrap: wrap; position: sticky; top: 0; z-index: 50; backdrop-filter: blur(10px); }
-        .nav-tab { padding: 10px 20px; background: var(--card); border: 1px solid var(--border); border-radius: 8px; color: var(--text-sec); font-size: 0.85rem; font-weight: 600; cursor: pointer; transition: all 0.2s; text-decoration: none; }
+
+        /* Navigation Tabs */
+        .nav-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            padding: 20px;
+            background: rgba(0,0,0,0.3);
+            border-bottom: 1px solid var(--border);
+            flex-wrap: wrap;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-tab {
+            padding: 10px 20px;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text-sec);
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
         .nav-tab:hover { background: var(--card-hover); color: var(--text); }
         .paladin-page .nav-tab.active { background: rgba(245,140,186,0.15); border-color: var(--paladin); color: var(--paladin); }
         .dk-page .nav-tab.active { background: rgba(196,30,58,0.15); border-color: var(--dk); color: var(--dk); }
-        .routes-page .nav-tab.active { background: rgba(139,92,246,0.15); border-color: var(--dungeon); color: var(--dungeon); }
+
+        /* Content */
         .content { max-width: 1000px; margin: 0 auto; padding: 30px 20px 80px; }
+
         .section { margin-bottom: 50px; scroll-margin-top: 80px; }
-        .section-header { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 1px solid var(--border); }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--border);
+        }
         .section-icon { font-size: 1.4rem; }
         .section-title { font-family: 'Outfit', sans-serif; font-size: 1.4rem; font-weight: 700; }
-        .card { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 20px; margin-bottom: 12px; }
-        .card-title { font-weight: 700; font-size: 1rem; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+
+        /* Cards */
+        .card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 20px;
+            margin-bottom: 12px;
+        }
+
+        .card-title {
+            font-weight: 700;
+            font-size: 1rem;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
         .paladin-page .card-title { color: var(--paladin); }
         .dk-page .card-title { color: var(--dk); }
-        .routes-page .card-title { color: var(--dungeon); }
+
         .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 12px; }
-        .spell { display: flex; gap: 14px; padding: 14px; background: rgba(0,0,0,0.2); border-radius: 10px; margin-bottom: 10px; transition: background 0.2s; }
+
+        /* Spell Items with Icons */
+        .spell {
+            display: flex;
+            gap: 14px;
+            padding: 14px;
+            background: rgba(0,0,0,0.2);
+            border-radius: 10px;
+            margin-bottom: 10px;
+            transition: background 0.2s;
+        }
         .spell:hover { background: rgba(0,0,0,0.35); }
         .spell:last-child { margin-bottom: 0; }
-        .spell-icon { width: 44px; height: 44px; border-radius: 8px; overflow: hidden; flex-shrink: 0; border: 2px solid rgba(255,255,255,0.1); }
+
+        .spell-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 8px;
+            overflow: hidden;
+            flex-shrink: 0;
+            border: 2px solid rgba(255,255,255,0.1);
+        }
         .spell-icon img { width: 100%; height: 100%; }
+
         .spell-content { flex: 1; min-width: 0; }
+
         .spell-header { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; flex-wrap: wrap; }
+
         .spell-name { font-weight: 700; font-size: 0.95rem; }
         .paladin-page .spell-name { color: var(--paladin); }
         .dk-page .spell-name { color: var(--dk); }
-        .tag { padding: 2px 8px; border-radius: 4px; font-size: 0.65rem; font-weight: 600; text-transform: uppercase; }
+
+        .tag {
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.65rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
         .paladin-page .tag { background: rgba(245,140,186,0.15); color: var(--paladin); }
         .paladin-page .tag.def { background: rgba(34,197,94,0.15); color: #22c55e; }
         .paladin-page .tag.util { background: rgba(59,130,246,0.15); color: #3b82f6; }
         .dk-page .tag { background: rgba(196,30,58,0.15); color: var(--dk); }
         .dk-page .tag.def { background: rgba(34,197,94,0.15); color: #22c55e; }
         .dk-page .tag.util { background: rgba(147,51,234,0.15); color: #a855f7; }
+
         .spell-desc { color: var(--text-sec); font-size: 0.88rem; line-height: 1.5; }
         .hl { color: var(--text); font-weight: 600; }
-        .opener-box { background: rgba(0,0,0,0.25); border-radius: 12px; padding: 18px; margin-bottom: 14px; }
+
+        /* Opener */
+        .opener-box {
+            background: rgba(0,0,0,0.25);
+            border-radius: 12px;
+            padding: 18px;
+            margin-bottom: 14px;
+        }
         .opener-title { font-weight: 700; font-size: 0.95rem; margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
         .paladin-page .opener-title { color: var(--paladin); }
         .dk-page .opener-title { color: var(--dk); }
+
         .opener-steps { display: flex; flex-direction: column; gap: 6px; }
-        .opener-step { display: flex; align-items: center; gap: 12px; padding: 10px 12px; background: rgba(255,255,255,0.02); border: 1px solid var(--border); border-radius: 8px; font-size: 0.88rem; }
+        .opener-step {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 12px;
+            background: rgba(255,255,255,0.02);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-size: 0.88rem;
+        }
         .opener-step .spell-icon { width: 32px; height: 32px; border-width: 1px; }
-        .step-num { width: 22px; height: 22px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.75rem; flex-shrink: 0; }
+        .step-num {
+            width: 22px;
+            height: 22px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.75rem;
+            flex-shrink: 0;
+        }
         .paladin-page .step-num { background: var(--paladin); color: #000; }
         .dk-page .step-num { background: var(--dk); color: #fff; }
         .step-note { color: var(--text-muted); font-size: 0.8rem; margin-left: auto; }
-        .rotation-box { background: rgba(0,0,0,0.25); border-radius: 12px; padding: 18px; margin-bottom: 14px; }
+
+        /* Rotation */
+        .rotation-box {
+            background: rgba(0,0,0,0.25);
+            border-radius: 12px;
+            padding: 18px;
+            margin-bottom: 14px;
+        }
         .rotation-label { font-weight: 700; margin-bottom: 14px; font-size: 0.95rem; }
         .paladin-page .rotation-label { color: var(--paladin); }
         .dk-page .rotation-label { color: var(--dk); }
+
         .rotation-flow { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
-        .rot-step { display: flex; align-items: center; gap: 8px; padding: 8px 12px; background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 8px; font-size: 0.85rem; }
+        .rot-step {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 12px;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-size: 0.85rem;
+        }
         .rot-step .spell-icon { width: 28px; height: 28px; border-width: 1px; }
-        .rot-num { width: 20px; height: 20px; border-radius: 5px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.7rem; }
+        .rot-num {
+            width: 20px;
+            height: 20px;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.7rem;
+        }
         .paladin-page .rot-num { background: var(--paladin); color: #000; }
         .dk-page .rot-num { background: var(--dk); color: #fff; }
         .rot-arrow { color: var(--text-muted); font-size: 1rem; }
+
+        /* Stats */
         .stats-row { display: flex; gap: 10px; flex-wrap: wrap; margin: 16px 0; }
-        .stat-card { flex: 1; min-width: 90px; padding: 14px; background: rgba(255,255,255,0.02); border: 1px solid var(--border); border-radius: 10px; text-align: center; }
+        .stat-card {
+            flex: 1;
+            min-width: 90px;
+            padding: 14px;
+            background: rgba(255,255,255,0.02);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            text-align: center;
+        }
         .stat-rank { font-family: 'Outfit', sans-serif; font-size: 1.4rem; font-weight: 800; }
         .paladin-page .stat-rank { color: var(--paladin); }
         .dk-page .stat-rank { color: var(--dk); }
         .stat-name { font-size: 0.8rem; color: var(--text-muted); }
-        .gear-table { width: 100%; border-collapse: collapse; }
-        .gear-table tr { border-bottom: 1px solid var(--border); }
-        .gear-table tr:last-child { border-bottom: none; }
-        .gear-table td { padding: 12px 8px; font-size: 0.9rem; }
-        .gear-table td:first-child { color: var(--text-muted); width: 120px; }
-        .gear-table td:last-child { font-weight: 600; text-align: right; }
+
+        /* Gear */
+        .gear-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .gear-table tr {
+            border-bottom: 1px solid var(--border);
+        }
+        .gear-table tr:last-child {
+            border-bottom: none;
+        }
+        .gear-table td {
+            padding: 12px 8px;
+            font-size: 0.9rem;
+        }
+        .gear-table td:first-child {
+            color: var(--text-muted);
+            width: 120px;
+        }
+        .gear-table td:last-child {
+            font-weight: 600;
+            text-align: right;
+        }
         .paladin-page .gear-table td:last-child { color: var(--paladin); }
         .dk-page .gear-table td:last-child { color: var(--dk); }
-        .gear-cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
-        .gear-card-item { background: rgba(0,0,0,0.25); border-radius: 10px; padding: 14px; display: flex; flex-direction: column; gap: 4px; }
-        .gear-card-item .label { font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; }
-        .gear-card-item .name { font-weight: 600; font-size: 0.95rem; }
+        
+        .gear-cards {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+        .gear-card-item {
+            background: rgba(0,0,0,0.25);
+            border-radius: 10px;
+            padding: 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        .gear-card-item .label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .gear-card-item .name {
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
         .paladin-page .gear-card-item .name { color: var(--paladin); }
         .dk-page .gear-card-item .name { color: var(--dk); }
+        
+        @media (max-width: 500px) {
+            .gear-cards { grid-template-columns: 1fr; }
+        }
+
+        /* Tips */
         .tips-box { border-radius: 12px; padding: 18px; margin-top: 16px; }
         .paladin-page .tips-box { background: linear-gradient(135deg, rgba(245,140,186,0.08), rgba(245,140,186,0.02)); border: 1px solid rgba(245,140,186,0.2); }
         .dk-page .tips-box { background: linear-gradient(135deg, rgba(196,30,58,0.1), rgba(196,30,58,0.03)); border: 1px solid rgba(196,30,58,0.25); }
-        .routes-page .tips-box { background: linear-gradient(135deg, rgba(139,92,246,0.08), rgba(139,92,246,0.02)); border: 1px solid rgba(139,92,246,0.2); }
+
         .tips-title { font-weight: 700; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; font-size: 0.95rem; }
         .paladin-page .tips-title { color: var(--paladin); }
         .dk-page .tips-title { color: var(--dk); }
+
         .tips-list { list-style: none; }
-        .tips-list li { position: relative; padding: 8px 0 8px 20px; color: var(--text-sec); border-bottom: 1px solid var(--border); font-size: 0.9rem; }
+        .tips-list li {
+            position: relative;
+            padding: 8px 0 8px 20px;
+            color: var(--text-sec);
+            border-bottom: 1px solid var(--border);
+            font-size: 0.9rem;
+        }
         .tips-list li:last-child { border-bottom: none; }
-        .tips-list li::before { content: ''; position: absolute; left: 0; top: 14px; width: 6px; height: 6px; border-radius: 50%; }
+        .tips-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 14px;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+        }
         .paladin-page .tips-list li::before { background: var(--paladin); }
         .dk-page .tips-list li::before { background: var(--dk); }
-        .routes-page .tips-list li::before { background: var(--dungeon); }
         .tips-list li strong { color: var(--text); }
-        .hero-tree-box { background: linear-gradient(135deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01)); border: 1px solid var(--border); border-radius: 14px; padding: 20px; margin-bottom: 16px; }
-        .hero-tree-header { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
-        .hero-tree-icon { width: 48px; height: 48px; border-radius: 12px; overflow: hidden; }
-        .hero-tree-icon img { width: 100%; height: 100%; }
-        .hero-tree-name { font-family: 'Outfit', sans-serif; font-size: 1.2rem; font-weight: 700; }
-        .paladin-page .hero-tree-name { color: var(--paladin); }
-        .dk-page .hero-tree-name { color: var(--dk); }
-        .hero-tree-desc { color: var(--text-sec); font-size: 0.9rem; margin-bottom: 16px; }
-        .armament-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
-        .armament { background: rgba(0,0,0,0.3); border-radius: 10px; padding: 14px; }
-        .armament-header { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
-        .armament-icon { width: 36px; height: 36px; border-radius: 8px; overflow: hidden; }
-        .armament-icon img { width: 100%; height: 100%; }
-        .armament-name { font-weight: 700; font-size: 0.9rem; }
-        .paladin-page .armament-name { color: var(--paladin); }
-        .dk-page .armament-name { color: var(--dk); }
-        .armament-type { font-size: 0.7rem; padding: 2px 6px; border-radius: 4px; margin-left: auto; }
-        .armament-type.defensive { background: rgba(34,197,94,0.15); color: #22c55e; }
-        .armament-type.offensive { background: rgba(239,68,68,0.15); color: #ef4444; }
-        .armament-desc { color: var(--text-sec); font-size: 0.85rem; }
-        .dungeon-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
-        .dungeon-card { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 20px; transition: all 0.3s; }
-        .dungeon-card:hover { background: var(--card-hover); border-color: var(--dungeon); transform: translateY(-2px); }
-        .dungeon-header { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
-        .dungeon-badge { width: 48px; height: 48px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; background: linear-gradient(135deg, rgba(139,92,246,0.2), rgba(139,92,246,0.05)); }
-        .dungeon-name { font-family: 'Outfit', sans-serif; font-size: 1.1rem; font-weight: 700; color: var(--dungeon); }
-        .dungeon-meta { font-size: 0.8rem; color: var(--text-muted); }
-        .dungeon-info { display: flex; flex-direction: column; gap: 8px; }
-        .dungeon-stat { display: flex; justify-content: space-between; font-size: 0.85rem; padding: 6px 0; border-bottom: 1px solid var(--border); }
-        .dungeon-stat:last-child { border-bottom: none; }
-        .dungeon-stat .label { color: var(--text-muted); }
-        .dungeon-stat .value { font-weight: 600; color: var(--text); }
-        .dungeon-tier { display: inline-block; padding: 4px 10px; border-radius: 6px; font-size: 0.75rem; font-weight: 700; margin-top: 8px; }
-        .dungeon-tier.s { background: rgba(34,197,94,0.15); color: #22c55e; }
-        .dungeon-tier.a { background: rgba(59,130,246,0.15); color: #3b82f6; }
-        .dungeon-tier.b { background: rgba(234,179,8,0.15); color: #eab308; }
-        .dungeon-tier.c { background: rgba(239,68,68,0.15); color: #ef4444; }
-        .route-link { display: inline-flex; align-items: center; gap: 6px; margin-top: 12px; padding: 8px 14px; background: rgba(139,92,246,0.15); border: 1px solid rgba(139,92,246,0.3); border-radius: 8px; color: var(--dungeon); font-size: 0.85rem; font-weight: 600; text-decoration: none; transition: all 0.2s; }
-        .route-link:hover { background: rgba(139,92,246,0.25); }
+
+        /* Talent Buttons */
         .talent-btns { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 20px; }
-        .talent-btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 22px; border-radius: 10px; text-decoration: none; font-weight: 700; font-size: 0.9rem; transition: all 0.3s; }
+        .talent-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 22px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
         .talent-btn:hover { transform: translateY(-2px); }
         .paladin-page .talent-btn { background: linear-gradient(135deg, var(--paladin), var(--paladin-dark)); color: #000; }
         .paladin-page .talent-btn:hover { box-shadow: 0 15px 30px -10px var(--paladin-glow); }
@@ -208,67 +506,96 @@
         .dk-page .talent-btn:hover { box-shadow: 0 15px 30px -10px var(--dk-glow); }
         .talent-btn.secondary { background: rgba(255,255,255,0.05); border: 1px solid var(--border); color: var(--text); }
         .talent-btn.secondary:hover { background: rgba(255,255,255,0.08); box-shadow: none; }
+
+        /* Responsive */
         @media (max-width: 768px) {
-            .class-grid, .grid-2, .dungeon-grid { grid-template-columns: 1fr; }
+            .class-grid, .grid-2 { grid-template-columns: 1fr; }
             .rotation-flow { flex-direction: column; align-items: flex-start; }
             .rot-arrow { transform: rotate(90deg); align-self: center; }
-            .stats-row, .armament-grid, .gear-cards { flex-direction: column; grid-template-columns: 1fr; }
+            .stats-row { flex-direction: column; }
             .talent-btns { flex-direction: column; }
-            .nav-tabs { gap: 6px; } .nav-tab { padding: 8px 14px; font-size: 0.8rem; }
+            .nav-tabs { gap: 6px; }
+            .nav-tab { padding: 8px 14px; font-size: 0.8rem; }
         }
+
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: var(--bg); }
         ::-webkit-scrollbar-thumb { background: #27272a; border-radius: 4px; }
     </style>
 </head>
 <body>
-<!-- LANDING -->
+
+<!-- ===== LANDING ===== -->
 <div id="landing" class="landing">
     <div class="header">
         <div class="badge">The War Within — Season 3</div>
         <h1 class="title">WoW Guide</h1>
         <p class="subtitle">Guides Tank et Routes M+ optimisés pour la Season 3.</p>
     </div>
-    <div class="main-sections">
+
+    <div style="display: flex; flex-direction: column; gap: 40px; max-width: 1100px; width: 100%;">
         <div>
-            <div class="section-label">🛡️ Guides Tank</div>
+            <div style="font-family: 'Outfit', sans-serif; font-size: 1.3rem; font-weight: 700; color: var(--text-sec); margin-bottom: 16px; display: flex; align-items: center; gap: 10px;">🛡️ Guides Tank</div>
             <div class="class-grid">
                 <a href="#" class="class-card paladin" onclick="showPage('paladin'); return false;">
                     <div class="class-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/classicon_paladin.jpg" alt="Paladin"></div>
-                    <div class="class-info"><h3>Protection Paladin</h3><p>Le gardien sacré</p></div>
-                    <span class="hero-badge">Lightsmith</span><span class="arrow">→</span>
+                    <div class="class-info">
+                        <h3>Protection Paladin</h3>
+                        <p>Le gardien sacré</p>
+                    </div>
+                    <span class="hero-badge">Lightsmith</span>
+                    <span class="arrow">→</span>
                 </a>
+
                 <a href="#" class="class-card dk" onclick="showPage('dk'); return false;">
-                    <div class="class-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/classicon_deathknight.jpg" alt="DK"></div>
-                    <div class="class-info"><h3>Blood Death Knight</h3><p>Le maître de la non-mort</p></div>
-                    <span class="hero-badge">Deathbringer</span><span class="arrow">→</span>
+                    <div class="class-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/classicon_deathknight.jpg" alt="Death Knight"></div>
+                    <div class="class-info">
+                        <h3>Blood Death Knight</h3>
+                        <p>Le maître de la non-mort</p>
+                    </div>
+                    <span class="hero-badge">Deathbringer</span>
+                    <span class="arrow">→</span>
                 </a>
-                <div class="class-card disabled"><div class="class-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/classicon_warrior.jpg" alt=""></div><div class="class-info"><h3>Protection Warrior</h3><p>En construction</p></div></div>
-                <div class="class-card disabled"><div class="class-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/classicon_demonhunter.jpg" alt=""></div><div class="class-info"><h3>Vengeance DH</h3><p>En construction</p></div></div>
+
+                <div class="class-card warrior disabled">
+                    <div class="class-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/classicon_warrior.jpg" alt="Warrior"></div>
+                    <div class="class-info"><h3>Protection Warrior</h3><p>En construction</p></div>
+                </div>
+                <div class="class-card dh disabled">
+                    <div class="class-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/classicon_demonhunter.jpg" alt="DH"></div>
+                    <div class="class-info"><h3>Vengeance DH</h3><p>En construction</p></div>
+                </div>
             </div>
         </div>
+
         <div>
-            <div class="section-label">🗺️ Mythic+ Season 3</div>
+            <div style="font-family: 'Outfit', sans-serif; font-size: 1.3rem; font-weight: 700; color: var(--text-sec); margin-bottom: 16px; display: flex; align-items: center; gap: 10px;">🗺️ Mythic+ Season 3</div>
             <div class="class-grid">
-                <a href="#" class="class-card routes" onclick="showPage('routes'); return false;">
-                    <div class="class-icon dungeon-icon">🏰</div>
-                    <div class="class-info"><h3>Routes M+ & Dungeons</h3><p>8 dungeons • Timer • Tier List</p></div>
-                    <span class="hero-badge">8 Dungeons</span><span class="arrow">→</span>
+                <a href="#" class="class-card routes" onclick="showPage('routes'); return false;" style="border-color: rgba(139,92,246,0.3);">
+                    <div class="class-icon" style="background: linear-gradient(135deg, #8B5CF6, #6d28d9); display: flex; align-items: center; justify-content: center; font-size: 1.8rem;">🏰</div>
+                    <div class="class-info">
+                        <h3 style="color: #8B5CF6;">Routes M+ & Dungeons</h3>
+                        <p>8 dungeons • Timer • Tier List</p>
+                    </div>
+                    <span class="hero-badge" style="background: rgba(139,92,246,0.15); color: #8B5CF6;">8 Dungeons</span>
+                    <span class="arrow">→</span>
                 </a>
             </div>
         </div>
     </div>
 </div>
 
-<!-- PALADIN PAGE -->
+<!-- ===== PALADIN PAGE ===== -->
 <div id="paladin" class="tank-page paladin-page">
     <button class="back-btn" onclick="showPage('landing')">← Retour</button>
+
     <header class="page-header">
         <div class="page-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/classicon_paladin.jpg" alt="Paladin"></div>
         <h1 class="page-title">Protection <span>Paladin</span></h1>
         <div class="page-hero">✦ HERO TREE: LIGHTSMITH</div>
         <p class="page-subtitle">Le gardien sacré alliant puissance divine et protection inébranlable.</p>
     </header>
+
     <nav class="nav-tabs">
         <a href="#pala-overview" class="nav-tab active">Vue d'ensemble</a>
         <a href="#pala-hero" class="nav-tab">Lightsmith</a>
@@ -278,10 +605,15 @@
         <a href="#pala-rotation" class="nav-tab">Rotation</a>
         <a href="#pala-gear" class="nav-tab">Équipement</a>
     </nav>
+
     <div class="content">
         <!-- OVERVIEW -->
         <section id="pala-overview" class="section">
-            <div class="section-header"><span class="section-icon">📋</span><h2 class="section-title">Vue d'ensemble</h2></div>
+            <div class="section-header">
+                <span class="section-icon">📋</span>
+                <h2 class="section-title">Vue d'ensemble</h2>
+            </div>
+            
             <div class="card">
                 <div class="card-title">🎯 Points Clés à Retenir</div>
                 <div class="tips-box" style="margin-top: 0;">
@@ -291,6 +623,7 @@
                         <li><strong>Ne dépasse jamais 5 Holy Power</strong> — utilise SotR ou Word of Glory à 3+ HP</li>
                         <li><strong>Shining Light proc</strong> = Word of Glory gratuit, utilise immédiatement</li>
                         <li><strong>Avenger's Shield</strong> silence les casters pendant 3 secondes</li>
+                        <li><strong>Final Stand</strong> transforme Divine Shield en taunt AoE + immunité</li>
                         <li><strong>Holy Armaments</strong> = alterne entre Holy Bulwark (def) et Sacred Weapon (off)</li>
                     </ul>
                 </div>
@@ -299,32 +632,47 @@
 
         <!-- HERO TREE: LIGHTSMITH -->
         <section id="pala-hero" class="section">
-            <div class="section-header"><span class="section-icon">✨</span><h2 class="section-title">Hero Tree: Lightsmith</h2></div>
-            <div class="hero-tree-box">
-                <div class="hero-tree-header">
-                    <div class="hero-tree-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/inv_hammer_1h_blacksmithing_d_02_gold.jpg" alt=""></div>
-                    <div><div class="hero-tree-name">Lightsmith</div><div style="font-size: 0.85rem; color: var(--text-muted);">Forge des armements sacrés</div></div>
-                </div>
-                <p class="hero-tree-desc">Le Lightsmith te donne accès au système <strong>Holy Armaments</strong> — des buffs que tu peux cast sur toi ou tes alliés. Ils alternent entre défensif et offensif.</p>
-                <div class="armament-grid">
-                    <div class="armament">
-                        <div class="armament-header">
-                            <div class="armament-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/inv_shield_1h_hyrja_d_01.jpg" alt=""></div>
-                            <span class="armament-name">Holy Bulwark</span>
-                            <span class="armament-type defensive">Défensif</span>
-                        </div>
-                        <p class="armament-desc"><strong>Bouclier d'absorption</strong> : 15% de ta vie max immédiatement, puis +2% toutes les 2 secondes pendant 20s.<br><span style="color: var(--text-muted);">→ Total max : ~35% de ta vie en shield</span></p>
+            <div class="section-header">
+                <span class="section-icon">✨</span>
+                <h2 class="section-title">Hero Tree: Lightsmith</h2>
+            </div>
+            
+            <div class="card" style="background: linear-gradient(135deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01)); border: 1px solid var(--border);">
+                <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
+                    <div style="width: 48px; height: 48px; border-radius: 12px; overflow: hidden;">
+                        <img src="https://wow.zamimg.com/images/wow/icons/large/inv_hammer_1h_blacksmithing_d_02_gold.jpg" alt="" style="width: 100%; height: 100%;">
                     </div>
-                    <div class="armament">
-                        <div class="armament-header">
-                            <div class="armament-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/inv_sword_2h_hyrja_d_01.jpg" alt=""></div>
-                            <span class="armament-name">Sacred Weapon</span>
-                            <span class="armament-type offensive">Offensif</span>
+                    <div>
+                        <div class="card-title" style="margin-bottom: 0;">Lightsmith</div>
+                        <div style="font-size: 0.85rem; color: var(--text-muted);">Forge des armements sacrés</div>
+                    </div>
+                </div>
+                <p style="color: var(--text-sec); font-size: 0.9rem; margin-bottom: 16px;">Le Lightsmith te donne accès au système <strong style="color: var(--text);">Holy Armaments</strong> — des buffs que tu peux cast sur toi ou tes alliés. Ils alternent entre défensif et offensif.</p>
+                
+                <div class="grid-2">
+                    <div style="background: rgba(0,0,0,0.3); border-radius: 10px; padding: 14px;">
+                        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                            <div style="width: 36px; height: 36px; border-radius: 8px; overflow: hidden;">
+                                <img src="https://wow.zamimg.com/images/wow/icons/large/inv_shield_1h_hyrja_d_01.jpg" alt="" style="width: 100%; height: 100%;">
+                            </div>
+                            <span class="spell-name">Holy Bulwark</span>
+                            <span class="tag def" style="margin-left: auto;">Défensif</span>
                         </div>
-                        <p class="armament-desc"><strong>Buff de dégâts</strong> : Chance d'infliger des dégâts Holy aux ennemis proches pendant 20s.<br><span style="color: var(--text-muted);">→ Les dégâts sont augmentés en single-target</span></p>
+                        <p class="spell-desc"><strong>Bouclier d'absorption</strong> : 15% de ta vie max immédiatement, puis +2% toutes les 2 secondes pendant 20s.<br><span style="color: var(--text-muted);">→ Total max : ~35% de ta vie en shield</span></p>
+                    </div>
+                    <div style="background: rgba(0,0,0,0.3); border-radius: 10px; padding: 14px;">
+                        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                            <div style="width: 36px; height: 36px; border-radius: 8px; overflow: hidden;">
+                                <img src="https://wow.zamimg.com/images/wow/icons/large/inv_sword_2h_hyrja_d_01.jpg" alt="" style="width: 100%; height: 100%;">
+                            </div>
+                            <span class="spell-name">Sacred Weapon</span>
+                            <span style="font-size: 0.7rem; padding: 2px 6px; border-radius: 4px; margin-left: auto; background: rgba(239,68,68,0.15); color: #ef4444;">Offensif</span>
+                        </div>
+                        <p class="spell-desc"><strong>Buff de dégâts</strong> : Chance d'infliger des dégâts Holy aux ennemis proches pendant 20s.<br><span style="color: var(--text-muted);">→ Les dégâts sont augmentés en single-target</span></p>
                     </div>
                 </div>
             </div>
+
             <div class="card">
                 <div class="card-title">⚙️ Comment ça fonctionne</div>
                 <div class="tips-box" style="margin-top: 0;">
@@ -334,6 +682,19 @@
                         <li><strong>Avenging Wrath</strong> invoque automatiquement un Sacred Weapon bonus</li>
                         <li><strong>Solidarity (talent)</strong> : Cast sur un allié = TU reçois aussi l'effet</li>
                         <li><strong>Masterwork stacks</strong> : Chaque Armament donne 1 stack. À 5 stacks, génère un Lesser Armament auto</li>
+                        <li><strong>Ne laisse jamais 2 charges cap</strong> — utilise-les régulièrement</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">💡 Tips Lightsmith</div>
+                <div class="tips-box" style="margin-top: 0;">
+                    <ul class="tips-list">
+                        <li><strong>Avant un gros pull</strong> → Cast Holy Bulwark sur toi pour le shield</li>
+                        <li><strong>Début de clé M+</strong> → Assure-toi que ton prochain cast sera Sacred Weapon (pour burst)</li>
+                        <li><strong>Sacred Weapon de Avenging Wrath</strong> doit être utilisé EN PREMIER (il ne stack pas)</li>
+                        <li><strong>En raid</strong> → Tu peux donner Holy Bulwark à un co-tank ou healer en danger</li>
                     </ul>
                 </div>
             </div>
@@ -341,28 +702,90 @@
 
         <!-- OPENER -->
         <section id="pala-opener" class="section">
-            <div class="section-header"><span class="section-icon">🚀</span><h2 class="section-title">Opener</h2></div>
+            <div class="section-header">
+                <span class="section-icon">🚀</span>
+                <h2 class="section-title">Comment Commencer un Pack</h2>
+            </div>
+            
             <div class="grid-2">
                 <div class="card">
-                    <div class="opener-box" style="margin-bottom:0">
+                    <div class="opener-box" style="margin-bottom: 0;">
                         <div class="opener-title">⚔️ Opener Mythic+</div>
                         <div class="opener-steps">
-                            <div class="opener-step"><div class="spell-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/spell_holy_avenginewrath.jpg" alt=""></div><span class="step-num">1</span><span>Avenging Wrath</span><span class="step-note">Pré-pull</span></div>
-                            <div class="opener-step"><div class="spell-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/spell_holy_avengersshield.jpg" alt=""></div><span class="step-num">2</span><span>Avenger's Shield</span><span class="step-note">Pull</span></div>
-                            <div class="opener-step"><div class="spell-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/spell_holy_innerfire.jpg" alt=""></div><span class="step-num">3</span><span>Consecration</span></div>
-                            <div class="opener-step"><div class="spell-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/ability_bastion_paladin.jpg" alt=""></div><span class="step-num">4</span><span>Divine Toll</span></div>
-                            <div class="opener-step"><div class="spell-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/ability_paladin_shieldofvengeance.jpg" alt=""></div><span class="step-num">5</span><span>Shield of the Righteous</span></div>
+                            <div class="opener-step">
+                                <div class="spell-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/spell_holy_avenginewrath.jpg" alt=""></div>
+                                <span class="step-num">1</span>
+                                <span>Avenging Wrath</span>
+                                <span class="step-note">Pré-pull</span>
+                            </div>
+                            <div class="opener-step">
+                                <div class="spell-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/spell_holy_avengersshield.jpg" alt=""></div>
+                                <span class="step-num">2</span>
+                                <span>Avenger's Shield</span>
+                                <span class="step-note">Pull + Silence</span>
+                            </div>
+                            <div class="opener-step">
+                                <div class="spell-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/spell_holy_innerfire.jpg" alt=""></div>
+                                <span class="step-num">3</span>
+                                <span>Consecration</span>
+                                <span class="step-note">Au sol</span>
+                            </div>
+                            <div class="opener-step">
+                                <div class="spell-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/ability_bastion_paladin.jpg" alt=""></div>
+                                <span class="step-num">4</span>
+                                <span>Divine Toll</span>
+                                <span class="step-note">Burst AoE</span>
+                            </div>
+                            <div class="opener-step">
+                                <div class="spell-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/ability_paladin_shieldofvengeance.jpg" alt=""></div>
+                                <span class="step-num">5</span>
+                                <span>Shield of the Righteous</span>
+                                <span class="step-note">Mitigation</span>
+                            </div>
+                            <div class="opener-step">
+                                <div class="spell-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/inv_shield_1h_artifactnorgannon_d_01.jpg" alt=""></div>
+                                <span class="step-num">6</span>
+                                <span>Eye of Tyr</span>
+                                <span class="step-note">-25% dégâts</span>
+                            </div>
                         </div>
                     </div>
                 </div>
+
                 <div class="card">
-                    <div class="opener-box" style="margin-bottom:0">
-                        <div class="opener-title">🏰 Opener Raid</div>
+                    <div class="opener-box" style="margin-bottom: 0;">
+                        <div class="opener-title">🏰 Opener Raid (Boss)</div>
                         <div class="opener-steps">
-                            <div class="opener-step"><div class="spell-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/spell_holy_avenginewrath.jpg" alt=""></div><span class="step-num">1</span><span>Avenging Wrath</span><span class="step-note">Pré-pull</span></div>
-                            <div class="opener-step"><div class="spell-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/spell_holy_righteousfury.jpg" alt=""></div><span class="step-num">2</span><span>Judgment</span></div>
-                            <div class="opener-step"><div class="spell-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/spell_holy_innerfire.jpg" alt=""></div><span class="step-num">3</span><span>Consecration</span></div>
-                            <div class="opener-step"><div class="spell-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/ability_paladin_shieldofvengeance.jpg" alt=""></div><span class="step-num">4</span><span>Shield of the Righteous</span></div>
+                            <div class="opener-step">
+                                <div class="spell-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/spell_holy_avenginewrath.jpg" alt=""></div>
+                                <span class="step-num">1</span>
+                                <span>Avenging Wrath</span>
+                                <span class="step-note">Pré-pull</span>
+                            </div>
+                            <div class="opener-step">
+                                <div class="spell-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/spell_holy_righteousfury.jpg" alt=""></div>
+                                <span class="step-num">2</span>
+                                <span>Judgment</span>
+                                <span class="step-note">En courant</span>
+                            </div>
+                            <div class="opener-step">
+                                <div class="spell-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/spell_holy_innerfire.jpg" alt=""></div>
+                                <span class="step-num">3</span>
+                                <span>Consecration</span>
+                                <span class="step-note">Sous le boss</span>
+                            </div>
+                            <div class="opener-step">
+                                <div class="spell-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/ability_paladin_shieldofvengeance.jpg" alt=""></div>
+                                <span class="step-num">4</span>
+                                <span>Shield of the Righteous</span>
+                                <span class="step-note">Mitigation</span>
+                            </div>
+                            <div class="opener-step">
+                                <div class="spell-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/spell_holy_avengersshield.jpg" alt=""></div>
+                                <span class="step-num">5</span>
+                                <span>Avenger's Shield</span>
+                                <span class="step-note">Dégâts</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -371,63 +794,258 @@
 
         <!-- SPELLS -->
         <section id="pala-spells" class="section">
-            <div class="section-header"><span class="section-icon">⚡</span><h2 class="section-title">Sorts Principaux</h2></div>
+            <div class="section-header">
+                <span class="section-icon">⚡</span>
+                <h2 class="section-title">Sorts Principaux</h2>
+            </div>
+            
             <div class="grid-2">
                 <div class="card">
                     <div class="card-title">💎 Sorts Core</div>
-                    <div class="spell"><div class="spell-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/ability_paladin_shieldofvengeance.jpg" alt=""></div><div class="spell-content"><div class="spell-header"><span class="spell-name">Shield of the Righteous</span><span class="tag">Core</span></div><p class="spell-desc">Consomme <span class="hl">3 Holy Power</span> → 25% réduction pendant 4.5s. <span class="hl">Maintiens 100% uptime!</span></p></div></div>
-                    <div class="spell"><div class="spell-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/spell_holy_righteousfury.jpg" alt=""></div><div class="spell-content"><div class="spell-header"><span class="spell-name">Judgment</span><span class="tag">Damage</span></div><p class="spell-desc">Génère <span class="hl">1 Holy Power</span>. Avec Crusader's Judgment = 2 charges.</p></div></div>
-                    <div class="spell"><div class="spell-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/spell_holy_innerfire.jpg" alt=""></div><div class="spell-content"><div class="spell-header"><span class="spell-name">Consecration</span><span class="tag">Zone</span></div><p class="spell-desc">Zone de dégâts. <span class="hl">Reste TOUJOURS dedans</span> pour le bonus Mastery!</p></div></div>
+                    
+                    <div class="spell">
+                        <div class="spell-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/ability_paladin_shieldofvengeance.jpg" alt=""></div>
+                        <div class="spell-content">
+                            <div class="spell-header">
+                                <span class="spell-name">Shield of the Righteous</span>
+                                <span class="tag">Core</span>
+                            </div>
+                            <p class="spell-desc">Consomme <span class="hl">3 Holy Power</span> → 25% réduction pendant 4.5s. <span class="hl">Maintiens 100% uptime!</span></p>
+                        </div>
+                    </div>
+
+                    <div class="spell">
+                        <div class="spell-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/spell_holy_righteousfury.jpg" alt=""></div>
+                        <div class="spell-content">
+                            <div class="spell-header">
+                                <span class="spell-name">Judgment</span>
+                                <span class="tag">Damage</span>
+                            </div>
+                            <p class="spell-desc">Génère <span class="hl">1 Holy Power</span>. Avec Crusader's Judgment = 2 charges.</p>
+                        </div>
+                    </div>
+
+                    <div class="spell">
+                        <div class="spell-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/spell_holy_innerfire.jpg" alt=""></div>
+                        <div class="spell-content">
+                            <div class="spell-header">
+                                <span class="spell-name">Consecration</span>
+                                <span class="tag">Zone</span>
+                            </div>
+                            <p class="spell-desc">Zone de dégâts. <span class="hl">Reste TOUJOURS dedans</span> pour le bonus Mastery!</p>
+                        </div>
+                    </div>
                 </div>
+
                 <div class="card">
                     <div class="card-title">🔥 Sorts Offensifs</div>
-                    <div class="spell"><div class="spell-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/spell_holy_avengersshield.jpg" alt=""></div><div class="spell-content"><div class="spell-header"><span class="spell-name">Avenger's Shield</span><span class="tag util">Utility</span></div><p class="spell-desc">Rebondit sur plusieurs cibles + <span class="hl">silence 3 secondes</span>.</p></div></div>
-                    <div class="spell"><div class="spell-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/paladin_protection.jpg" alt=""></div><div class="spell-content"><div class="spell-header"><span class="spell-name">Blessed Hammer</span><span class="tag">AoE</span></div><p class="spell-desc">Marteaux tournants qui génèrent <span class="hl">1 HP chacun</span>.</p></div></div>
-                    <div class="spell"><div class="spell-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/ability_bastion_paladin.jpg" alt=""></div><div class="spell-content"><div class="spell-header"><span class="spell-name">Divine Toll</span><span class="tag">Burst</span></div><p class="spell-desc">Lance Avenger's Shield sur <span class="hl">jusqu'à 5 cibles</span>.</p></div></div>
+                    
+                    <div class="spell">
+                        <div class="spell-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/spell_holy_avengersshield.jpg" alt=""></div>
+                        <div class="spell-content">
+                            <div class="spell-header">
+                                <span class="spell-name">Avenger's Shield</span>
+                                <span class="tag util">Utility</span>
+                            </div>
+                            <p class="spell-desc">Rebondit sur plusieurs cibles + <span class="hl">silence 3 secondes</span>. Anti-caster!</p>
+                        </div>
+                    </div>
+
+                    <div class="spell">
+                        <div class="spell-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/paladin_protection.jpg" alt=""></div>
+                        <div class="spell-content">
+                            <div class="spell-header">
+                                <span class="spell-name">Blessed Hammer</span>
+                                <span class="tag">AoE</span>
+                            </div>
+                            <p class="spell-desc">Marteaux tournants qui génèrent <span class="hl">1 HP chacun</span>. Le choix standard.</p>
+                        </div>
+                    </div>
+
+                    <div class="spell">
+                        <div class="spell-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/ability_bastion_paladin.jpg" alt=""></div>
+                        <div class="spell-content">
+                            <div class="spell-header">
+                                <span class="spell-name">Divine Toll</span>
+                                <span class="tag">Burst</span>
+                            </div>
+                            <p class="spell-desc">Lance Avenger's Shield sur <span class="hl">jusqu'à 5 cibles</span>. Énorme burst AoE.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
         <!-- DEFENSIVES -->
         <section id="pala-def" class="section">
-            <div class="section-header"><span class="section-icon">🛡️</span><h2 class="section-title">Cooldowns Défensifs</h2></div>
+            <div class="section-header">
+                <span class="section-icon">🛡️</span>
+                <h2 class="section-title">Cooldowns Défensifs</h2>
+            </div>
+            
             <div class="grid-2">
                 <div class="card">
                     <div class="card-title">⚡ Cooldowns Majeurs</div>
-                    <div class="spell"><div class="spell-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/spell_holy_heroism.jpg" alt=""></div><div class="spell-content"><div class="spell-header"><span class="spell-name">Guardian of Ancient Kings</span><span class="tag def">5 min</span></div><p class="spell-desc"><span class="hl">50% réduction</span> pendant 8s.</p></div></div>
-                    <div class="spell"><div class="spell-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/spell_holy_ardentdefender.jpg" alt=""></div><div class="spell-content"><div class="spell-header"><span class="spell-name">Ardent Defender</span><span class="tag def">2 min</span></div><p class="spell-desc"><span class="hl">20% réduction</span> + cheat death.</p></div></div>
-                    <div class="spell"><div class="spell-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/spell_holy_divineshield.jpg" alt=""></div><div class="spell-content"><div class="spell-header"><span class="spell-name">Divine Shield + Final Stand</span><span class="tag def">Immunity</span></div><p class="spell-desc"><span class="hl">Immunité + taunt AoE</span> + 50% DR.</p></div></div>
+                    
+                    <div class="spell">
+                        <div class="spell-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/spell_holy_heroism.jpg" alt=""></div>
+                        <div class="spell-content">
+                            <div class="spell-header">
+                                <span class="spell-name">Guardian of Ancient Kings</span>
+                                <span class="tag def">5 min</span>
+                            </div>
+                            <p class="spell-desc"><span class="hl">50% réduction</span> pendant 8s. Ton plus gros défensif.</p>
+                        </div>
+                    </div>
+
+                    <div class="spell">
+                        <div class="spell-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/spell_holy_ardentdefender.jpg" alt=""></div>
+                        <div class="spell-content">
+                            <div class="spell-header">
+                                <span class="spell-name">Ardent Defender</span>
+                                <span class="tag def">2 min</span>
+                            </div>
+                            <p class="spell-desc"><span class="hl">20% réduction</span> + cheat death (résurrection à 20% HP si tu meurs).</p>
+                        </div>
+                    </div>
+
+                    <div class="spell">
+                        <div class="spell-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/spell_holy_divineshield.jpg" alt=""></div>
+                        <div class="spell-content">
+                            <div class="spell-header">
+                                <span class="spell-name">Divine Shield + Final Stand</span>
+                                <span class="tag def">Immunity</span>
+                            </div>
+                            <p class="spell-desc"><span class="hl">Immunité + taunt AoE</span> + 50% DR. N'utilise pas sans Final Stand!</p>
+                        </div>
+                    </div>
                 </div>
+
                 <div class="card">
-                    <div class="card-title">💚 Self-Heal</div>
-                    <div class="spell"><div class="spell-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/inv_helmet_96.jpg" alt=""></div><div class="spell-content"><div class="spell-header"><span class="spell-name">Word of Glory</span><span class="tag def">Self-Heal</span></div><p class="spell-desc">Gros heal (3 HP). <span class="hl">Gratuit sur proc Shining Light!</span></p></div></div>
-                    <div class="spell"><div class="spell-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/spell_holy_layonhands.jpg" alt=""></div><div class="spell-content"><div class="spell-header"><span class="spell-name">Lay on Hands</span><span class="tag def">Emergency</span></div><p class="spell-desc"><span class="hl">Full heal instantané</span>.</p></div></div>
+                    <div class="card-title">💚 Self-Heal & Utility</div>
+                    
+                    <div class="spell">
+                        <div class="spell-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/inv_helmet_96.jpg" alt=""></div>
+                        <div class="spell-content">
+                            <div class="spell-header">
+                                <span class="spell-name">Word of Glory</span>
+                                <span class="tag def">Self-Heal</span>
+                            </div>
+                            <p class="spell-desc">Gros heal (3 HP). <span class="hl">Gratuit sur proc Shining Light!</span></p>
+                        </div>
+                    </div>
+
+                    <div class="spell">
+                        <div class="spell-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/spell_holy_layonhands.jpg" alt=""></div>
+                        <div class="spell-content">
+                            <div class="spell-header">
+                                <span class="spell-name">Lay on Hands</span>
+                                <span class="tag def">Emergency</span>
+                            </div>
+                            <p class="spell-desc"><span class="hl">Full heal instantané</span> sur toi ou un allié. Bouton panic.</p>
+                        </div>
+                    </div>
+
+                    <div class="spell">
+                        <div class="spell-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/inv_shield_1h_artifactnorgannon_d_01.jpg" alt=""></div>
+                        <div class="spell-content">
+                            <div class="spell-header">
+                                <span class="spell-name">Eye of Tyr</span>
+                                <span class="tag def">AoE DR</span>
+                            </div>
+                            <p class="spell-desc">Les ennemis font <span class="hl">-25% dégâts pendant 9s</span>. Énorme en M+!</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
         <!-- ROTATION -->
         <section id="pala-rotation" class="section">
-            <div class="section-header"><span class="section-icon">🔄</span><h2 class="section-title">Rotation</h2></div>
+            <div class="section-header">
+                <span class="section-icon">🔄</span>
+                <h2 class="section-title">Rotation & Priorités</h2>
+            </div>
+            
             <div class="card">
                 <div class="rotation-box">
                     <div class="rotation-label">⚔️ Priorité Single Target</div>
                     <div class="rotation-flow">
-                        <div class="rot-step"><div class="spell-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/ability_paladin_shieldofvengeance.jpg" alt=""></div><span class="rot-num">1</span> SotR (3+ HP)</div>
+                        <div class="rot-step">
+                            <div class="spell-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/ability_paladin_shieldofvengeance.jpg" alt=""></div>
+                            <span class="rot-num">1</span> SotR (3+ HP)
+                        </div>
                         <span class="rot-arrow">→</span>
-                        <div class="rot-step"><div class="spell-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/spell_holy_righteousfury.jpg" alt=""></div><span class="rot-num">2</span> Judgment</div>
+                        <div class="rot-step">
+                            <div class="spell-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/spell_holy_righteousfury.jpg" alt=""></div>
+                            <span class="rot-num">2</span> Judgment
+                        </div>
                         <span class="rot-arrow">→</span>
-                        <div class="rot-step"><div class="spell-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/spell_holy_avengersshield.jpg" alt=""></div><span class="rot-num">3</span> Avenger's Shield</div>
+                        <div class="rot-step">
+                            <div class="spell-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/spell_holy_avengersshield.jpg" alt=""></div>
+                            <span class="rot-num">3</span> Avenger's Shield
+                        </div>
                         <span class="rot-arrow">→</span>
-                        <div class="rot-step"><div class="spell-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/paladin_protection.jpg" alt=""></div><span class="rot-num">4</span> Blessed Hammer</div>
+                        <div class="rot-step">
+                            <div class="spell-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/paladin_protection.jpg" alt=""></div>
+                            <span class="rot-num">4</span> Blessed Hammer
+                        </div>
+                        <span class="rot-arrow">→</span>
+                        <div class="rot-step">
+                            <div class="spell-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/spell_holy_innerfire.jpg" alt=""></div>
+                            <span class="rot-num">5</span> Consecration
+                        </div>
                     </div>
+                </div>
+
+                <div class="rotation-box">
+                    <div class="rotation-label">💥 Priorité AoE (3+ cibles)</div>
+                    <div class="rotation-flow">
+                        <div class="rot-step">
+                            <div class="spell-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/spell_holy_innerfire.jpg" alt=""></div>
+                            <span class="rot-num">1</span> Consecration
+                        </div>
+                        <span class="rot-arrow">→</span>
+                        <div class="rot-step">
+                            <div class="spell-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/spell_holy_avengersshield.jpg" alt=""></div>
+                            <span class="rot-num">2</span> Avenger's Shield
+                        </div>
+                        <span class="rot-arrow">→</span>
+                        <div class="rot-step">
+                            <div class="spell-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/ability_bastion_paladin.jpg" alt=""></div>
+                            <span class="rot-num">3</span> Divine Toll
+                        </div>
+                        <span class="rot-arrow">→</span>
+                        <div class="rot-step">
+                            <div class="spell-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/paladin_protection.jpg" alt=""></div>
+                            <span class="rot-num">4</span> Blessed Hammer
+                        </div>
+                        <span class="rot-arrow">→</span>
+                        <div class="rot-step">
+                            <div class="spell-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/ability_paladin_shieldofvengeance.jpg" alt=""></div>
+                            <span class="rot-num">5</span> SotR
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tips-box">
+                    <div class="tips-title">⚠️ Règles Importantes</div>
+                    <ul class="tips-list">
+                        <li><strong>Ne jamais overcap à 5 Holy Power</strong> — utilise SotR ou WoG à 3+ HP</li>
+                        <li><strong>Shining Light proc</strong> = Word of Glory gratuit, utilise même à full vie</li>
+                        <li><strong>Moment of Glory</strong> = charges bonus d'Avenger's Shield en burst AoE</li>
+                    </ul>
                 </div>
             </div>
         </section>
 
         <!-- GEAR -->
         <section id="pala-gear" class="section">
-            <div class="section-header"><span class="section-icon">📊</span><h2 class="section-title">Équipement</h2></div>
+            <div class="section-header">
+                <span class="section-icon">📊</span>
+                <h2 class="section-title">Stats & Équipement</h2>
+            </div>
+            
             <div class="card">
                 <div class="card-title">📈 Priorité des Stats</div>
                 <div class="stats-row">
@@ -437,10 +1055,37 @@
                     <div class="stat-card"><div class="stat-rank">#4</div><div class="stat-name">Versatility</div></div>
                 </div>
             </div>
+
             <div class="grid-2">
-                <div class="card"><div class="card-title">🎯 Trinkets</div><div class="gear-cards"><div class="gear-card-item"><span class="label">Slot 1</span><span class="name">Astral Antenna</span></div><div class="gear-card-item"><span class="label">Slot 2</span><span class="name">Brand of Ceaseless Ire</span></div></div></div>
-                <div class="card"><div class="card-title">💎 Gemmes</div><div class="gear-cards"><div class="gear-card-item"><span class="label">Primaire</span><span class="name">Culminating Blasphemite</span></div><div class="gear-card-item"><span class="label">Secondaires</span><span class="name">Quick Ruby</span></div></div></div>
+                <div class="card">
+                    <div class="card-title">🎯 Trinkets</div>
+                    <div class="gear-cards">
+                        <div class="gear-card-item">
+                            <span class="label">Slot 1</span>
+                            <span class="name">Astral Antenna</span>
+                        </div>
+                        <div class="gear-card-item">
+                            <span class="label">Slot 2</span>
+                            <span class="name">Brand of Ceaseless Ire</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-title">💎 Gemmes</div>
+                    <div class="gear-cards">
+                        <div class="gear-card-item">
+                            <span class="label">Primaire</span>
+                            <span class="name">Culminating Blasphemite</span>
+                        </div>
+                        <div class="gear-card-item">
+                            <span class="label">Secondaires</span>
+                            <span class="name">Quick Ruby</span>
+                        </div>
+                    </div>
+                </div>
             </div>
+
             <div class="card">
                 <div class="card-title">✨ Enchantements</div>
                 <table class="gear-table">
@@ -453,57 +1098,435 @@
                     <tr><td>Anneaux</td><td>Radiant Critical Strike</td></tr>
                 </table>
             </div>
+
             <div class="card">
-                <div class="card-title">🌳 Talents</div>
+                <div class="card-title">🌳 Builds de Talents</div>
                 <div class="talent-btns">
-                    <a href="https://www.wowhead.com/talent-calc/paladin/protection" target="_blank" class="talent-btn">⚔️ Build Mythic+</a>
-                    <a href="https://www.wowhead.com/talent-calc/paladin/protection" target="_blank" class="talent-btn secondary">🏰 Build Raid</a>
+                    <a href="https://www.wowhead.com/talent-calc/blizzard/CIEAAAAAAAAAAAAAAAAAAAAAAsZMYWGLzMzMzMLbzMzYmtxwAAAMAAAAAAA0WzMzihZGGzwWbAADMAAbDAAAAYmZbbptZGLMYAYwMMG" target="_blank" class="talent-btn">⚔️ Build Mythic+</a>
+                    <a href="https://www.wowhead.com/talent-calc/blizzard/CIEAAAAAAAAAAAAAAAAAAAAAAsZMYWGLzMzMzMLbzMzYmtxwAAAMAAAAAAA0WzMzihZGGzwWbAADMAAbDAAAAYmZbbptZGLMYAYwMMG" target="_blank" class="talent-btn secondary">🏰 Build Raid</a>
                 </div>
             </div>
         </section>
     </div>
 </div>
-large/ability_deathknight_boneshield.jpg" alt=""></div><div class="spell-content"><div class="spell-header"><span class="spell-name">Marrowrend</span><span class="tag def">Bone Shield</span></div><p class="spell-desc">Génère <span class="hl">Bone Shield</span>. Maintiens TOUJOURS 5+ charges!</p></div></div>
+
+<!-- ===== DK PAGE ===== -->
+<div id="dk" class="tank-page dk-page">
+    <button class="back-btn" onclick="showPage('landing')">← Retour</button>
+
+    <header class="page-header">
+        <div class="page-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/classicon_deathknight.jpg" alt="DK"></div>
+        <h1 class="page-title">Blood <span>Death Knight</span></h1>
+        <div class="page-hero">⚔ HERO TREE: DEATHBRINGER</div>
+        <p class="page-subtitle">Le maître de la non-mort qui se soigne en infligeant des dégâts.</p>
+    </header>
+
+    <nav class="nav-tabs">
+        <a href="#dk-overview" class="nav-tab active">Vue d'ensemble</a>
+        <a href="#dk-hero" class="nav-tab">Deathbringer</a>
+        <a href="#dk-opener" class="nav-tab">Opener</a>
+        <a href="#dk-spells" class="nav-tab">Sorts</a>
+        <a href="#dk-def" class="nav-tab">Défensifs</a>
+        <a href="#dk-utility" class="nav-tab">Utility</a>
+        <a href="#dk-rotation" class="nav-tab">Rotation</a>
+        <a href="#dk-gear" class="nav-tab">Équipement</a>
+    </nav>
+
+    <div class="content">
+        <!-- OVERVIEW -->
+        <section id="dk-overview" class="section">
+            <div class="section-header">
+                <span class="section-icon">📋</span>
+                <h2 class="section-title">Vue d'ensemble</h2>
+            </div>
+            
+            <div class="card">
+                <div class="card-title">🎯 Points Clés à Retenir</div>
+                <div class="tips-box" style="margin-top: 0; background: linear-gradient(135deg, rgba(196,30,58,0.12), rgba(196,30,58,0.04)); border-color: rgba(196,30,58,0.3);">
+                    <ul class="tips-list">
+                        <li><strong>NE SPAM JAMAIS Death Strike à pleine vie!</strong> Le heal scale avec les dégâts reçus récemment</li>
+                        <li><strong>Maintiens TOUJOURS 5+ charges de Bone Shield</strong> pour Ossuary (Death Strike coûte moins cher)</li>
+                        <li><strong>Vampiric Blood AVANT les dégâts</strong> — ça boost ton prochain Death Strike</li>
+                        <li><strong>Ta vie monte et descend comme un yoyo</strong> — c'est NORMAL, ne panique pas</li>
+                        <li><strong>Reste dans Death and Decay</strong> pour que Heart Strike cleave + Shattering Bone</li>
+                        <li><strong>Death Grip + Gorefiend's Grasp</strong> = le meilleur contrôle de pack du jeu</li>
+                        <li><strong>Reaper's Mark</strong> = ton nouveau burst damage du Deathbringer</li>
+                    </ul>
                 </div>
+            </div>
+        </section>
+
+        <!-- HERO TREE: DEATHBRINGER -->
+        <section id="dk-hero" class="section">
+            <div class="section-header">
+                <span class="section-icon">💀</span>
+                <h2 class="section-title">Hero Tree: Deathbringer</h2>
+            </div>
+            
+            <div class="card" style="background: linear-gradient(135deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01)); border: 1px solid var(--border);">
+                <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
+                    <div style="width: 48px; height: 48px; border-radius: 12px; overflow: hidden;">
+                        <img src="https://wow.zamimg.com/images/wow/icons/large/ability_deathknight_summongargoyle.jpg" alt="" style="width: 100%; height: 100%;">
+                    </div>
+                    <div>
+                        <div class="card-title" style="margin-bottom: 0;">Deathbringer</div>
+                        <div style="font-size: 0.85rem; color: var(--text-muted);">Maître de la faux et de la mort</div>
+                    </div>
+                </div>
+                <p style="color: var(--text-sec); font-size: 0.9rem; margin-bottom: 16px;">Le Deathbringer te donne accès à <strong style="color: var(--text);">Reaper's Mark</strong> — une marque que tu poses sur un ennemi pour des dégâts massifs et des effets bonus.</p>
+                
+                <div class="grid-2">
+                    <div style="background: rgba(0,0,0,0.3); border-radius: 10px; padding: 14px;">
+                        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                            <div style="width: 36px; height: 36px; border-radius: 8px; overflow: hidden;">
+                                <img src="https://wow.zamimg.com/images/wow/icons/large/ability_deathknight_deathsiphon.jpg" alt="" style="width: 100%; height: 100%;">
+                            </div>
+                            <span class="spell-name">Reaper's Mark</span>
+                            <span style="font-size: 0.7rem; padding: 2px 6px; border-radius: 4px; margin-left: auto; background: rgba(239,68,68,0.15); color: #ef4444;">Offensif</span>
+                        </div>
+                        <p class="spell-desc"><strong>Marque un ennemi</strong> : Tes attaques génèrent des stacks. À 40 stacks, explosion massive de dégâts Shadow.<br><span style="color: var(--text-muted);">→ Réduit aussi le CD de tes abilities</span></p>
+                    </div>
+                    <div style="background: rgba(0,0,0,0.3); border-radius: 10px; padding: 14px;">
+                        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                            <div style="width: 36px; height: 36px; border-radius: 8px; overflow: hidden;">
+                                <img src="https://wow.zamimg.com/images/wow/icons/large/spell_deathknight_bloodpresence.jpg" alt="" style="width: 100%; height: 100%;">
+                            </div>
+                            <span class="spell-name">Exterminate</span>
+                            <span style="font-size: 0.7rem; padding: 2px 6px; border-radius: 4px; margin-left: auto; background: rgba(239,68,68,0.15); color: #ef4444;">Burst</span>
+                        </div>
+                        <p class="spell-desc"><strong>Proc automatique</strong> : Quand Reaper's Mark explose, tu reçois Exterminate.<br><span style="color: var(--text-muted);">→ Boost massif de dégâts sur tes prochaines attaques</span></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">💡 Tips Deathbringer</div>
+                <div class="tips-box" style="margin-top: 0;">
+                    <ul class="tips-list">
+                        <li><strong>Reaper's Mark sur le mob prioritaire</strong> ou le boss</li>
+                        <li><strong>Continue ta rotation normale</strong> — les stacks se génèrent automatiquement</li>
+                        <li><strong>À 40 stacks</strong> = explosion + proc Exterminate</li>
+                        <li><strong>En AoE</strong> → La marque reste utile car elle réduit tes CDs</li>
+                        <li><strong>Wave of Souls</strong> (talent) ajoute un cleave à l'explosion</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- OPENER -->
+        <section id="dk-opener" class="section">
+            <div class="section-header">
+                <span class="section-icon">🚀</span>
+                <h2 class="section-title">Comment Commencer un Pack</h2>
+            </div>
+            
+            <div class="grid-2">
+                <div class="card">
+                    <div class="opener-box" style="margin-bottom: 0;">
+                        <div class="opener-title">⚔️ Opener Mythic+</div>
+                        <div class="opener-steps">
+                            <div class="opener-step">
+                                <div class="spell-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/spell_shadow_deathanddecay.jpg" alt=""></div>
+                                <span class="step-num">1</span>
+                                <span>Death and Decay</span>
+                                <span class="step-note">Pré-cast</span>
+                            </div>
+                            <div class="opener-step">
+                                <div class="spell-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/spell_deathknight_strangulate.jpg" alt=""></div>
+                                <span class="step-num">2</span>
+                                <span>Death's Caress</span>
+                                <span class="step-note">Pull</span>
+                            </div>
+                            <div class="opener-step">
+                                <div class="spell-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/spell_deathknight_bloodboil.jpg" alt=""></div>
+                                <span class="step-num">3</span>
+                                <span>Blood Boil</span>
+                                <span class="step-note">Plague AoE</span>
+                            </div>
+                            <div class="opener-step">
+                                <div class="spell-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/inv_sword_07.jpg" alt=""></div>
+                                <span class="step-num">4</span>
+                                <span>Dancing Rune Weapon</span>
+                                <span class="step-note">+ Raise Dead</span>
+                            </div>
+                            <div class="opener-step">
+                                <div class="spell-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/ability_deathknight_boneshield.jpg" alt=""></div>
+                                <span class="step-num">5</span>
+                                <span>Marrowrend</span>
+                                <span class="step-note">Bone Shield</span>
+                            </div>
+                            <div class="opener-step">
+                                <div class="spell-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/achievement_boss_lordmarrowgar.jpg" alt=""></div>
+                                <span class="step-num">6</span>
+                                <span>Bonestorm</span>
+                                <span class="step-note">Dans DnD!</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="opener-box" style="margin-bottom: 0;">
+                        <div class="opener-title">🏰 Opener Raid (Boss)</div>
+                        <div class="opener-steps">
+                            <div class="opener-step">
+                                <div class="spell-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/spell_shadow_deathanddecay.jpg" alt=""></div>
+                                <span class="step-num">1</span>
+                                <span>Death and Decay</span>
+                                <span class="step-note">Pré-cast</span>
+                            </div>
+                            <div class="opener-step">
+                                <div class="spell-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/spell_deathknight_strangulate.jpg" alt=""></div>
+                                <span class="step-num">2</span>
+                                <span>Death's Caress</span>
+                                <span class="step-note">Pull boss</span>
+                            </div>
+                            <div class="opener-step">
+                                <div class="spell-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/inv_sword_07.jpg" alt=""></div>
+                                <span class="step-num">3</span>
+                                <span>Dancing Rune Weapon</span>
+                                <span class="step-note">+ Raise Dead</span>
+                            </div>
+                            <div class="opener-step">
+                                <div class="spell-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/ability_deathknight_boneshield.jpg" alt=""></div>
+                                <span class="step-num">4</span>
+                                <span>Marrowrend</span>
+                                <span class="step-note">Build BS</span>
+                            </div>
+                            <div class="opener-step">
+                                <div class="spell-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/spell_deathknight_butcher2.jpg" alt=""></div>
+                                <span class="step-num">5</span>
+                                <span>Heart Strike → Death Strike</span>
+                                <span class="step-note">Rotation</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SPELLS -->
+        <section id="dk-spells" class="section">
+            <div class="section-header">
+                <span class="section-icon">⚡</span>
+                <h2 class="section-title">Sorts Principaux</h2>
+            </div>
+            
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-title">💎 Sorts Core</div>
+                    
+                    <div class="spell">
+                        <div class="spell-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/spell_deathknight_butcher2.jpg" alt=""></div>
+                        <div class="spell-content">
+                            <div class="spell-header">
+                                <span class="spell-name">Death Strike</span>
+                                <span class="tag">Core</span>
+                            </div>
+                            <p class="spell-desc"><strong style="color: var(--dk);">TON SORT #1.</strong> Heal basé sur les <span class="hl">dégâts reçus dans les 5 dernières secondes</span>.</p>
+                        </div>
+                    </div>
+
+                    <div class="spell">
+                        <div class="spell-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/inv_weapon_shortblade_40.jpg" alt=""></div>
+                        <div class="spell-content">
+                            <div class="spell-header">
+                                <span class="spell-name">Heart Strike</span>
+                                <span class="tag">Damage</span>
+                            </div>
+                            <p class="spell-desc">Génère du <span class="hl">Runic Power</span>. Cleave dans Death and Decay!</p>
+                        </div>
+                    </div>
+
+                    <div class="spell">
+                        <div class="spell-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/ability_deathknight_boneshield.jpg" alt=""></div>
+                        <div class="spell-content">
+                            <div class="spell-header">
+                                <span class="spell-name">Marrowrend</span>
+                                <span class="tag def">Bone Shield</span>
+                            </div>
+                            <p class="spell-desc">Génère <span class="hl">Bone Shield</span>. Maintiens TOUJOURS 5+ charges!</p>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="card">
                     <div class="card-title">🔥 Sorts AoE</div>
-                    <div class="spell"><div class="spell-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/spell_deathknight_bloodboil.jpg" alt=""></div><div class="spell-content"><div class="spell-header"><span class="spell-name">Blood Boil</span><span class="tag">AoE</span></div><p class="spell-desc">Applique <span class="hl">Blood Plague</span> sur tous. 2 charges!</p></div></div>
-                    <div class="spell"><div class="spell-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/spell_shadow_deathanddecay.jpg" alt=""></div><div class="spell-content"><div class="spell-header"><span class="spell-name">Death and Decay</span><span class="tag">Zone</span></div><p class="spell-desc">Zone maudite. <span class="hl">Heart Strike cleave dedans</span>.</p></div></div>
-                    <div class="spell"><div class="spell-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/achievement_boss_lordmarrowgar.jpg" alt=""></div><div class="spell-content"><div class="spell-header"><span class="spell-name">Bonestorm</span><span class="tag">Burst</span></div><p class="spell-desc">Tempête d'os qui <span class="hl">heal par ennemi touché</span>.</p></div></div>
+                    
+                    <div class="spell">
+                        <div class="spell-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/spell_deathknight_bloodboil.jpg" alt=""></div>
+                        <div class="spell-content">
+                            <div class="spell-header">
+                                <span class="spell-name">Blood Boil</span>
+                                <span class="tag">AoE</span>
+                            </div>
+                            <p class="spell-desc">Applique <span class="hl">Blood Plague</span> sur tous. 2 charges, ne les cap jamais!</p>
+                        </div>
+                    </div>
+
+                    <div class="spell">
+                        <div class="spell-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/spell_shadow_deathanddecay.jpg" alt=""></div>
+                        <div class="spell-content">
+                            <div class="spell-header">
+                                <span class="spell-name">Death and Decay</span>
+                                <span class="tag">Zone</span>
+                            </div>
+                            <p class="spell-desc">Zone maudite. <span class="hl">Heart Strike cleave dedans</span> + Shattering Bone.</p>
+                        </div>
+                    </div>
+
+                    <div class="spell">
+                        <div class="spell-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/achievement_boss_lordmarrowgar.jpg" alt=""></div>
+                        <div class="spell-content">
+                            <div class="spell-header">
+                                <span class="spell-name">Bonestorm</span>
+                                <span class="tag">Burst</span>
+                            </div>
+                            <p class="spell-desc">Tempête d'os qui <span class="hl">heal par ennemi touché</span>. Plus de mobs = plus de heal!</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
         <!-- DEFENSIVES -->
         <section id="dk-def" class="section">
-            <div class="section-header"><span class="section-icon">🛡️</span><h2 class="section-title">Défensifs</h2></div>
+            <div class="section-header">
+                <span class="section-icon">🛡️</span>
+                <h2 class="section-title">Cooldowns Défensifs</h2>
+            </div>
+            
             <div class="grid-2">
                 <div class="card">
                     <div class="card-title">⚡ Cooldowns Majeurs</div>
-                    <div class="spell"><div class="spell-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/spell_shadow_lifedrain.jpg" alt=""></div><div class="spell-content"><div class="spell-header"><span class="spell-name">Vampiric Blood</span><span class="tag def">1.5 min</span></div><p class="spell-desc"><span class="hl">+30% HP max et +30% healing</span>. AVANT les dégâts!</p></div></div>
-                    <div class="spell"><div class="spell-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/spell_deathknight_iceboundfortitude.jpg" alt=""></div><div class="spell-content"><div class="spell-header"><span class="spell-name">Icebound Fortitude</span><span class="tag def">3 min</span></div><p class="spell-desc"><span class="hl">30% réduction + immunité stun</span>.</p></div></div>
-                    <div class="spell"><div class="spell-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/inv_sword_07.jpg" alt=""></div><div class="spell-content"><div class="spell-header"><span class="spell-name">Dancing Rune Weapon</span><span class="tag def">2 min</span></div><p class="spell-desc">Copie tes abilities + <span class="hl">génère Bone Shield</span>.</p></div></div>
+                    
+                    <div class="spell">
+                        <div class="spell-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/spell_shadow_lifedrain.jpg" alt=""></div>
+                        <div class="spell-content">
+                            <div class="spell-header">
+                                <span class="spell-name">Vampiric Blood</span>
+                                <span class="tag def">1.5 min</span>
+                            </div>
+                            <p class="spell-desc"><span class="hl">+30% HP max et +30% healing</span>. AVANT les dégâts pour boost Death Strike!</p>
+                        </div>
+                    </div>
+
+                    <div class="spell">
+                        <div class="spell-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/spell_deathknight_iceboundfortitude.jpg" alt=""></div>
+                        <div class="spell-content">
+                            <div class="spell-header">
+                                <span class="spell-name">Icebound Fortitude</span>
+                                <span class="tag def">3 min</span>
+                            </div>
+                            <p class="spell-desc"><span class="hl">30% réduction + immunité stun</span> pendant 8s.</p>
+                        </div>
+                    </div>
+
+                    <div class="spell">
+                        <div class="spell-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/inv_sword_07.jpg" alt=""></div>
+                        <div class="spell-content">
+                            <div class="spell-header">
+                                <span class="spell-name">Dancing Rune Weapon</span>
+                                <span class="tag def">2 min</span>
+                            </div>
+                            <p class="spell-desc">Copie tes abilities + <span class="hl">génère Bone Shield</span>. Offensif ET défensif!</p>
+                        </div>
+                    </div>
                 </div>
+
                 <div class="card">
-                    <div class="card-title">💚 Anti-Magie</div>
-                    <div class="spell"><div class="spell-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/spell_shadow_antimagicshell.jpg" alt=""></div><div class="spell-content"><div class="spell-header"><span class="spell-name">Anti-Magic Shell</span><span class="tag def">Magic</span></div><p class="spell-desc"><span class="hl">Absorbe les dégâts magiques</span> et génère du RP.</p></div></div>
-                    <div class="spell"><div class="spell-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/spell_deathknight_runetap.jpg" alt=""></div><div class="spell-content"><div class="spell-header"><span class="spell-name">Rune Tap</span><span class="tag def">Short</span></div><p class="spell-desc"><span class="hl">20% réduction</span> pendant 4s. 2 charges.</p></div></div>
+                    <div class="card-title">💚 Anti-Magie & Survie</div>
+                    
+                    <div class="spell">
+                        <div class="spell-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/spell_shadow_antimagicshell.jpg" alt=""></div>
+                        <div class="spell-content">
+                            <div class="spell-header">
+                                <span class="spell-name">Anti-Magic Shell</span>
+                                <span class="tag def">Magic</span>
+                            </div>
+                            <p class="spell-desc"><span class="hl">Absorbe les dégâts magiques</span> et génère du RP. Crucial vs casters!</p>
+                        </div>
+                    </div>
+
+                    <div class="spell">
+                        <div class="spell-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/spell_deathknight_runetap.jpg" alt=""></div>
+                        <div class="spell-content">
+                            <div class="spell-header">
+                                <span class="spell-name">Rune Tap</span>
+                                <span class="tag def">Short</span>
+                            </div>
+                            <p class="spell-desc"><span class="hl">20% réduction</span> pendant 4s. 2 charges pour entre les gros CDs.</p>
+                        </div>
+                    </div>
+
+                    <div class="spell">
+                        <div class="spell-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/inv_misc_bone_skull_01.jpg" alt=""></div>
+                        <div class="spell-content">
+                            <div class="spell-header">
+                                <span class="spell-name">Purgatory</span>
+                                <span class="tag def">Cheat Death</span>
+                            </div>
+                            <p class="spell-desc">À 0 HP = <span class="hl">4 secondes pour te heal</span> au-dessus de 0. Passif!</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
         <!-- UTILITY -->
         <section id="dk-utility" class="section">
-            <div class="section-header"><span class="section-icon">✨</span><h2 class="section-title">Utility Unique</h2></div>
+            <div class="section-header">
+                <span class="section-icon">✨</span>
+                <h2 class="section-title">Utility Unique</h2>
+            </div>
+            
             <div class="card">
                 <div class="grid-2">
                     <div>
-                        <div class="spell"><div class="spell-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/spell_deathknight_strangulate.jpg" alt=""></div><div class="spell-content"><div class="spell-header"><span class="spell-name">Death Grip</span><span class="tag util">Signature</span></div><p class="spell-desc"><span class="hl">Attire un ennemi vers toi</span>.</p></div></div>
-                        <div class="spell"><div class="spell-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/ability_deathknight_aoedeathgrip.jpg" alt=""></div><div class="spell-content"><div class="spell-header"><span class="spell-name">Gorefiend's Grasp</span><span class="tag util">Mass Grip</span></div><p class="spell-desc"><span class="hl">MASS GRIP</span> — Attire TOUS les ennemis.</p></div></div>
+                        <div class="spell">
+                            <div class="spell-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/spell_deathknight_strangulate.jpg" alt=""></div>
+                            <div class="spell-content">
+                                <div class="spell-header">
+                                    <span class="spell-name">Death Grip</span>
+                                    <span class="tag util">Signature</span>
+                                </div>
+                                <p class="spell-desc"><span class="hl">Attire un ennemi vers toi</span>. Parfait pour les casters!</p>
+                            </div>
+                        </div>
+
+                        <div class="spell">
+                            <div class="spell-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/ability_deathknight_aoedeathgrip.jpg" alt=""></div>
+                            <div class="spell-content">
+                                <div class="spell-header">
+                                    <span class="spell-name">Gorefiend's Grasp</span>
+                                    <span class="tag util">Mass Grip</span>
+                                </div>
+                                <p class="spell-desc"><span class="hl">MASS GRIP</span> — Attire TOUS les ennemis vers une cible. Game-changing!</p>
+                            </div>
+                        </div>
                     </div>
                     <div>
-                        <div class="spell"><div class="spell-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/spell_deathknight_antimagiczone.jpg" alt=""></div><div class="spell-content"><div class="spell-header"><span class="spell-name">Anti-Magic Zone</span><span class="tag util">Group CD</span></div><p class="spell-desc">Zone qui <span class="hl">réduit les dégâts magiques de 20%</span> pour le groupe.</p></div></div>
-                        <div class="spell"><div class="spell-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/ability_deathknight_summongargoyle.jpg" alt=""></div><div class="spell-content"><div class="spell-header"><span class="spell-name">Abomination Limb</span><span class="tag util">AoE Grip</span></div><p class="spell-desc">Grip les ennemis proches toutes les secondes.</p></div></div>
+                        <div class="spell">
+                            <div class="spell-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/spell_deathknight_antimagiczone.jpg" alt=""></div>
+                            <div class="spell-content">
+                                <div class="spell-header">
+                                    <span class="spell-name">Anti-Magic Zone</span>
+                                    <span class="tag util">Group CD</span>
+                                </div>
+                                <p class="spell-desc">Zone qui <span class="hl">réduit les dégâts magiques de 20%</span> pour tout le groupe.</p>
+                            </div>
+                        </div>
+
+                        <div class="spell">
+                            <div class="spell-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/ability_deathknight_summongargoyle.jpg" alt=""></div>
+                            <div class="spell-content">
+                                <div class="spell-header">
+                                    <span class="spell-name">Abomination Limb</span>
+                                    <span class="tag util">AoE Grip</span>
+                                </div>
+                                <p class="spell-desc">Grip les ennemis proches toutes les secondes + gros dégâts.</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -511,25 +1534,73 @@ large/ability_deathknight_boneshield.jpg" alt=""></div><div class="spell-content
 
         <!-- ROTATION -->
         <section id="dk-rotation" class="section">
-            <div class="section-header"><span class="section-icon">🔄</span><h2 class="section-title">Rotation</h2></div>
+            <div class="section-header">
+                <span class="section-icon">🔄</span>
+                <h2 class="section-title">Rotation & Priorités</h2>
+            </div>
+            
             <div class="card">
                 <div class="rotation-box">
                     <div class="rotation-label">⚔️ Priorité Single Target</div>
                     <div class="rotation-flow">
-                        <div class="rot-step"><div class="spell-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/spell_deathknight_butcher2.jpg" alt=""></div><span class="rot-num">1</span> Death Strike</div>
+                        <div class="rot-step">
+                            <div class="spell-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/spell_deathknight_butcher2.jpg" alt=""></div>
+                            <span class="rot-num">1</span> Death Strike
+                        </div>
                         <span class="rot-arrow">→</span>
-                        <div class="rot-step"><div class="spell-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/ability_deathknight_boneshield.jpg" alt=""></div><span class="rot-num">2</span> Marrowrend (&lt;5 BS)</div>
+                        <div class="rot-step">
+                            <div class="spell-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/ability_deathknight_boneshield.jpg" alt=""></div>
+                            <span class="rot-num">2</span> Marrowrend (&lt;5 BS)
+                        </div>
                         <span class="rot-arrow">→</span>
-                        <div class="rot-step"><div class="spell-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/spell_deathknight_bloodboil.jpg" alt=""></div><span class="rot-num">3</span> Blood Boil</div>
+                        <div class="rot-step">
+                            <div class="spell-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/spell_deathknight_bloodboil.jpg" alt=""></div>
+                            <span class="rot-num">3</span> Blood Boil
+                        </div>
                         <span class="rot-arrow">→</span>
-                        <div class="rot-step"><div class="spell-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/inv_weapon_shortblade_40.jpg" alt=""></div><span class="rot-num">4</span> Heart Strike</div>
+                        <div class="rot-step">
+                            <div class="spell-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/inv_weapon_shortblade_40.jpg" alt=""></div>
+                            <span class="rot-num">4</span> Heart Strike
+                        </div>
                     </div>
                 </div>
+
+                <div class="rotation-box">
+                    <div class="rotation-label">💥 Priorité AoE (3+ cibles)</div>
+                    <div class="rotation-flow">
+                        <div class="rot-step">
+                            <div class="spell-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/spell_shadow_deathanddecay.jpg" alt=""></div>
+                            <span class="rot-num">1</span> Death and Decay
+                        </div>
+                        <span class="rot-arrow">→</span>
+                        <div class="rot-step">
+                            <div class="spell-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/achievement_boss_lordmarrowgar.jpg" alt=""></div>
+                            <span class="rot-num">2</span> Bonestorm
+                        </div>
+                        <span class="rot-arrow">→</span>
+                        <div class="rot-step">
+                            <div class="spell-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/spell_deathknight_bloodboil.jpg" alt=""></div>
+                            <span class="rot-num">3</span> Blood Boil
+                        </div>
+                        <span class="rot-arrow">→</span>
+                        <div class="rot-step">
+                            <div class="spell-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/inv_weapon_shortblade_40.jpg" alt=""></div>
+                            <span class="rot-num">4</span> Heart Strike
+                        </div>
+                        <span class="rot-arrow">→</span>
+                        <div class="rot-step">
+                            <div class="spell-icon"><img src="https://wow.zamimg.com/images/wow/icons/large/spell_deathknight_butcher2.jpg" alt=""></div>
+                            <span class="rot-num">5</span> Death Strike
+                        </div>
+                    </div>
+                </div>
+
                 <div class="tips-box">
                     <div class="tips-title">⚠️ La Règle d'Or du Blood DK</div>
                     <ul class="tips-list">
                         <li><strong>Death Strike APRÈS avoir pris des dégâts</strong>, pas en préventif!</li>
                         <li><strong>Bonestorm + Tombstone</strong> toujours dans Death and Decay pour max CDR</li>
+                        <li>Ne laisse jamais <strong>Blood Boil</strong> à 2 charges</li>
                     </ul>
                 </div>
             </div>
@@ -537,7 +1608,11 @@ large/ability_deathknight_boneshield.jpg" alt=""></div><div class="spell-content
 
         <!-- GEAR -->
         <section id="dk-gear" class="section">
-            <div class="section-header"><span class="section-icon">📊</span><h2 class="section-title">Équipement</h2></div>
+            <div class="section-header">
+                <span class="section-icon">📊</span>
+                <h2 class="section-title">Stats & Équipement</h2>
+            </div>
+            
             <div class="card">
                 <div class="card-title">📈 Priorité des Stats</div>
                 <div class="stats-row">
@@ -547,10 +1622,37 @@ large/ability_deathknight_boneshield.jpg" alt=""></div><div class="spell-content
                     <div class="stat-card"><div class="stat-rank">#4</div><div class="stat-name">Haste</div></div>
                 </div>
             </div>
+
             <div class="grid-2">
-                <div class="card"><div class="card-title">🎯 Trinkets</div><div class="gear-cards"><div class="gear-card-item"><span class="label">Slot 1</span><span class="name">Astral Antenna</span></div><div class="gear-card-item"><span class="label">Slot 2</span><span class="name">Brand of Ceaseless Ire</span></div></div></div>
-                <div class="card"><div class="card-title">💎 Gemmes</div><div class="gear-cards"><div class="gear-card-item"><span class="label">Primaire</span><span class="name">Culminating Blasphemite</span></div><div class="gear-card-item"><span class="label">Secondaires</span><span class="name">Masterful Sapphire</span></div></div></div>
+                <div class="card">
+                    <div class="card-title">🎯 Trinkets</div>
+                    <div class="gear-cards">
+                        <div class="gear-card-item">
+                            <span class="label">Slot 1</span>
+                            <span class="name">Astral Antenna</span>
+                        </div>
+                        <div class="gear-card-item">
+                            <span class="label">Slot 2</span>
+                            <span class="name">Brand of Ceaseless Ire</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-title">💎 Gemmes</div>
+                    <div class="gear-cards">
+                        <div class="gear-card-item">
+                            <span class="label">Primaire</span>
+                            <span class="name">Culminating Blasphemite</span>
+                        </div>
+                        <div class="gear-card-item">
+                            <span class="label">Secondaires</span>
+                            <span class="name">Masterful Sapphire</span>
+                        </div>
+                    </div>
+                </div>
             </div>
+
             <div class="card">
                 <div class="card-title">✨ Enchantements</div>
                 <table class="gear-table">
@@ -563,28 +1665,29 @@ large/ability_deathknight_boneshield.jpg" alt=""></div><div class="spell-content
                     <tr><td>Anneaux</td><td>Radiant Mastery</td></tr>
                 </table>
             </div>
+
             <div class="card">
-                <div class="card-title">🌳 Talents</div>
+                <div class="card-title">🌳 Builds de Talents</div>
                 <div class="talent-btns">
-                    <a href="https://www.wowhead.com/talent-calc/death-knight/blood" target="_blank" class="talent-btn">⚔️ Build Mythic+</a>
-                    <a href="https://www.wowhead.com/talent-calc/death-knight/blood" target="_blank" class="talent-btn secondary">🏰 Build Raid</a>
+                    <a href="https://www.wowhead.com/talent-calc/blizzard/CoPAAAAAAAAAAAAAAAAAAAAAAwYGzMzYGzMzwwYmpZGzYMzMGAAAAYYmZmZGz2MzMGAAwMzMjBAAAMW2GYALgthJwwCAzgNA" target="_blank" class="talent-btn">⚔️ Build Mythic+</a>
+                    <a href="https://www.wowhead.com/talent-calc/blizzard/CoPAAAAAAAAAAAAAAAAAAAAAAwYGzMzYGzMzwwYmpZGzYMzMGAAAAYYmZmZGz2MzMGAAwMzMjBAAAMW2GYALgthJwwCAzgNA" target="_blank" class="talent-btn secondary">🏰 Build Raid</a>
                 </div>
             </div>
         </section>
     </div>
 </div>
 
-<!-- ROUTES PAGE -->
-<div id="routes" class="tank-page routes-page">
+<!-- ===== ROUTES PAGE ===== -->
+<div id="routes" class="tank-page routes-page" style="--page-color: #8B5CF6;">
     <button class="back-btn" onclick="showPage('landing')">← Retour</button>
-    <header class="page-header">
-        <div class="page-icon dungeon">🗺️</div>
-        <h1 class="page-title">Routes <span>Mythic+</span></h1>
-        <div class="page-hero">🏰 SEASON 3 — 8 DUNGEONS</div>
+    <header class="page-header" style="background: linear-gradient(180deg, rgba(139,92,246,0.12) 0%, transparent 100%);">
+        <div class="page-icon" style="background: linear-gradient(135deg, #8B5CF6, #6d28d9); display: flex; align-items: center; justify-content: center; font-size: 2.5rem;">🗺️</div>
+        <h1 class="page-title">Routes <span style="color: #8B5CF6;">Mythic+</span></h1>
+        <div class="page-hero" style="background: rgba(139,92,246,0.15); border: 1px solid rgba(139,92,246,0.25); color: #8B5CF6;">🏰 SEASON 3 — 8 DUNGEONS</div>
         <p class="page-subtitle">Toutes les routes et infos pour les dungeons M+ de la Season 3.</p>
     </header>
     <nav class="nav-tabs">
-        <a href="#routes-dungeons" class="nav-tab active">Dungeons</a>
+        <a href="#routes-dungeons" class="nav-tab active" style="--active-color: #8B5CF6;">Dungeons</a>
         <a href="#routes-affixes" class="nav-tab">Affixes</a>
         <a href="#routes-rewards" class="nav-tab">Récompenses</a>
         <a href="#routes-tools" class="nav-tab">Outils</a>
@@ -593,128 +1696,46 @@ large/ability_deathknight_boneshield.jpg" alt=""></div><div class="spell-content
         <section id="routes-dungeons" class="section">
             <div class="section-header"><span class="section-icon">📋</span><h2 class="section-title">Dungeons Season 3</h2></div>
             <div class="card" style="margin-bottom: 20px;">
-                <div class="card-title">🎯 Infos Importantes</div>
-                <div class="tips-box" style="margin-top: 0;">
-                    <ul class="tips-list">
-                        <li><strong>8 dungeons</strong> dans la rotation : 4 TWW + 3 Shadowlands + 1 nouveau</li>
-                        <li><strong>Keystone.guru</strong> = meilleur site pour créer/trouver des routes MDT</li>
-                        <li><strong>Umbral Essentia</strong> = potion qui donne Shadowmeld à tout le monde (skips!)</li>
-                        <li><strong>ilvl recommandé</strong> : 680+ pour commencer les +2</li>
+                <div class="card-title" style="color: #8B5CF6;">🎯 Infos Importantes</div>
+                <div class="tips-box" style="margin-top: 0; background: linear-gradient(135deg, rgba(139,92,246,0.08), rgba(139,92,246,0.02)); border: 1px solid rgba(139,92,246,0.2);">
+                    <ul class="tips-list" style="--bullet-color: #8B5CF6;">
+                        <li style="--before-bg: #8B5CF6;"><strong>8 dungeons</strong> dans la rotation : 4 TWW + 3 Shadowlands + 1 nouveau</li>
+                        <li style="--before-bg: #8B5CF6;"><strong>Keystone.guru</strong> = meilleur site pour créer/trouver des routes MDT</li>
+                        <li style="--before-bg: #8B5CF6;"><strong>Umbral Essentia</strong> = potion qui donne Shadowmeld à tout le monde (skips!)</li>
+                        <li style="--before-bg: #8B5CF6;"><strong>ilvl recommandé</strong> : 680+ pour commencer les +2</li>
                     </ul>
                 </div>
             </div>
-            <div class="dungeon-grid">
-                <div class="dungeon-card">
-                    <div class="dungeon-header"><div class="dungeon-badge">🌿</div><div><div class="dungeon-name">Eco-Dome Al'dani</div><div class="dungeon-meta">NOUVEAU • The War Within</div></div></div>
-                    <div class="dungeon-info"><div class="dungeon-stat"><span class="label">Timer</span><span class="value">~32 min</span></div><div class="dungeon-stat"><span class="label">Bosses</span><span class="value">3</span></div></div>
-                    <span class="dungeon-tier a">A-TIER</span>
-                    <a href="https://keystone.guru/routes/tww/season/3/eco-dome-aldani" target="_blank" class="route-link">🗺️ Routes Keystone.guru</a>
-                </div>
-                <div class="dungeon-card">
-                    <div class="dungeon-header"><div class="dungeon-badge">🕷️</div><div><div class="dungeon-name">Ara-Kara, City of Echoes</div><div class="dungeon-meta">The War Within</div></div></div>
-                    <div class="dungeon-info"><div class="dungeon-stat"><span class="label">Timer</span><span class="value">~30 min</span></div><div class="dungeon-stat"><span class="label">Bosses</span><span class="value">3</span></div></div>
-                    <span class="dungeon-tier c">C-TIER</span>
-                    <a href="https://keystone.guru/routes/tww/season/3/ara-kara" target="_blank" class="route-link">🗺️ Routes Keystone.guru</a>
-                </div>
-                <div class="dungeon-card">
-                    <div class="dungeon-header"><div class="dungeon-badge">🌅</div><div><div class="dungeon-name">The Dawnbreaker</div><div class="dungeon-meta">The War Within</div></div></div>
-                    <div class="dungeon-info"><div class="dungeon-stat"><span class="label">Timer</span><span class="value">~30 min</span></div><div class="dungeon-stat"><span class="label">Bosses</span><span class="value">4</span></div></div>
-                    <span class="dungeon-tier a">A-TIER</span>
-                    <a href="https://keystone.guru/routes/tww/season/3/the-dawnbreaker" target="_blank" class="route-link">🗺️ Routes Keystone.guru</a>
-                </div>
-                <div class="dungeon-card">
-                    <div class="dungeon-header"><div class="dungeon-badge">💧</div><div><div class="dungeon-name">Operation: Floodgate</div><div class="dungeon-meta">The War Within</div></div></div>
-                    <div class="dungeon-info"><div class="dungeon-stat"><span class="label">Timer</span><span class="value">~30 min</span></div><div class="dungeon-stat"><span class="label">Bosses</span><span class="value">4</span></div></div>
-                    <span class="dungeon-tier s">S-TIER</span>
-                    <a href="https://keystone.guru/routes/tww/season/3/operation-floodgate" target="_blank" class="route-link">🗺️ Routes Keystone.guru</a>
-                </div>
-                <div class="dungeon-card">
-                    <div class="dungeon-header"><div class="dungeon-badge">🔥</div><div><div class="dungeon-name">Priory of the Sacred Flame</div><div class="dungeon-meta">The War Within</div></div></div>
-                    <div class="dungeon-info"><div class="dungeon-stat"><span class="label">Timer</span><span class="value">~30 min</span></div><div class="dungeon-stat"><span class="label">Bosses</span><span class="value">3</span></div></div>
-                    <span class="dungeon-tier b">B-TIER</span>
-                    <a href="https://keystone.guru/routes/tww/season/3/priory-of-the-sacred-flame" target="_blank" class="route-link">🗺️ Routes Keystone.guru</a>
-                </div>
-                <div class="dungeon-card">
-                    <div class="dungeon-header"><div class="dungeon-badge">⛪</div><div><div class="dungeon-name">Halls of Atonement</div><div class="dungeon-meta">Shadowlands (Retour)</div></div></div>
-                    <div class="dungeon-info"><div class="dungeon-stat"><span class="label">Timer</span><span class="value">~32 min</span></div><div class="dungeon-stat"><span class="label">Bosses</span><span class="value">4</span></div></div>
-                    <span class="dungeon-tier s">S-TIER</span>
-                    <a href="https://keystone.guru/routes/tww/season/3/halls-of-atonement" target="_blank" class="route-link">🗺️ Routes Keystone.guru</a>
-                </div>
-                <div class="dungeon-card">
-                    <div class="dungeon-header"><div class="dungeon-badge">🏪</div><div><div class="dungeon-name">Tazavesh: Streets of Wonder</div><div class="dungeon-meta">Shadowlands (Retour)</div></div></div>
-                    <div class="dungeon-info"><div class="dungeon-stat"><span class="label">Timer</span><span class="value">~39 min</span></div><div class="dungeon-stat"><span class="label">Bosses</span><span class="value">5</span></div></div>
-                    <span class="dungeon-tier a">A-TIER</span>
-                    <a href="https://keystone.guru/routes/tww/season/3/tazavesh-streets-of-wonder" target="_blank" class="route-link">🗺️ Routes Keystone.guru</a>
-                </div>
-                <div class="dungeon-card">
-                    <div class="dungeon-header"><div class="dungeon-badge">🎰</div><div><div class="dungeon-name">Tazavesh: So'leah's Gambit</div><div class="dungeon-meta">Shadowlands (Retour)</div></div></div>
-                    <div class="dungeon-info"><div class="dungeon-stat"><span class="label">Timer</span><span class="value">~30 min</span></div><div class="dungeon-stat"><span class="label">Bosses</span><span class="value">3</span></div></div>
-                    <span class="dungeon-tier b">B-TIER</span>
-                    <a href="https://keystone.guru/routes/tww/season/3/tazavesh-soleahs-gambit" target="_blank" class="route-link">🗺️ Routes Keystone.guru</a>
-                </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px;">
+                <div class="card" style="transition: all 0.3s;"><div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;"><div style="width: 48px; height: 48px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; background: linear-gradient(135deg, rgba(139,92,246,0.2), rgba(139,92,246,0.05));">🌿</div><div><div style="font-family: 'Outfit', sans-serif; font-size: 1.1rem; font-weight: 700; color: #8B5CF6;">Eco-Dome Al'dani</div><div style="font-size: 0.8rem; color: var(--text-muted);">NOUVEAU • TWW</div></div></div><div style="display: flex; flex-direction: column; gap: 8px;"><div style="display: flex; justify-content: space-between; font-size: 0.85rem; padding: 6px 0; border-bottom: 1px solid var(--border);"><span style="color: var(--text-muted);">Timer</span><span style="font-weight: 600;">~32 min</span></div><div style="display: flex; justify-content: space-between; font-size: 0.85rem; padding: 6px 0;"><span style="color: var(--text-muted);">Bosses</span><span style="font-weight: 600;">3</span></div></div><span style="display: inline-block; padding: 4px 10px; border-radius: 6px; font-size: 0.75rem; font-weight: 700; margin-top: 8px; background: rgba(59,130,246,0.15); color: #3b82f6;">A-TIER</span><a href="https://keystone.guru/routes/tww/season/3/eco-dome-aldani" target="_blank" style="display: inline-flex; align-items: center; gap: 6px; margin-top: 12px; padding: 8px 14px; background: rgba(139,92,246,0.15); border: 1px solid rgba(139,92,246,0.3); border-radius: 8px; color: #8B5CF6; font-size: 0.85rem; font-weight: 600; text-decoration: none;">🗺️ Routes</a></div>
+                <div class="card"><div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;"><div style="width: 48px; height: 48px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; background: linear-gradient(135deg, rgba(139,92,246,0.2), rgba(139,92,246,0.05));">🕷️</div><div><div style="font-family: 'Outfit', sans-serif; font-size: 1.1rem; font-weight: 700; color: #8B5CF6;">Ara-Kara</div><div style="font-size: 0.8rem; color: var(--text-muted);">TWW</div></div></div><div style="display: flex; flex-direction: column; gap: 8px;"><div style="display: flex; justify-content: space-between; font-size: 0.85rem; padding: 6px 0; border-bottom: 1px solid var(--border);"><span style="color: var(--text-muted);">Timer</span><span style="font-weight: 600;">~30 min</span></div><div style="display: flex; justify-content: space-between; font-size: 0.85rem; padding: 6px 0;"><span style="color: var(--text-muted);">Bosses</span><span style="font-weight: 600;">3</span></div></div><span style="display: inline-block; padding: 4px 10px; border-radius: 6px; font-size: 0.75rem; font-weight: 700; margin-top: 8px; background: rgba(239,68,68,0.15); color: #ef4444;">C-TIER</span><a href="https://keystone.guru/routes/tww/season/3/ara-kara" target="_blank" style="display: inline-flex; align-items: center; gap: 6px; margin-top: 12px; padding: 8px 14px; background: rgba(139,92,246,0.15); border: 1px solid rgba(139,92,246,0.3); border-radius: 8px; color: #8B5CF6; font-size: 0.85rem; font-weight: 600; text-decoration: none;">🗺️ Routes</a></div>
+                <div class="card"><div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;"><div style="width: 48px; height: 48px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; background: linear-gradient(135deg, rgba(139,92,246,0.2), rgba(139,92,246,0.05));">🌅</div><div><div style="font-family: 'Outfit', sans-serif; font-size: 1.1rem; font-weight: 700; color: #8B5CF6;">The Dawnbreaker</div><div style="font-size: 0.8rem; color: var(--text-muted);">TWW</div></div></div><div style="display: flex; flex-direction: column; gap: 8px;"><div style="display: flex; justify-content: space-between; font-size: 0.85rem; padding: 6px 0; border-bottom: 1px solid var(--border);"><span style="color: var(--text-muted);">Timer</span><span style="font-weight: 600;">~30 min</span></div><div style="display: flex; justify-content: space-between; font-size: 0.85rem; padding: 6px 0;"><span style="color: var(--text-muted);">Bosses</span><span style="font-weight: 600;">4</span></div></div><span style="display: inline-block; padding: 4px 10px; border-radius: 6px; font-size: 0.75rem; font-weight: 700; margin-top: 8px; background: rgba(59,130,246,0.15); color: #3b82f6;">A-TIER</span><a href="https://keystone.guru/routes/tww/season/3/the-dawnbreaker" target="_blank" style="display: inline-flex; align-items: center; gap: 6px; margin-top: 12px; padding: 8px 14px; background: rgba(139,92,246,0.15); border: 1px solid rgba(139,92,246,0.3); border-radius: 8px; color: #8B5CF6; font-size: 0.85rem; font-weight: 600; text-decoration: none;">🗺️ Routes</a></div>
+                <div class="card"><div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;"><div style="width: 48px; height: 48px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; background: linear-gradient(135deg, rgba(139,92,246,0.2), rgba(139,92,246,0.05));">💧</div><div><div style="font-family: 'Outfit', sans-serif; font-size: 1.1rem; font-weight: 700; color: #8B5CF6;">Operation: Floodgate</div><div style="font-size: 0.8rem; color: var(--text-muted);">TWW</div></div></div><div style="display: flex; flex-direction: column; gap: 8px;"><div style="display: flex; justify-content: space-between; font-size: 0.85rem; padding: 6px 0; border-bottom: 1px solid var(--border);"><span style="color: var(--text-muted);">Timer</span><span style="font-weight: 600;">~30 min</span></div><div style="display: flex; justify-content: space-between; font-size: 0.85rem; padding: 6px 0;"><span style="color: var(--text-muted);">Bosses</span><span style="font-weight: 600;">4</span></div></div><span style="display: inline-block; padding: 4px 10px; border-radius: 6px; font-size: 0.75rem; font-weight: 700; margin-top: 8px; background: rgba(34,197,94,0.15); color: #22c55e;">S-TIER</span><a href="https://keystone.guru/routes/tww/season/3/operation-floodgate" target="_blank" style="display: inline-flex; align-items: center; gap: 6px; margin-top: 12px; padding: 8px 14px; background: rgba(139,92,246,0.15); border: 1px solid rgba(139,92,246,0.3); border-radius: 8px; color: #8B5CF6; font-size: 0.85rem; font-weight: 600; text-decoration: none;">🗺️ Routes</a></div>
+                <div class="card"><div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;"><div style="width: 48px; height: 48px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; background: linear-gradient(135deg, rgba(139,92,246,0.2), rgba(139,92,246,0.05));">🔥</div><div><div style="font-family: 'Outfit', sans-serif; font-size: 1.1rem; font-weight: 700; color: #8B5CF6;">Priory of the Sacred Flame</div><div style="font-size: 0.8rem; color: var(--text-muted);">TWW</div></div></div><div style="display: flex; flex-direction: column; gap: 8px;"><div style="display: flex; justify-content: space-between; font-size: 0.85rem; padding: 6px 0; border-bottom: 1px solid var(--border);"><span style="color: var(--text-muted);">Timer</span><span style="font-weight: 600;">~30 min</span></div><div style="display: flex; justify-content: space-between; font-size: 0.85rem; padding: 6px 0;"><span style="color: var(--text-muted);">Bosses</span><span style="font-weight: 600;">3</span></div></div><span style="display: inline-block; padding: 4px 10px; border-radius: 6px; font-size: 0.75rem; font-weight: 700; margin-top: 8px; background: rgba(234,179,8,0.15); color: #eab308;">B-TIER</span><a href="https://keystone.guru/routes/tww/season/3/priory-of-the-sacred-flame" target="_blank" style="display: inline-flex; align-items: center; gap: 6px; margin-top: 12px; padding: 8px 14px; background: rgba(139,92,246,0.15); border: 1px solid rgba(139,92,246,0.3); border-radius: 8px; color: #8B5CF6; font-size: 0.85rem; font-weight: 600; text-decoration: none;">🗺️ Routes</a></div>
+                <div class="card"><div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;"><div style="width: 48px; height: 48px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; background: linear-gradient(135deg, rgba(139,92,246,0.2), rgba(139,92,246,0.05));">⛪</div><div><div style="font-family: 'Outfit', sans-serif; font-size: 1.1rem; font-weight: 700; color: #8B5CF6;">Halls of Atonement</div><div style="font-size: 0.8rem; color: var(--text-muted);">Shadowlands</div></div></div><div style="display: flex; flex-direction: column; gap: 8px;"><div style="display: flex; justify-content: space-between; font-size: 0.85rem; padding: 6px 0; border-bottom: 1px solid var(--border);"><span style="color: var(--text-muted);">Timer</span><span style="font-weight: 600;">~32 min</span></div><div style="display: flex; justify-content: space-between; font-size: 0.85rem; padding: 6px 0;"><span style="color: var(--text-muted);">Bosses</span><span style="font-weight: 600;">4</span></div></div><span style="display: inline-block; padding: 4px 10px; border-radius: 6px; font-size: 0.75rem; font-weight: 700; margin-top: 8px; background: rgba(34,197,94,0.15); color: #22c55e;">S-TIER</span><a href="https://keystone.guru/routes/tww/season/3/halls-of-atonement" target="_blank" style="display: inline-flex; align-items: center; gap: 6px; margin-top: 12px; padding: 8px 14px; background: rgba(139,92,246,0.15); border: 1px solid rgba(139,92,246,0.3); border-radius: 8px; color: #8B5CF6; font-size: 0.85rem; font-weight: 600; text-decoration: none;">🗺️ Routes</a></div>
+                <div class="card"><div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;"><div style="width: 48px; height: 48px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; background: linear-gradient(135deg, rgba(139,92,246,0.2), rgba(139,92,246,0.05));">🏪</div><div><div style="font-family: 'Outfit', sans-serif; font-size: 1.1rem; font-weight: 700; color: #8B5CF6;">Tazavesh: Streets of Wonder</div><div style="font-size: 0.8rem; color: var(--text-muted);">Shadowlands</div></div></div><div style="display: flex; flex-direction: column; gap: 8px;"><div style="display: flex; justify-content: space-between; font-size: 0.85rem; padding: 6px 0; border-bottom: 1px solid var(--border);"><span style="color: var(--text-muted);">Timer</span><span style="font-weight: 600;">~39 min</span></div><div style="display: flex; justify-content: space-between; font-size: 0.85rem; padding: 6px 0;"><span style="color: var(--text-muted);">Bosses</span><span style="font-weight: 600;">5</span></div></div><span style="display: inline-block; padding: 4px 10px; border-radius: 6px; font-size: 0.75rem; font-weight: 700; margin-top: 8px; background: rgba(59,130,246,0.15); color: #3b82f6;">A-TIER</span><a href="https://keystone.guru/routes/tww/season/3/tazavesh-streets-of-wonder" target="_blank" style="display: inline-flex; align-items: center; gap: 6px; margin-top: 12px; padding: 8px 14px; background: rgba(139,92,246,0.15); border: 1px solid rgba(139,92,246,0.3); border-radius: 8px; color: #8B5CF6; font-size: 0.85rem; font-weight: 600; text-decoration: none;">🗺️ Routes</a></div>
+                <div class="card"><div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;"><div style="width: 48px; height: 48px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; background: linear-gradient(135deg, rgba(139,92,246,0.2), rgba(139,92,246,0.05));">🎰</div><div><div style="font-family: 'Outfit', sans-serif; font-size: 1.1rem; font-weight: 700; color: #8B5CF6;">Tazavesh: So'leah's Gambit</div><div style="font-size: 0.8rem; color: var(--text-muted);">Shadowlands</div></div></div><div style="display: flex; flex-direction: column; gap: 8px;"><div style="display: flex; justify-content: space-between; font-size: 0.85rem; padding: 6px 0; border-bottom: 1px solid var(--border);"><span style="color: var(--text-muted);">Timer</span><span style="font-weight: 600;">~30 min</span></div><div style="display: flex; justify-content: space-between; font-size: 0.85rem; padding: 6px 0;"><span style="color: var(--text-muted);">Bosses</span><span style="font-weight: 600;">3</span></div></div><span style="display: inline-block; padding: 4px 10px; border-radius: 6px; font-size: 0.75rem; font-weight: 700; margin-top: 8px; background: rgba(234,179,8,0.15); color: #eab308;">B-TIER</span><a href="https://keystone.guru/routes/tww/season/3/tazavesh-soleahs-gambit" target="_blank" style="display: inline-flex; align-items: center; gap: 6px; margin-top: 12px; padding: 8px 14px; background: rgba(139,92,246,0.15); border: 1px solid rgba(139,92,246,0.3); border-radius: 8px; color: #8B5CF6; font-size: 0.85rem; font-weight: 600; text-decoration: none;">🗺️ Routes</a></div>
             </div>
         </section>
-
         <section id="routes-affixes" class="section">
             <div class="section-header"><span class="section-icon">⚡</span><h2 class="section-title">Affixes Season 3</h2></div>
             <div class="grid-2">
-                <div class="card">
-                    <div class="card-title" style="color: var(--dungeon);">🔄 Xal'atath's Bargain</div>
-                    <div class="spell" style="background: rgba(139,92,246,0.1);"><div class="spell-content"><div class="spell-header"><span class="spell-name" style="color: var(--dungeon);">Pulsar</span></div><p class="spell-desc">Orbes qui apparaissent périodiquement. Les toucher donne un buff de dégâts.</p></div></div>
-                    <div class="spell" style="background: rgba(139,92,246,0.1);"><div class="spell-content"><div class="spell-header"><span class="spell-name" style="color: var(--dungeon);">Ascendant</span></div><p class="spell-desc">Certains mobs deviennent Ascended et plus dangereux.</p></div></div>
-                </div>
-                <div class="card">
-                    <div class="card-title" style="color: var(--dungeon);">📈 Par Niveau de Clé</div>
-                    <table class="gear-table">
-                        <tr><td>+2 à +3</td><td style="color: #22c55e;">Aucun affix</td></tr>
-                        <tr><td>+4 à +6</td><td style="color: var(--dungeon);">Xal'atath's Bargain</td></tr>
-                        <tr><td>+7 à +9</td><td style="color: #eab308;">+ Fortified / Tyrannical</td></tr>
-                        <tr><td>+10+</td><td style="color: #f97316;">+ Tyrannical (toujours)</td></tr>
-                        <tr><td>+12+</td><td style="color: #ef4444;">Xal'atath's Guile</td></tr>
-                    </table>
-                </div>
+                <div class="card"><div class="card-title" style="color: #8B5CF6;">🔄 Xal'atath's Bargain</div><div class="spell" style="background: rgba(139,92,246,0.1);"><div class="spell-content"><div class="spell-header"><span class="spell-name" style="color: #8B5CF6;">Pulsar</span></div><p class="spell-desc">Orbes qui apparaissent périodiquement. Les toucher donne un buff de dégâts.</p></div></div><div class="spell" style="background: rgba(139,92,246,0.1);"><div class="spell-content"><div class="spell-header"><span class="spell-name" style="color: #8B5CF6;">Ascendant</span></div><p class="spell-desc">Certains mobs deviennent Ascended et plus dangereux.</p></div></div></div>
+                <div class="card"><div class="card-title" style="color: #8B5CF6;">📈 Par Niveau de Clé</div><table class="gear-table"><tr><td>+2 à +3</td><td style="color: #22c55e;">Aucun affix</td></tr><tr><td>+4 à +6</td><td style="color: #8B5CF6;">Xal'atath's Bargain</td></tr><tr><td>+7 à +9</td><td style="color: #eab308;">+ Fortified / Tyrannical</td></tr><tr><td>+10+</td><td style="color: #f97316;">+ Tyrannical</td></tr><tr><td>+12+</td><td style="color: #ef4444;">Xal'atath's Guile</td></tr></table></div>
             </div>
         </section>
-
         <section id="routes-rewards" class="section">
             <div class="section-header"><span class="section-icon">🏆</span><h2 class="section-title">Récompenses</h2></div>
             <div class="grid-2">
-                <div class="card">
-                    <div class="card-title" style="color: var(--dungeon);">🎯 Rating Milestones</div>
-                    <table class="gear-table">
-                        <tr><td>1,500</td><td style="color: #3b82f6;">Titre "Unbound"</td></tr>
-                        <tr><td>2,000</td><td style="color: #8b5cf6;">Azure Void Flyer</td></tr>
-                        <tr><td>2,500</td><td style="color: #f97316;">Keystone Hero</td></tr>
-                        <tr><td>3,000</td><td style="color: #ef4444;">Scarlet Void Flyer</td></tr>
-                    </table>
-                </div>
-                <div class="card">
-                    <div class="card-title" style="color: var(--dungeon);">📦 Item Level</div>
-                    <table class="gear-table">
-                        <tr><td>+2</td><td>619 / 626 vault</td></tr>
-                        <tr><td>+5</td><td>626 / 639 vault</td></tr>
-                        <tr><td>+7</td><td>632 / 652 vault</td></tr>
-                        <tr><td>+10</td><td>639 / 665 vault</td></tr>
-                        <tr><td>+12+</td><td>645+ / 678+ vault</td></tr>
-                    </table>
-                </div>
+                <div class="card"><div class="card-title" style="color: #8B5CF6;">🎯 Rating Milestones</div><table class="gear-table"><tr><td>1,500</td><td style="color: #3b82f6;">Titre "Unbound"</td></tr><tr><td>2,000</td><td style="color: #8b5cf6;">Azure Void Flyer</td></tr><tr><td>2,500</td><td style="color: #f97316;">Keystone Hero</td></tr><tr><td>3,000</td><td style="color: #ef4444;">Scarlet Void Flyer</td></tr></table></div>
+                <div class="card"><div class="card-title" style="color: #8B5CF6;">📦 Item Level</div><table class="gear-table"><tr><td>+2</td><td>619 / 626 vault</td></tr><tr><td>+5</td><td>626 / 639 vault</td></tr><tr><td>+7</td><td>632 / 652 vault</td></tr><tr><td>+10</td><td>639 / 665 vault</td></tr><tr><td>+12+</td><td>645+ / 678+ vault</td></tr></table></div>
             </div>
         </section>
-
         <section id="routes-tools" class="section">
             <div class="section-header"><span class="section-icon">🛠️</span><h2 class="section-title">Outils</h2></div>
             <div class="grid-2">
-                <div class="card">
-                    <div class="card-title" style="color: var(--dungeon);">🗺️ Routes & Planning</div>
-                    <div class="spell"><div class="spell-content"><div class="spell-header"><span class="spell-name" style="color: var(--dungeon);">Keystone.guru</span></div><p class="spell-desc"><strong>Le meilleur outil</strong> pour créer et trouver des routes MDT.</p><a href="https://keystone.guru" target="_blank" class="route-link" style="margin-top: 8px;">Visiter →</a></div></div>
-                    <div class="spell"><div class="spell-content"><div class="spell-header"><span class="spell-name" style="color: var(--dungeon);">Raider.io Weekly Routes</span></div><p class="spell-desc">Routes recommandées chaque semaine.</p><a href="https://raider.io/news" target="_blank" class="route-link" style="margin-top: 8px;">Visiter →</a></div></div>
-                </div>
-                <div class="card">
-                    <div class="card-title" style="color: var(--dungeon);">📊 Addons</div>
-                    <div class="spell"><div class="spell-content"><div class="spell-header"><span class="spell-name" style="color: var(--dungeon);">Mythic Dungeon Tools (MDT)</span></div><p class="spell-desc">Importer et afficher les routes en jeu. <strong>Obligatoire!</strong></p></div></div>
-                    <div class="spell"><div class="spell-content"><div class="spell-header"><span class="spell-name" style="color: var(--dungeon);">WeakAuras</span></div><p class="spell-desc">Alertes pour les mécaniques de boss.</p></div></div>
-                    <div class="spell"><div class="spell-content"><div class="spell-header"><span class="spell-name" style="color: var(--dungeon);">OmniCD</span></div><p class="spell-desc">Tracker les cooldowns de ton groupe.</p></div></div>
-                </div>
+                <div class="card"><div class="card-title" style="color: #8B5CF6;">🗺️ Routes & Planning</div><div class="spell"><div class="spell-content"><div class="spell-header"><span class="spell-name" style="color: #8B5CF6;">Keystone.guru</span></div><p class="spell-desc"><strong>Le meilleur outil</strong> pour créer et trouver des routes MDT.</p><a href="https://keystone.guru" target="_blank" style="display: inline-flex; align-items: center; gap: 6px; margin-top: 8px; padding: 8px 14px; background: rgba(139,92,246,0.15); border: 1px solid rgba(139,92,246,0.3); border-radius: 8px; color: #8B5CF6; font-size: 0.85rem; font-weight: 600; text-decoration: none;">Visiter →</a></div></div><div class="spell"><div class="spell-content"><div class="spell-header"><span class="spell-name" style="color: #8B5CF6;">Raider.io Weekly Routes</span></div><p class="spell-desc">Routes recommandées chaque semaine.</p><a href="https://raider.io/news" target="_blank" style="display: inline-flex; align-items: center; gap: 6px; margin-top: 8px; padding: 8px 14px; background: rgba(139,92,246,0.15); border: 1px solid rgba(139,92,246,0.3); border-radius: 8px; color: #8B5CF6; font-size: 0.85rem; font-weight: 600; text-decoration: none;">Visiter →</a></div></div></div>
+                <div class="card"><div class="card-title" style="color: #8B5CF6;">📊 Addons</div><div class="spell"><div class="spell-content"><div class="spell-header"><span class="spell-name" style="color: #8B5CF6;">Mythic Dungeon Tools (MDT)</span></div><p class="spell-desc">Importer et afficher les routes en jeu. <strong>Obligatoire!</strong></p></div></div><div class="spell"><div class="spell-content"><div class="spell-header"><span class="spell-name" style="color: #8B5CF6;">WeakAuras</span></div><p class="spell-desc">Alertes pour les mécaniques de boss.</p></div></div><div class="spell"><div class="spell-content"><div class="spell-header"><span class="spell-name" style="color: #8B5CF6;">OmniCD</span></div><p class="spell-desc">Tracker les cooldowns de ton groupe.</p></div></div></div>
             </div>
         </section>
     </div>
@@ -722,26 +1743,47 @@ large/ability_deathknight_boneshield.jpg" alt=""></div><div class="spell-content
 
 <script>
 function showPage(id) {
-    document.querySelectorAll('.landing, .tank-page').forEach(p => { p.style.display = 'none'; p.classList.remove('active'); });
-    const target = document.getElementById(id);
-    if (target) { target.style.display = 'block'; target.classList.add('active'); window.scrollTo(0, 0); }
+    document.querySelectorAll('.landing, .tank-page').forEach(p => {
+        p.style.display = 'none';
+        p.classList.remove('active');
+    });
+    const page = document.getElementById(id);
+    page.style.display = id === 'landing' ? 'flex' : 'block';
+    if (id !== 'landing') page.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
 }
+
+// Nav tabs
 document.querySelectorAll('.nav-tab').forEach(tab => {
     tab.addEventListener('click', function(e) {
         e.preventDefault();
+        const parent = this.closest('.tank-page');
+        parent.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+        this.classList.add('active');
         const target = document.querySelector(this.getAttribute('href'));
         if (target) target.scrollIntoView({ behavior: 'smooth' });
     });
 });
+
+// Update active tab on scroll
 window.addEventListener('scroll', () => {
-    document.querySelectorAll('.tank-page.active').forEach(page => {
-        const sections = page.querySelectorAll('.section[id]');
-        const tabs = page.querySelectorAll('.nav-tab');
-        let current = '';
-        sections.forEach(section => { const rect = section.getBoundingClientRect(); if (rect.top <= 150) current = section.getAttribute('id'); });
-        tabs.forEach(tab => { tab.classList.remove('active'); if (tab.getAttribute('href') === '#' + current) tab.classList.add('active'); });
+    const page = document.querySelector('.tank-page.active');
+    if (!page) return;
+    const sections = page.querySelectorAll('.section[id]');
+    const tabs = page.querySelectorAll('.nav-tab');
+    let current = '';
+    sections.forEach(section => {
+        const top = section.offsetTop - 100;
+        if (window.scrollY >= top) current = section.getAttribute('id');
+    });
+    tabs.forEach(tab => {
+        tab.classList.remove('active');
+        if (tab.getAttribute('href') === '#' + current) tab.classList.add('active');
     });
 });
+
+document.addEventListener('DOMContentLoaded', () => showPage('landing'));
 </script>
+
 </body>
 </html>
