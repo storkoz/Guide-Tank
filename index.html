@@ -400,19 +400,60 @@
         .stat-name { font-size: 0.8rem; color: var(--text-muted); }
 
         /* Gear */
-        .gear-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 8px; }
-        .gear-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 12px;
-            background: rgba(255,255,255,0.02);
-            border-radius: 8px;
+        .gear-table {
+            width: 100%;
+            border-collapse: collapse;
         }
-        .gear-item .slot { color: var(--text-muted); font-size: 0.85rem; }
-        .gear-item .value { font-weight: 600; font-size: 0.85rem; }
-        .paladin-page .gear-item .value { color: var(--paladin); }
-        .dk-page .gear-item .value { color: var(--dk); }
+        .gear-table tr {
+            border-bottom: 1px solid var(--border);
+        }
+        .gear-table tr:last-child {
+            border-bottom: none;
+        }
+        .gear-table td {
+            padding: 12px 8px;
+            font-size: 0.9rem;
+        }
+        .gear-table td:first-child {
+            color: var(--text-muted);
+            width: 120px;
+        }
+        .gear-table td:last-child {
+            font-weight: 600;
+            text-align: right;
+        }
+        .paladin-page .gear-table td:last-child { color: var(--paladin); }
+        .dk-page .gear-table td:last-child { color: var(--dk); }
+        
+        .gear-cards {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+        .gear-card-item {
+            background: rgba(0,0,0,0.25);
+            border-radius: 10px;
+            padding: 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        .gear-card-item .label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .gear-card-item .name {
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+        .paladin-page .gear-card-item .name { color: var(--paladin); }
+        .dk-page .gear-card-item .name { color: var(--dk); }
+        
+        @media (max-width: 500px) {
+            .gear-cards { grid-template-columns: 1fr; }
+        }
 
         /* Tips */
         .tips-box { border-radius: 12px; padding: 18px; margin-top: 16px; }
@@ -934,32 +975,44 @@
             <div class="grid-2">
                 <div class="card">
                     <div class="card-title">🎯 Trinkets</div>
-                    <div class="gear-grid">
-                        <div class="gear-item"><span class="slot">Slot 1</span><span class="value">Astral Antenna</span></div>
-                        <div class="gear-item"><span class="slot">Slot 2</span><span class="value">Brand of Ceaseless Ire</span></div>
+                    <div class="gear-cards">
+                        <div class="gear-card-item">
+                            <span class="label">Slot 1</span>
+                            <span class="name">Astral Antenna</span>
+                        </div>
+                        <div class="gear-card-item">
+                            <span class="label">Slot 2</span>
+                            <span class="name">Brand of Ceaseless Ire</span>
+                        </div>
                     </div>
                 </div>
 
                 <div class="card">
                     <div class="card-title">💎 Gemmes</div>
-                    <div class="gear-grid">
-                        <div class="gear-item"><span class="slot">Primaire</span><span class="value">Culminating Blasphemite</span></div>
-                        <div class="gear-item"><span class="slot">Secondaires</span><span class="value">Quick Ruby (Haste)</span></div>
+                    <div class="gear-cards">
+                        <div class="gear-card-item">
+                            <span class="label">Primaire</span>
+                            <span class="name">Culminating Blasphemite</span>
+                        </div>
+                        <div class="gear-card-item">
+                            <span class="label">Secondaires</span>
+                            <span class="name">Quick Ruby</span>
+                        </div>
                     </div>
                 </div>
             </div>
 
             <div class="card">
                 <div class="card-title">✨ Enchantements</div>
-                <div class="gear-grid">
-                    <div class="gear-item"><span class="slot">Arme</span><span class="value">Council's Guile</span></div>
-                    <div class="gear-item"><span class="slot">Cape</span><span class="value">Chant of Leeching Fangs</span></div>
-                    <div class="gear-item"><span class="slot">Torse</span><span class="value">Crystalline Radiance</span></div>
-                    <div class="gear-item"><span class="slot">Poignets</span><span class="value">Chant of Armored Leech</span></div>
-                    <div class="gear-item"><span class="slot">Jambes</span><span class="value">Stormbound Armor Kit</span></div>
-                    <div class="gear-item"><span class="slot">Bottes</span><span class="value">Defender's March</span></div>
-                    <div class="gear-item"><span class="slot">Anneaux</span><span class="value">Radiant Critical Strike</span></div>
-                </div>
+                <table class="gear-table">
+                    <tr><td>Arme</td><td>Council's Guile</td></tr>
+                    <tr><td>Cape</td><td>Chant of Leeching Fangs</td></tr>
+                    <tr><td>Torse</td><td>Crystalline Radiance</td></tr>
+                    <tr><td>Poignets</td><td>Chant of Armored Leech</td></tr>
+                    <tr><td>Jambes</td><td>Stormbound Armor Kit</td></tr>
+                    <tr><td>Bottes</td><td>Defender's March</td></tr>
+                    <tr><td>Anneaux</td><td>Radiant Critical Strike</td></tr>
+                </table>
             </div>
 
             <div class="card">
@@ -1430,32 +1483,44 @@
             <div class="grid-2">
                 <div class="card">
                     <div class="card-title">🎯 Trinkets</div>
-                    <div class="gear-grid">
-                        <div class="gear-item"><span class="slot">Slot 1</span><span class="value">Astral Antenna</span></div>
-                        <div class="gear-item"><span class="slot">Slot 2</span><span class="value">Brand of Ceaseless Ire</span></div>
+                    <div class="gear-cards">
+                        <div class="gear-card-item">
+                            <span class="label">Slot 1</span>
+                            <span class="name">Astral Antenna</span>
+                        </div>
+                        <div class="gear-card-item">
+                            <span class="label">Slot 2</span>
+                            <span class="name">Brand of Ceaseless Ire</span>
+                        </div>
                     </div>
                 </div>
 
                 <div class="card">
                     <div class="card-title">💎 Gemmes</div>
-                    <div class="gear-grid">
-                        <div class="gear-item"><span class="slot">Primaire</span><span class="value">Culminating Blasphemite</span></div>
-                        <div class="gear-item"><span class="slot">Secondaires</span><span class="value">Masterful Sapphire</span></div>
+                    <div class="gear-cards">
+                        <div class="gear-card-item">
+                            <span class="label">Primaire</span>
+                            <span class="name">Culminating Blasphemite</span>
+                        </div>
+                        <div class="gear-card-item">
+                            <span class="label">Secondaires</span>
+                            <span class="name">Masterful Sapphire</span>
+                        </div>
                     </div>
                 </div>
             </div>
 
             <div class="card">
                 <div class="card-title">✨ Enchantements</div>
-                <div class="gear-grid">
-                    <div class="gear-item"><span class="slot">Arme</span><span class="value">Authority of the Depths</span></div>
-                    <div class="gear-item"><span class="slot">Cape</span><span class="value">Chant of Leeching Fangs</span></div>
-                    <div class="gear-item"><span class="slot">Torse</span><span class="value">Crystalline Radiance</span></div>
-                    <div class="gear-item"><span class="slot">Poignets</span><span class="value">Chant of Armored Speed</span></div>
-                    <div class="gear-item"><span class="slot">Jambes</span><span class="value">Stormbound Armor Kit</span></div>
-                    <div class="gear-item"><span class="slot">Bottes</span><span class="value">Defender's March</span></div>
-                    <div class="gear-item"><span class="slot">Anneaux</span><span class="value">Radiant Mastery</span></div>
-                </div>
+                <table class="gear-table">
+                    <tr><td>Arme</td><td>Authority of the Depths</td></tr>
+                    <tr><td>Cape</td><td>Chant of Leeching Fangs</td></tr>
+                    <tr><td>Torse</td><td>Crystalline Radiance</td></tr>
+                    <tr><td>Poignets</td><td>Chant of Armored Speed</td></tr>
+                    <tr><td>Jambes</td><td>Stormbound Armor Kit</td></tr>
+                    <tr><td>Bottes</td><td>Defender's March</td></tr>
+                    <tr><td>Anneaux</td><td>Radiant Mastery</td></tr>
+                </table>
             </div>
 
             <div class="card">
